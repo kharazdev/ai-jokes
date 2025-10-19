@@ -2,11 +2,11 @@
   "crons": [
     {
       "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true&v=1",
-      "schedule": "22 3 * * *"
+      "schedule": "27 3 * * *"
     },
     {
       "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true&v=1",
-      "schedule": "22 5 * * *"
+      "schedule": "27 4 * * *"
     }
   ]
 }
