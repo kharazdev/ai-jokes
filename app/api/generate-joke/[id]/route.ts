@@ -5,17 +5,20 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { characters } from '@/lib/characters'; // Your character definitions
 import { sql } from '@vercel/postgres';
 
+ 
+
+
 // Initialize the Google AI client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-
+ 
 // The GET function for our dynamic route
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  // { params }: { params: {id: string} }
 ) {
   // The 'params' object contains the dynamic parts of the URL.
   // In this case, it's the 'id' from '/api/generate-joke/[id]'
-  const { id } = params;
+  const  id   = '1';
 
   // --- Step 1: Validate the incoming ID ---
   const characterId = parseInt(id, 10); // Convert the ID string to a number
