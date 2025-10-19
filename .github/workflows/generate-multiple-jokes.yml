@@ -1,0 +1,35 @@
+# .github/workflows/generate-character-1-joke.yml
+
+# A clear name for this specific action
+name: Generate Joke for Character 1 (Professor Puns)
+
+on:
+  schedule:
+    # NOTE: All times are in UTC.
+    # This schedule is set for 12:30, 13:30, and 14:30 UTC.
+    # - During UK winter (GMT), this is 12:30 PM, 1:30 PM, and 2:30 PM.
+    # - During UK summer (BST), this is 1:30 PM, 2:30 PM, and 3:30 PM.
+
+    # 12:30 UTC
+    - cron: '33 12 * * *'
+
+    # 13:33 UTC
+    - cron: '33 13 * * *'
+
+    # 14:33 UTC
+    - cron: '33 14 * * *'
+
+  # This allows you to run the job manually from the GitHub Actions tab for testing
+  workflow_dispatch:
+
+jobs:
+  # The single job that will run
+  call_api_for_character_1:
+    runs-on: ubuntu-latest
+    steps:
+      # The single step in the job
+      - name: Call generate-joke API for character 1
+        # This command makes a GET request to your production URL.
+        # It specifically calls the endpoint for character ID '1'.
+        # The '--fail' flag ensures the job will fail if your API returns an error.
+        run: curl --request GET --url '${{ secrets.PRODUCTION_URL }}/api/generate-joke/1' --fail
