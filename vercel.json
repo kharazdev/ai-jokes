@@ -1,8 +1,8 @@
 {
   "crons": [
     {
-      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235",
-      "schedule": "39 2 * * *"
+      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=false",
+      "schedule": "58 2 * * *"
     }
   ]
 }

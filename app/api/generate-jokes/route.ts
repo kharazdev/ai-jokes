@@ -9,6 +9,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const cronSecret = searchParams.get('cron_secret');
+  const forceRefresh = searchParams.get('force') === 'true'; // <-- NEW: Check for the force parameter
 
   if (cronSecret !== process.env.CRON_SECRET) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -24,7 +25,7 @@ export async function GET(request: Request) {
     `;
 
     // --- MODIFIED: If jokes exist, return them directly ---
-    if (rows.length > 4) {
+    if (rows.length > 4 && !forceRefresh) {
       console.log('CACHE HIT: Jokes for today already exist. Returning from database.');
       const cachedJokes = rows.map(row => ({
         character: row.character_name,
@@ -58,7 +59,7 @@ export async function GET(request: Request) {
       } else {
         console.error(`Failed to generate joke for ${character.name}. Response was empty.`);
       }
-      await delay(1000);
+      await delay(9000);
     }
 
     return NextResponse.json({
