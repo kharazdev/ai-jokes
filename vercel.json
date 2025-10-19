@@ -1,12 +1,12 @@
 {
   "crons": [
     {
-      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true",
-      "schedule": "10 3 * * *"
+      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true&v=1",
+      "schedule": "21 3 * * *"
     },
     {
-      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true",
-      "schedule": "10 5 * * *"
+      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true&v=1",
+      "schedule": "21 5 * * *"
     }
   ]
 }
