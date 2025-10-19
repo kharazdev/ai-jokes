@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235",
+      "schedule": "22 2 * * *"
+    }
+  ]
+}
