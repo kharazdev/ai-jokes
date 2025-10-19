@@ -1,9 +1,9 @@
-import { sql } from '@vercel/postgres';
-import { characters, JokeCharacter } from '@/lib/characters';
+import { sql } from "@vercel/postgres";
+import { characters, JokeCharacter } from "@/lib/characters";
 
 // Create a map for easy character lookup. This is efficient.
 const characterMap = new Map<string, JokeCharacter>(
-  characters.map((char) => [char.name, char])
+  characters.map((char) => [char.name, char]),
 );
 
 // Define the structure of the data we expect from our database query
@@ -21,7 +21,7 @@ export default async function JokesPage() {
   // Or set a revalidate time e.g., export const revalidate = 60; (seconds)
   // For now, no-store is simplest to guarantee freshness.
   // export const dynamic = 'force-dynamic'
-  
+
   let jokes: Joke[] = [];
   try {
     // Fetch all jokes from the database, ordering them by newest first
@@ -53,19 +53,25 @@ export default async function JokesPage() {
             const character = characterMap.get(joke.character_name);
             return (
               // This is our reusable "Joke Card" component
-              <div key={joke.id} className="bg-white p-6 rounded-xl shadow-md flex items-start space-x-4">
+              <div
+                key={joke.id}
+                className="bg-white p-6 rounded-xl shadow-md flex items-start space-x-4"
+              >
                 <div className="text-4xl flex-shrink-0">
-                  {character?.avatar || '🎤'}
+                  {character?.avatar || "🎤"}
                 </div>
                 <div>
                   <h2 className="text-xl font-semibold text-gray-900">
-                    {character?.name || 'A Comedian'}
+                    {character?.name || "A Comedian"}
                   </h2>
-                  <p className="mt-2 text-lg text-gray-700">
-                    "{joke.content}"
-                  </p>
+                  <p className="mt-2 text-lg text-gray-700">"{joke.content}"</p>
                   <p className="mt-3 text-sm text-gray-400">
-                    Told on: {new Date(joke.created_at).toLocaleDateString()}
+                    Told at:{" "}
+                    {/* {joke.created_at.toString()} */}
+                    {new Date(joke.created_at).toLocaleString("en-GB", {
+                      dateStyle: "medium",
+                      timeStyle: "short",
+                    })}{" "}
                   </p>
                 </div>
               </div>
@@ -76,10 +82,12 @@ export default async function JokesPage() {
           <div className="text-center p-6 bg-white rounded-xl shadow-md">
             <h2 className="text-xl font-semibold">The archive is empty!</h2>
             <p className="mt-2 text-gray-600">
-              Looks like the comedians are just warming up. The first jokes should appear soon.
+              Looks like the comedians are just warming up. The first jokes
+              should appear soon.
             </p>
           </div>
-        )}``
+        )}
+        ``
       </div>
     </main>
   );
