@@ -11,13 +11,13 @@ on:
     # - During UK summer (BST), this is 1:30 PM, 2:30 PM, and 3:30 PM.
 
     # 12:30 UTC
-    - cron: '47 13 * * *'
+    - cron: '58 13 * * *'
 
-    # 13:47 UTC
-    - cron: '47 14 * * *'
+    # 13:58 UTC
+    - cron: '58 14 * * *'
 
-    # 14:47 UTC
-    - cron: '47 15 * * *'
+    # 14:58 UTC
+    - cron: '58 15 * * *'
 
   # This allows you to run the job manually from the GitHub Actions tab for testing
   workflow_dispatch:
@@ -32,4 +32,4 @@ jobs:
         # This command makes a GET request to your production URL.
         # It specifically calls the endpoint for character ID '1'.
         # The '--fail' flag ensures the job will fail if your API returns an error.
-        run: curl --request GET --url 'https://ai-jokes-theta.vercel.app/api/generate-joke/1' --fail
+        run: curl --request GET --url '${{ secrets.PRODUCTION_URL }}/api/generate-joke/1' --fail
