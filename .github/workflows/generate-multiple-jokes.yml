@@ -11,13 +11,13 @@ on:
     # - During UK summer (BST), this is 1:30 PM, 2:30 PM, and 3:30 PM.
 
     # 12:30 UTC
-    - cron: '33 13 * * *'
+    - cron: '41 13 * * *'
 
-    # 13:33 UTC
-    - cron: '33 14 * * *'
+    # 13:41 UTC
+    - cron: '41 14 * * *'
 
-    # 14:33 UTC
-    - cron: '33 15 * * *'
+    # 14:41 UTC
+    - cron: '41 15 * * *'
 
   # This allows you to run the job manually from the GitHub Actions tab for testing
   workflow_dispatch:
