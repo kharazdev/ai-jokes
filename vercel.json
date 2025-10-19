@@ -2,7 +2,19 @@
   "crons": [
     {
       "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true",
-      "schedule": "2 3 * * *"
+      "schedule": "15 3 * * *"
+    },
+    {
+      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true",
+      "schedule": "15 4 * * *"
+    },
+    {
+      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true",
+      "schedule": "15 2 * * *"
+    },
+    {
+      "path": "/api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true",
+      "schedule": "15 5 * * *"
     }
   ]
 }
