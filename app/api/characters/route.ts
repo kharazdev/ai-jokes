@@ -25,3 +25,43 @@ export async function GET() {
     );
   }
 }
+
+
+// --- ADD THIS PATCH HANDLER ---
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { id } = params;
+    // Get all the updatable fields from the request body
+    const { name, avatar, bio, prompt_persona } = await request.json();
+
+    // Basic validation
+    if (!name || !avatar || !bio || !prompt_persona) {
+      return NextResponse.json(
+        { message: 'All fields (name, avatar, bio, prompt_persona) are required.' },
+        { status: 400 } // Bad Request
+      );
+    }
+
+    // Update the character in the database
+    await sql`
+      UPDATE characters
+      SET 
+        name = ${name}, 
+        avatar = ${avatar}, 
+        bio = ${bio},
+        prompt_persona = ${prompt_persona}
+      WHERE id = ${id};
+    `;
+
+    return NextResponse.json({ message: 'Character updated successfully.' }, { status: 200 });
+  } catch (error) {
+    console.error('API Error updating character:', error);
+    return NextResponse.json(
+      { message: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}

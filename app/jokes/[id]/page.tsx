@@ -49,7 +49,7 @@ export default async function SingleJokePage({
   const character = characterMap.get(joke.character_name);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 sm:p-12 md:p-24 bg-gray-50">
+     <main className="flex min-h-screen flex-col items-center p-8 sm:p-12 md:p-24 bg-gray-50">
       <div className="w-full max-w-2xl">
         {/* The Joke Card - we can reuse the same styling */}
         <div className="bg-white p-6 rounded-xl shadow-lg flex items-start space-x-4">
@@ -69,15 +69,25 @@ export default async function SingleJokePage({
           </div>
         </div>
 
-        {/* Add a link to go back to the main list */}
-        <div className="mt-8 text-center">
+        {/* --- ADDED SECTION --- */}
+        <div className="mt-8 flex justify-center items-center space-x-6">
           <Link
             href="/jokes"
             className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
           >
             &larr; Back to All Jokes
           </Link>
+          {/* Add a separator for style */}
+          <span className="text-gray-300">|</span>
+          <Link
+            href={`/jokes/${joke.id}/edit`}
+            className="text-green-600 hover:text-green-800 hover:underline transition-colors font-semibold"
+          >
+            Edit Joke ✏️
+          </Link>
         </div>
+        {/* --- END ADDED SECTION --- */}
+
       </div>
     </main>
   );

@@ -32,3 +32,37 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { id } = params;
+    // Get the new joke content from the request body
+    const { content } = await request.json();
+
+    // Validate the input
+    if (!content) {
+      return NextResponse.json(
+        { message: 'Joke content cannot be empty.' },
+        { status: 400 } // Bad Request
+      );
+    }
+
+    // Update the joke in the database
+    await sql`
+      UPDATE jokes
+      SET content = ${content}
+      WHERE id = ${id};
+    `;
+
+    return NextResponse.json({ message: 'Joke updated successfully.' }, { status: 200 });
+  } catch (error) {
+    console.error('API Error updating joke:', error);
+    return NextResponse.json(
+      { message: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}
