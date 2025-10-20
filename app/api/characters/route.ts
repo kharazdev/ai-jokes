@@ -26,16 +26,39 @@ export async function GET() {
   }
 }
 
-
 // --- ADD THIS PATCH HANDLER ---
-export async function PATCH(
-  request: Request,
-  params: any
-) {
+export async function PATCH(request: Request, context?: any) {
   try {
-    const { id } = params.params;
-    // Get all the updatable fields from the request body
-    const { name, avatar, bio, prompt_persona } = await request.json();
+    // Try to get id from route params (if present), query string, or request body
+    const paramId = context?.params?.id;
+    const urlId = (typeof request?.url === 'string') ? new URL(request.url).searchParams.get('id') : null;
+
+    // Parse body safely (catch JSON errors)
+    let body: any = {};
+    try {
+      body = await request.json();
+    } catch {
+      body = {};
+    }
+
+    const idRaw = paramId ?? urlId ?? body.id;
+    if (!idRaw) {
+      return NextResponse.json(
+        { message: 'Character id is required. Provide it in the route, ?id= query, or request body.' },
+        { status: 400 }
+      );
+    }
+
+    const characterId = parseInt(String(idRaw), 10);
+    if (isNaN(characterId)) {
+      return NextResponse.json(
+        { message: 'Invalid character id. It must be a number.' },
+        { status: 400 }
+      );
+    }
+
+    // Get updatable fields from the body
+    const { name, avatar, bio, prompt_persona } = body;
 
     // Basic validation
     if (!name || !avatar || !bio || !prompt_persona) {
@@ -53,14 +76,14 @@ export async function PATCH(
         avatar = ${avatar}, 
         bio = ${bio},
         prompt_persona = ${prompt_persona}
-      WHERE id = ${id};
+      WHERE id = ${characterId};
     `;
 
     return NextResponse.json({ message: 'Character updated successfully.' }, { status: 200 });
   } catch (error) {
     console.error('API Error updating character:', error);
     return NextResponse.json(
-      { message: 'Internal Server Error' },
+      { message: 'Internal Server Error', error: (error as Error).message },
       { status: 500 }
     );
   }

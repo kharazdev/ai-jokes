@@ -23,27 +23,34 @@ export function EditJokeForm({ joke }: { joke: Joke }) {
     setError('');
 
     try {
-      const response = await fetch(`/api/jokes/${joke.id}`, {
+      const res = await fetch(`/api/jokes/${joke.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json, text/plain, */*'
         },
         body: JSON.stringify({ content }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to update the joke.');
+      // Parse as text first to avoid JSON parse errors when server returns HTML.
+      const raw = await res.text();
+      let parsed: any = null;
+      try {
+        parsed = raw ? JSON.parse(raw) : null;
+      } catch {
+        parsed = { message: raw };
       }
 
-      // On success, redirect back to the joke's view page.
-      // The router.refresh() is crucial! It tells Next.js to re-fetch
-      // the data for the page, so the user sees the updated joke.
+      if (!res.ok) {
+        throw new Error(parsed?.message || 'Failed to update the joke.');
+      }
+
+      // On success, navigate and refresh
       router.push(`/jokes/${joke.id}`);
       router.refresh();
 
     } catch (err: any) {
-      setError(err.message);
+      setError(err?.message || String(err));
     } finally {
       setIsSubmitting(false);
     }
