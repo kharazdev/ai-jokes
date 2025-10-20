@@ -34,11 +34,11 @@ export async function GET(request: Request) {
 }
 
 export async function PATCH(
-  request: Request,
-  { params }: { params: { id: string } }
+  request:any,
+  params: any
 ) {
   try {
-    const { id } = params;
+    const { id } = params.params;
     // Get the new joke content from the request body
     const { content } = await request.json();
 

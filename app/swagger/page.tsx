@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 /**
  * Simple Swagger-like interactive tester for this app's APIs.
@@ -39,23 +39,31 @@ export default function SwaggerPage() {
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState<string | null>(null);
 
+  // NEW: origin is only set on the client to avoid `window` access during SSR/prerender
+  const [origin, setOrigin] = useState<string | null>(null);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setOrigin(window.location.origin);
+    }
+  }, []);
+
   const endpoint = endpoints.find((e) => e.id === selected)!;
 
+  // UPDATED: buildUrl no longer uses `window` directly so it is safe during prerender
   function buildUrl(): string {
-    const base = window.location.origin;
     let path = endpoint.path;
     if (path.includes(':id')) {
       path = path.replace(':id', encodeURIComponent(pathParam || ''));
     }
-    const url = new URL(base + path);
-    // special handling for cron endpoint query param
+
+    // handle cron_secret query param when needed
     if (endpoint.id === 'generate-jokes' && cronSecret) {
-      url.searchParams.set('cron_secret', cronSecret);
+      const separator = path.includes('?') ? '&' : '?';
+      path = `${path}${separator}cron_secret=${encodeURIComponent(cronSecret)}`;
     }
-    if (endpoint.id === 'generate-jokes' && !cronSecret) {
-      // leave as-is; user can call without secret (will be rejected)
-    }
-    return url.toString();
+
+    // If origin is known (client), return absolute URL; otherwise return relative path (safe for SSR)
+    return origin ? origin + path : path;
   }
 
   async function callEndpoint() {
@@ -172,10 +180,12 @@ export default function SwaggerPage() {
                   {loading ? 'Calling…' : 'Test Endpoint'}
                 </button>
                 <a
-                  href={buildUrl()}
+                  href={origin ? buildUrl() : '#'}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm text-gray-600 underline"
+                  className={`text-sm text-gray-600 underline ${!origin ? 'pointer-events-none opacity-60' : ''}`}
+                  aria-disabled={!origin}
+                  title={!origin ? 'Open in new tab is available in the browser' : undefined}
                 >
                   Open in new tab
                 </a>

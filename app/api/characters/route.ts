@@ -30,10 +30,10 @@ export async function GET() {
 // --- ADD THIS PATCH HANDLER ---
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  params: any
 ) {
   try {
-    const { id } = params;
+    const { id } = params.params;
     // Get all the updatable fields from the request body
     const { name, avatar, bio, prompt_persona } = await request.json();
 
