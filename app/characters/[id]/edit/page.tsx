@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { notFound } from "next/navigation";
-import { EditCharacterForm } from "@/components/EditCharacterForm";
 import Link from "next/link";
+import { EditCharacterForm } from "@/components/EditCharacterForm";
 
 interface CharacterData {
   id: number;

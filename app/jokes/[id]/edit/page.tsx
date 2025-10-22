@@ -2,7 +2,7 @@
 
 import { sql } from '@vercel/postgres';
 import { notFound } from 'next/navigation';
-import { EditJokeForm } from '../../../../components/EditCharacterForm'; // Adjust path if needed
+// import { EditJokeForm } from '../../../../components/EditCharacterForm'; // Adjust path if needed
 import Link from 'next/link';
 
 interface Joke {
@@ -37,7 +37,7 @@ export default async function EditJokePage({ params }: { params: { id: string } 
         </h1>
         <div className="rounded-xl bg-white p-8 shadow-lg">
           {/* Pass the server-fetched joke data to the client form */}
-          <EditJokeForm joke={joke} />
+          {/* <EditJokeForm joke={joke} /> */}
         </div>
         <div className="mt-8 text-center">
           <Link 
