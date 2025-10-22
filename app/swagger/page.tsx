@@ -19,14 +19,14 @@ type Endpoint = {
 
 const endpoints: Endpoint[] = [
   { id: 'get-jokes', method: 'GET', path: '/api/jokes', description: 'List all jokes' },
-  { id: 'get-joke', method: 'GET', path: '/api/jokes/joke/:id', description: 'Get a single joke by id' },
-  { id: 'patch-joke', method: 'PATCH', path: '/api/jokes/joke/:id', description: 'Update joke content', hasBody: true },
+  { id: 'get-joke', method: 'GET', path: '/api/jokes/:id', description: 'Get a single joke by id' },
+  { id: 'patch-joke', method: 'PATCH', path: '/api/jokes/:id', description: 'Update joke content', hasBody: true },
   { id: 'get-characters', method: 'GET', path: '/api/characters', description: 'List all characters' },
-  { id: 'get-character', method: 'GET', path: '/api/characters/character/:id', description: 'Get a character by id' },
+  { id: 'get-character', method: 'GET', path: '/api/characters/:id', description: 'Get a character by id' },
   { id: 'patch-character', method: 'PATCH', path: '/api/characters/:id', description: 'Update character (name/avatar/bio/prompt_persona)', hasBody: true },
   { id: 'generate-joke', method: 'GET', path: '/api/generate-joke/:id', description: 'Generate one joke for character id (rate-limited)' , notes: 'Provide id path param' },
   { id: 'generate-jokes', method: 'GET', path: '/api/generate-jokes', description: 'Generate jokes for all characters (cron endpoint, requires cron_secret)', notes: 'Set cron_secret query param when calling' },
-  { id: 'comments-crud', method: 'GET', path: '/api/comments (via app)', description: 'Comments demo (use the page /comments to test forms)' },
+  { id: 'comments-crud', method: 'GET', path: '/comments', description: 'Comments demo (use the page /comments to test forms)' },
 ];
 
 export default function SwaggerPage() {
@@ -75,13 +75,16 @@ export default function SwaggerPage() {
       const url = buildUrl();
       const opts: RequestInit = {
         method: endpoint.method,
-        headers: {},
+        headers: {
+          'Accept': 'application/json, text/plain, */*'
+        },
+        mode: 'same-origin' // ensure same-origin for local API calls
       };
 
       if (endpoint.hasBody) {
         try {
           const parsed = JSON.parse(bodyText);
-          opts.headers = { 'Content-Type': 'application/json' };
+          opts.headers = { ...(opts.headers || {}), 'Content-Type': 'application/json' };
           opts.body = JSON.stringify(parsed);
         } catch (err) {
           setErrorText('Invalid JSON body. Fix before sending.');
@@ -92,14 +95,19 @@ export default function SwaggerPage() {
 
       const res = await fetch(url, opts);
       setStatus(res.status);
-      const contentType = res.headers.get('content-type') || '';
-      if (contentType.includes('application/json')) {
-        const json = await res.json();
-        setResponse(json);
-      } else {
-        const text = await res.text();
-        setResponse({ text });
+
+      // robust parsing: try JSON, otherwise return text
+      const raw = await res.text();
+      let parsed: any = null;
+      try {
+        parsed = raw ? JSON.parse(raw) : null;
+      } catch {
+        parsed = { text: raw };
       }
+
+      // If response was JSON-like, show it; otherwise show text
+      setResponse(parsed ?? null);
+
     } catch (err: any) {
       setErrorText(String(err?.message || err));
     } finally {
@@ -174,15 +182,19 @@ export default function SwaggerPage() {
                 <button
                   type="button"
                   onClick={callEndpoint}
-                  disabled={loading}
+                  disabled={
+                    loading ||
+                    (endpoint.path.includes(':id') && String(pathParam || '').trim() === '')
+                  }
                   className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-60"
+                  title={endpoint.path.includes(':id') && !pathParam ? 'Provide an id before testing this endpoint' : undefined}
                 >
                   {loading ? 'Calling…' : 'Test Endpoint'}
                 </button>
                 <a
                   href={origin ? buildUrl() : '#'}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className={`text-sm text-gray-600 underline ${!origin ? 'pointer-events-none opacity-60' : ''}`}
                   aria-disabled={!origin}
                   title={!origin ? 'Open in new tab is available in the browser' : undefined}

@@ -6,6 +6,9 @@ export interface JokeCharacter {
   avatar: string; // This can be an emoji or a path to an image file.
   bio: string; // A short description for display purposes.
   prompt_persona: string; // The detailed instruction for the OpenAI API.
+  // Added optional timestamp fields to satisfy both DB (created_at) and JS/CamelCase (createdAt) access
+  created_at?: string | Date;
+  createdAt?: string | Date;
 }
 
 // Step 2: Create and export an array of your 5 characters.
