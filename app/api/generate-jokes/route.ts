@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { sql } from '@vercel/postgres';
-// +++ ADDED +++ Import our rate-limiting functions
 import { canMakeApiCall, recordSuccessfulApiCall } from '@/lib/rate-limiter';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -21,16 +20,13 @@ export async function GET(request: Request) {
     // +++ ADDED +++ Step 2: Check the Daily Rate Limit for this entire job
     const actionName = 'generate_daily_jokes_for_all_characters';
     const isAllowed = await canMakeApiCall(actionName);
-    const { rows } = await sql`
+    const { rows: cached } = await sql`
       SELECT content, character_name FROM jokes 
       WHERE created_at >= CURRENT_DATE 
       ORDER BY id ASC;
     `;
 
-    const cachedJokes = rows.map(row => ({
-      character: row.character_name,
-      joke: row.content,
-    }));
+    const cachedJokes = cached.map((row: any) => ({ character: row.character_name, joke: row.content }));
     if (!isAllowed) {
       console.log(`Daily limit reached for action: ${actionName}. Job blocked.`);
       return NextResponse.json(
@@ -40,11 +36,19 @@ export async function GET(request: Request) {
     }
     console.log(`Daily limit check passed for ${actionName}.`);
 
- 
-    // --- Step 4: Generate New Jokes ---
-    console.log('CACHE MISS or FORCE REFRESH: Generating new jokes from Google AI...');
+    // --- Step 3: Fetch Generic Prompt and Characters ---
+    // Fetch generic prompt (fallback to string if table doesn't exist or empty)
+    let genericPrompt = '';
+    try {
+      const { rows: gpRows } = await sql`SELECT prompt_text FROM generic_prompts ORDER BY created_at DESC LIMIT 1;`;
+      genericPrompt = gpRows[0]?.prompt_text ?? '';
+    } catch (err) {
+      // table might not exist yet; leave genericPrompt empty
+      console.warn('Could not fetch generic prompt (it may not be initialized).', err);
+      genericPrompt = '';
+    }
 
-    // +++ MODIFIED +++ Fetch characters from the database to ensure consistency
+    // Fetch characters from the database to ensure consistency
     const { rows: characters } = await sql`SELECT name, prompt_persona FROM characters;`;
 
     if (characters.length === 0) {
@@ -54,9 +58,11 @@ export async function GET(request: Request) {
     const generatedJokes = [];
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" }); // gemini-pro is often sufficient
 
+    // --- Step 4: Generate New Jokes ---
     for (const character of characters) {
       console.log(`Generating joke for ${character.name}...`);
-      const prompt = `You are a comedian. Your persona is: "${character.prompt_persona}". Please tell me a single, short joke based on that persona. Do not include any preamble like "Here's a joke:". Just return the joke text.`;
+      const combinedPrompt = [genericPrompt, character.prompt_persona].filter(Boolean).join(' ');
+      const prompt = `You are a comedian. Global instructions: "${combinedPrompt}". Please tell me a single, short joke based on that persona. Do not include any preamble like "Here's a joke:". Just return the joke text.`;
 
       const result = await model.generateContent(prompt);
       const response = result.response;

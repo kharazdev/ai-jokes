@@ -9,7 +9,8 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/characters', label: 'Characters' },
   { href: '/jokes', label: 'Jokes' },
-  { href: '/swagger', label: 'API' } // <-- added link to Swagger-like tester
+  { href: '/swagger', label: 'API' },
+  { href: '/settings/generic-prompt', label: 'Settings' } // <-- added
 ];
 
 export function Header() {

@@ -26,7 +26,58 @@ export async function GET() {
   }
 }
 
-// --- ADD THIS PATCH HANDLER ---
+// --- ADD THIS POST HANDLER ---
+export async function POST(request: Request) {
+  try {
+    // Parse JSON body safely
+    let body: any = {};
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json({ message: 'Invalid JSON body' }, { status: 400 });
+    }
+
+    const name = (body?.name ?? '').toString().trim();
+    const avatar = (body?.avatar ?? '').toString().trim();
+    const bio = (body?.bio ?? '').toString().trim();
+    const prompt_persona = (body?.prompt_persona ?? '').toString().trim();
+
+    // Basic validation
+    if (!name || !avatar || !bio || !prompt_persona) {
+      return NextResponse.json(
+        { message: 'All fields (name, avatar, bio, prompt_persona) are required.' },
+        { status: 400 }
+      );
+    }
+
+    // Insert character, handle unique name violation gracefully
+    try {
+      const { rows } = await sql`
+        INSERT INTO characters (name, avatar, bio, prompt_persona)
+        VALUES (${name}, ${avatar}, ${bio}, ${prompt_persona})
+        RETURNING id, name, avatar, bio, prompt_persona, created_at;
+      `;
+      const created = rows[0];
+      return NextResponse.json({ message: 'Character created.', character: created }, { status: 201 });
+    } catch (err: any) {
+      // Unique constraint on name might cause an error, map to 409 conflict
+      const msg = String(err?.message || err);
+      if (msg.includes('unique') || msg.includes('already exists') || err?.code === '23505') {
+        return NextResponse.json({ message: `Character with name "${name}" already exists.` }, { status: 409 });
+      }
+      console.error('Failed to insert character:', err);
+      return NextResponse.json({ message: 'Internal Server Error', error: msg }, { status: 500 });
+    }
+  } catch (error) {
+    console.error('API Error creating character:', error);
+    return NextResponse.json(
+      { message: 'Internal Server Error', error: (error as Error).message },
+      { status: 500 }
+    );
+  }
+}
+
+// --- existing PATCH handler remains unchanged ---
 export async function PATCH(request: Request, context?: any) {
   try {
     // Try to get id from route params (if present), query string, or request body
