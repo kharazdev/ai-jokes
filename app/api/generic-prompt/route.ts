@@ -45,9 +45,9 @@ export async function GET() {
       try {
         await ensureGenericPromptTableExists();
         return NextResponse.json({ prompt: DEFAULT_GENERIC_PROMPT }, { status: 200 });
-      } catch (err) {
+      } catch (err: any) {
         console.error("Failed to create generic_prompts table after missing-table error:", err);
-        return NextResponse.json({ prompt: DEFAULT_GENERIC_PROMPT, error: String(err?.message || err) }, { status: 500 });
+        return NextResponse.json({ prompt: DEFAULT_GENERIC_PROMPT, error: String(err?.message ?? err) }, { status: 500 });
       }
     }
     console.error("Failed to fetch generic prompt:", error);

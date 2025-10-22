@@ -4,6 +4,7 @@ import { sql } from "@vercel/postgres";
 import { JokeCharacter } from "@/lib/characters";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import GenerateJokeButton from "@/components/GenerateJokeButton"; // <-- added
 
 // Define the structure of a Joke object from the database
 interface Joke {
@@ -55,10 +56,8 @@ export default async function SingleCharacterPage({
 
   return (
     <main className="flex min-h-screen flex-col items-center p-8 sm:p-12 md:p-24 bg-gray-50">
-      {/* Increased max-width to better fit the bio and the list of jokes */}
       <div className="w-full max-w-3xl">
-        
-        {/* --- Character Bio Section (Restyled for better presentation) --- */}
+        {/* Character Bio Section */}
         <div className="relative bg-white p-8 rounded-xl shadow-lg text-center">
           <Link 
             href={`/characters/${character.id}/edit`}
@@ -71,9 +70,21 @@ export default async function SingleCharacterPage({
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L15.232 5.232z" />
             </svg>
           </Link>
+
           <div className="text-8xl mb-4 mx-auto w-fit">{character.avatar}</div>
           <h1 className="text-4xl font-bold text-gray-900">{character.name}</h1>
           <p className="mt-2 text-lg text-gray-600">{character.bio}</p>
+        </div>
+
+        {/* Action row: Generate button + Back link */}
+        <div className="mt-6 flex items-center justify-center gap-6">
+          <GenerateJokeButton characterId={character.id} characterName={character.name} />
+          <Link
+            href="/characters"
+            className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+          >
+            &larr; Back to All Characters
+          </Link>
         </div>
 
         {/* --- ADDED: Jokes List Section --- */}
@@ -106,16 +117,6 @@ export default async function SingleCharacterPage({
               </div>
             )}
           </div>
-        </div>
-
-        {/* --- Navigation Links --- */}
-        <div className="mt-12 text-center">
-          <Link
-            href="/characters"
-            className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
-          >
-            &larr; Back to All Characters
-          </Link>
         </div>
       </div>
     </main>
