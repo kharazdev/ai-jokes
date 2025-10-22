@@ -10,7 +10,7 @@ export async function GET() {
     // Select the columns that are safe and necessary for the front-end.
     // We EXCLUDE `prompt_persona` as it's a secret prompt for the AI.
     const { rows: characters } = await sql`
-      SELECT id, name, avatar, bio 
+      SELECT id, name, avatar, bio, prompt_persona, created_at 
       FROM characters 
       ORDER BY id ASC;
     `;
