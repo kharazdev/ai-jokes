@@ -31,3 +31,12 @@ jobs:
         # It specifically calls the endpoint for character ID '1'.
         # The '--fail' flag ensures the job will fail if your API returns an error.
         run: curl --request GET --url 'https://ai-jokes-theta.vercel.app/api/generate-joke/1' --fail
+
+  # The new job to call the plural 'generate-jokes' endpoint
+  call_api_for_generate_jokes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call generate-jokes API
+        # This command makes a GET request to the general joke generation endpoint.
+        # The '--fail' flag ensures the job will fail if your API returns an error.
+        run: curl --request GET --url 'https://ai-jokes-theta.vercel.app/api/generate-jokes' --fail
