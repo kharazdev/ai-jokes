@@ -6,7 +6,7 @@ import { canMakeApiCall, recordSuccessfulApiCall } from '@/lib/rate-limiter';
 export const revalidate = 0;
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
-export async function GET(request: NextRequest, context: any) {
+export async function POST(request: NextRequest, context: any) {
   try {
     let idRaw = context?.params?.id;
     if (idRaw && typeof (idRaw as any).then === 'function') idRaw = await idRaw;

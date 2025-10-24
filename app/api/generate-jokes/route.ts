@@ -6,7 +6,7 @@ import { canMakeApiCall, recordSuccessfulApiCall } from '@/lib/rate-limiter';
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   // --- Step 1: Authentication and Parameter Checks ---
   const { searchParams } = new URL(request.url);
   const cronSecret = searchParams.get('cron_secret');
