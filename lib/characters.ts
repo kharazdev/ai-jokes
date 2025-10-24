@@ -1,3 +1,16 @@
+export interface Memory {
+  id: string; // UUIDs are strings in TypeScript/JavaScript
+  characterId: number; // This must match JokeCharacter.id
+  content: string;
+  embedding?: number[]; // The embedding is optional because you might not always need to send it to the client
+  createdAt?: string | Date;
+  lastAccessedAt?: string | Date | null;
+  importance?: number | null;
+  type?: string | null;
+}
+
+
+
 // Step 1: Define the "shape" of a character object using a TypeScript interface.
 // This ensures every character we create has these exact properties.
 export interface JokeCharacter {
