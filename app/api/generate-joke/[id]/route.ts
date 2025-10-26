@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { sql } from "@vercel/postgres";
 import { canMakeApiCall, recordSuccessfulApiCall } from "@/lib/rate-limiter";
-// import { toSql } from "pgvector/utils";
-// import { getEmbedding } from "@/lib/ai/embedding";
+import { toSql } from "pgvector/utils";
+import { getEmbedding } from "@/lib/ai/embedding";
 import { retrieveMemories } from "@/lib/ai/memory";
 
 export const revalidate = 0;

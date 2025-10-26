@@ -22,6 +22,8 @@ export interface JokeCharacter {
   // Added optional timestamp fields to satisfy both DB (created_at) and JS/CamelCase (createdAt) access
   created_at?: string | Date;
   createdAt?: string | Date;
+  title: string; // <-- New: A tagline for the character
+  color: string; // <-- New: A Tailwind CSS color class
 }
 
 // Step 2: Create and export an array of your 5 characters.

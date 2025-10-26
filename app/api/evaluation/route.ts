@@ -1,6 +1,10 @@
 // app/api/evaluation/route.ts
+
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
+
+// Add this line to opt out of caching and ensure fresh data is always fetched.
+export const dynamic = 'force-dynamic';
 
 const JOKES_PER_PAGE = 15;
 
@@ -41,6 +45,7 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
+    console.error('Error fetching evaluation jokes:', error); // Good practice to log errors
     return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
   }
 }
