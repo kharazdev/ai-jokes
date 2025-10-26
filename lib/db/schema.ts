@@ -42,6 +42,9 @@ export const memories = pgTable('memories', {
   content: text('content').notNull(),
   embedding: vector('embedding'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    // --- ADD THIS NEW LINE ---
+  prompt_topics: text('prompt_topics').array(),
+  
   lastAccessedAt: timestamp('last_accessed_at', { withTimezone: true }),
   importance: real('importance'),
   type: varchar('type', { length: 50 }),

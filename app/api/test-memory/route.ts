@@ -3,6 +3,8 @@
 import { NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
 import { toSql } from 'pgvector/utils';
+import { retrieveMemories } from '@/lib/ai/memory'; // <-- IMPORT OUR NEW SERVICE
+import { NextRequest } from 'next/server';
 
 // Helper function to create a dummy vector.
 function createFakeVector(): number[] {
@@ -70,22 +72,60 @@ export async function POST() {
 
 // --- NEW GET HANDLER ---
 // This function will run when you visit http://localhost:3000/api/test-memory in your browser.
-export async function GET() {
-  console.log('Fetching all memories from the database...');
+// export async function GET() {
+//   console.log('Fetching all memories from the database...');
+//   try {
+//     const { rows: memories } = await sql`
+//       SELECT * FROM memories
+//       ORDER BY created_at DESC;
+//     `;
+    
+//     return NextResponse.json({
+//       success: true,
+//       count: memories.length,
+//       memories: memories, // Returns all memories found
+//     });
+
+//   } catch (error) {
+//     console.error('❌ Failed to fetch memories:', error);
+//     return NextResponse.json({ success: false, error: (error as Error).message }, { status: 500 });
+//   }
+// }
+
+    
+export async function GET(request: NextRequest) {
+  // Get the search parameters from the URL
+  const searchParams = request.nextUrl.searchParams;
+  const topic = searchParams.get('topic');
+  const characterIdParam = searchParams.get('characterId');
+
+  if (!topic || !characterIdParam) {
+    return NextResponse.json({ 
+      success: false, 
+      message: "Please provide 'topic' and 'characterId' as URL query parameters." 
+    }, { status: 400 });
+  }
+
+  const characterId = parseInt(characterIdParam, 10);
+  if (isNaN(characterId)) {
+    return NextResponse.json({ success: false, message: "characterId must be a number." }, { status: 400 });
+  }
+
+  console.log(`Testing memory retrieval for character ${characterId} with topic: "${topic}"`);
+  
   try {
-    const { rows: memories } = await sql`
-      SELECT * FROM memories
-      ORDER BY created_at DESC;
-    `;
+    const relevantMemories = await retrieveMemories(characterId, topic, 5); // Get top 5
     
     return NextResponse.json({
       success: true,
-      count: memories.length,
-      memories: memories, // Returns all memories found
+      topic: topic,
+      characterId: characterId,
+      retrievedCount: relevantMemories.length,
+      memories: relevantMemories,
     });
 
   } catch (error) {
-    console.error('❌ Failed to fetch memories:', error);
+    console.error('❌ Failed to test memory retrieval:', error);
     return NextResponse.json({ success: false, error: (error as Error).message }, { status: 500 });
   }
 }
