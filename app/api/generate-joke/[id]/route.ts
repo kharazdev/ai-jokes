@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { sql } from "@vercel/postgres";
 import { canMakeApiCall, recordSuccessfulApiCall } from "@/lib/rate-limiter";
-import { toSql } from "pgvector/utils";
-import { getEmbedding } from "@/lib/ai/embedding";
+// import { toSql } from "pgvector/utils";
+// import { getEmbedding } from "@/lib/ai/embedding";
 import { retrieveMemories } from "@/lib/ai/memory";
 
 export const revalidate = 0;
@@ -96,17 +96,17 @@ export async function POST(request: NextRequest, context: any) {
     await recordSuccessfulApiCall(actionName);
 
     // Save the new joke to the memory table as a 'generated_joke'
-    try {
-      const embedding = await getEmbedding(jokeContent);
-      const embeddingSql = toSql(embedding);
-      await sql`
-            INSERT INTO memories (character_id, content, embedding, type)
-            VALUES (${characterId}, ${jokeContent}, ${embeddingSql}, 'generated_joke');
-          `;
-      console.log("✅ New joke saved as 'generated_joke' memory.");
-    } catch (memoryError) {
-      console.error("⚠️ Failed to save memory for the new joke:", memoryError);
-    }
+    // try {
+    //   const embedding = await getEmbedding(jokeContent);
+    //   const embeddingSql = toSql(embedding);
+    //   await sql`
+    //         INSERT INTO memories (character_id, content, embedding, type)
+    //         VALUES (${characterId}, ${jokeContent}, ${embeddingSql}, 'generated_joke');
+    //       `;
+    //   console.log("✅ New joke saved as 'generated_joke' memory.");
+    // } catch (memoryError) {
+    //   console.error("⚠️ Failed to save memory for the new joke:", memoryError);
+    // }
 
     // --- 9. SEND THE FINAL RESPONSE ---
     return NextResponse.json(
