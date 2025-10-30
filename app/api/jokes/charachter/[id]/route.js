@@ -1,4 +1,4 @@
-// File: app/api/jokes/[id]/route.ts
+// File: app/api/charachter/[id]/route.ts
 
 import { NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';

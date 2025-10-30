@@ -7,15 +7,21 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "drizzle:generate": "drizzle-kit generate:pg",
+    "db:reset": "tsx ./scripts/reset-db.ts",
+    "db:seed": "node ./scripts/seed-initial-data.mjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "@neondatabase/serverless": "^1.0.2",
     "@vercel/postgres": "^0.10.0",
-    "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.5",
+    "drizzle-orm": "^0.44.7",
+    "lucide-react": "^0.548.0",
     "next": "15.5.6",
     "openai": "^6.5.0",
+    "pgvector": "^0.2.1",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -25,6 +31,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.2.3",
     "tailwindcss": "^4",
     "tsx": "^4.20.6",
     "typescript": "^5"
