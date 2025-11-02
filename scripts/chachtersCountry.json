@@ -1,0 +1,194 @@
+[
+  {
+    "archetype_name": "جحا (Juha)",
+    "country": "Iraq"
+  },
+  {
+    "archetype_name": "أبو العبد البيروتي (Abu El Abed Al-Beiruti)",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "الصعيدي (The Sa'idi)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "المحشش (The Mahshash)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "غوار الطوشة (Ghawwar Al-Tosheh)",
+    "country": "Syria"
+  },
+  {
+    "archetype_name": "الحمصي (The Homsi)",
+    "country": "Syria"
+  },
+  {
+    "archetype_name": "البدوي (The Bedouin)",
+    "country": "Saudi Arabia"
+  },
+  {
+    "archetype_name": "ابن البلد (Ibn El-Balad)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "العروبي (The 'Aroubi)",
+    "country": "Morocco"
+  },
+  {
+    "archetype_name": "الحماة المصرية (The Egyptian Mother-in-Law)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "المفتش الطاهر (Inspector Tahar)",
+    "country": "Algeria"
+  },
+  {
+    "archetype_name": "البخيل الشامي (The Damascene Miser)",
+    "country": "Syria"
+  },
+  {
+    "archetype_name": "الموظف الغلبان (The Frustrated Bureaucrat)",
+    "country": "Jordan"
+  },
+  {
+    "archetype_name": "البغدادي الساخر (The Witty Baghdadi)",
+    "country": "Iraq"
+  },
+  {
+    "archetype_name": "الخواجة (The Khawaja)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "هاوي الشهرة الخليجي (The Wannabe Khaleeji Influencer)",
+    "country": "Saudi Arabia"
+  },
+  {
+    "archetype_name": "الشيخ المنافق (The Hypocritical Sheikh)",
+    "country": "Saudi Arabia"
+  },
+  {
+    "archetype_name": "اليمني الحاذق (The Cunning Yemeni)",
+    "country": "Yemen"
+  },
+  {
+    "archetype_name": "السوداني الفيلسوف (The Sudanese Philosopher)",
+    "country": "Sudan"
+  },
+  {
+    "archetype_name": "الزوج المطحون (The Worn-Out Husband)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "الزوجة النكدية (The Nagging Wife)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "أبو شنب الخبير (The 'Expert' with the Moustache)",
+    "country": "Syria"
+  },
+  {
+    "archetype_name": "أم العروسة (The Bride's Mother)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "العريس الجديد (The Newlywed Groom)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "الزوج البصباص (The Leering Husband)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "الزوجة الخبيرة (The Seasoned Matron)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "الزوج 'الخروف' (The Henpecked Husband)",
+    "country": "Saudi Arabia"
+  },
+  {
+    "archetype_name": "الصديق العازب (The Single Best Friend)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "الدلوعة الفاتنة (The Flirtatious Bombshell)",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "عاشق زمانه الفاشل (The Failed Loverboy)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "الزوجة المشتاقة (The Longing Wife)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "الحليوة الأهبل (The Handsome Idiot)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "العجوز الغمّازة (The Winking Old Woman)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "النسونجي التائب (The Reformed Womanizer)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "الغيور الأهبل (The Jealous Fool)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "شاعر الغزل الرديء (The Bad Flirtatious Poet)",
+    "country": "Saudi Arabia"
+  },
+  {
+    "archetype_name": "المتحررة بالتمثيل (The Pseudo-Liberal Girl)",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "عرسان شهر العسل (The Honeymooners)",
+    "country": "Egypt"
+  },
+  {
+    "archetype_name": "القبضاي العصري (The Modern 'Qabaday')",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "المدام الأرستقراطية (The Exaggerated 'Beiruti Madame')",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "الجنوبي الساذج (The Naive Southerner)",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "المثقف المُدّعي (The Pretentious Intellectual)",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "العجوز المتذمر 'جدو' (The Grumpy Old Man 'Jeddo')",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "المواطن المقهور (The Frustrated Everyman)",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "السياسي الحذق (The Smooth-Talking Politician)",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "البنوتة النمّامة (The Gossipy 'Banouta')",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "موظف الخدمة الزهقان (The Jaded Service Worker)",
+    "country": "Lebanon"
+  },
+  {
+    "archetype_name": "الفنان الواهم (The Delusional Artist)",
+    "country": "Lebanon"
+  }
+]

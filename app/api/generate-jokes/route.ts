@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { sql } from '@vercel/postgres';
-import { canMakeApiCall, recordSuccessfulApiCall } from '@/lib/rate-limiter';
+import { canMakeDailyCall, recordSuccessfulApiCall } from '@/lib/rate-limiter';
 // import { toSql } from "pgvector/utils";
 // import { getEmbedding } from "@/lib/ai/embedding";
 import { retrieveMemories } from "@/lib/ai/memory";
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
   try {
     const actionName = 'generate_daily_jokes_for_all_characters';
-    const isAllowed = await canMakeApiCall(actionName);
+    const isAllowed = await canMakeDailyCall(actionName);
     
     if (!isAllowed) {
       console.log(`[CRON] Daily limit reached. Job blocked.`);

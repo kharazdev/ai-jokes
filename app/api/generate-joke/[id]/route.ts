@@ -1,9 +1,9 @@
+// \app\api\generate-joke\[id]\route.ts
+
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { sql } from "@vercel/postgres";
-import { canMakeApiCall, recordSuccessfulApiCall } from "@/lib/rate-limiter";
-import { toSql } from "pgvector/utils";
-import { getEmbedding } from "@/lib/ai/embedding";
+import { canMakeDailyCall, recordSuccessfulApiCall } from "@/lib/rate-limiter";
 import { retrieveMemories } from "@/lib/ai/memory";
 
 export const revalidate = 0;
@@ -21,10 +21,10 @@ export async function POST(request: NextRequest, context: any) {
 
     let topic: string | undefined;
     try {
-        const body = await request.json();
-        topic = body.topic;
+      const body = await request.json();
+      topic = body.topic;
     } catch (e) {
-        // No body provided, topic remains undefined.
+      // No body provided, topic remains undefined.
     }
 
     // --- 2. FETCH THE CHARACTER'S FULL PROFILE ---
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest, context: any) {
 
     // --- 3. CHECK RATE LIMIT (No change to this logic) ---
     const actionName = `generate_joke_for_character_${characterId}`;
-    const isAllowed = await canMakeApiCall(actionName);
+    const isAllowed = await canMakeDailyCall(actionName);
 
     if (!isAllowed) {
       const { rows: todayRows } = await sql`SELECT content FROM jokes WHERE character_name = ${character.name} AND created_at >= CURRENT_DATE ORDER BY created_at DESC LIMIT 1;`;
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest, context: any) {
     const relevantMemories = await retrieveMemories(characterId, searchTopic, 4); // Fetch 4 relevant memories
     const memoryContext = relevantMemories.map(mem => `- ${mem.content}`).join('\n');
     console.log(`[RAG] Found context:\n${memoryContext}`);
-    
+
     // --- 6. AUGMENT THE PROMPT (The "A" in RAG) ---
     const augmentedPrompt = `
       You are emulating the comedic archetype: ${character.name}.
@@ -118,7 +118,7 @@ export async function POST(request: NextRequest, context: any) {
       },
       { status: 200 },
     );
-    
+
   } catch (error) {
     console.error("An error occurred during single joke generation:", error);
     return NextResponse.json({ message: "Internal Server Error", error: (error as Error).message }, { status: 500 });
