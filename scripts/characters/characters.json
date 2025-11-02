@@ -1,0 +1,244 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "جحا (Juha)",
+      "country": "Iraq"
+    },
+    {
+      "id": 2,
+      "name": "أبو العبد البيروتي (Abu El Abed Al-Beiruti)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 3,
+      "name": "الصعيدي (The Sa'idi)",
+      "country": "Egypt"
+    },
+    {
+      "id": 4,
+      "name": "المحشش (The Mahshash)",
+      "country": "Egypt"
+    },
+    {
+      "id": 5,
+      "name": "المواطن المقهور (The Frustrated Everyman)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 6,
+      "name": "السياسي الحذق (The Smooth-Talking Politician)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 7,
+      "name": "البنوتة النمّامة (The Gossipy 'Banouta')",
+      "country": "Lebanon"
+    },
+    {
+      "id": 8,
+      "name": "موظف الخدمة الزهقان (The Jaded Service Worker)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 9,
+      "name": "الفنان الواهم (The Delusional Artist)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 15,
+      "name": "غوار الطوشة (Ghawwar Al-Tosheh)",
+      "country": "Syria"
+    },
+    {
+      "id": 16,
+      "name": "الحمصي (The Homsi)",
+      "country": "Syria"
+    },
+    {
+      "id": 17,
+      "name": "البدوي (The Bedouin)",
+      "country": "Saudi Arabia"
+    },
+    {
+      "id": 18,
+      "name": "ابن البلد (Ibn El-Balad)",
+      "country": "Egypt"
+    },
+    {
+      "id": 19,
+      "name": "العروبي (The 'Aroubi)",
+      "country": "Morocco"
+    },
+    {
+      "id": 20,
+      "name": "الحماة المصرية (The Egyptian Mother-in-Law)",
+      "country": "Egypt"
+    },
+    {
+      "id": 21,
+      "name": "المفتش الطاهر (Inspector Tahar)",
+      "country": "Algeria"
+    },
+    {
+      "id": 22,
+      "name": "البخيل الشامي (The Damascene Miser)",
+      "country": "Syria"
+    },
+    {
+      "id": 23,
+      "name": "الموظف الغلبان (The Frustrated Bureaucrat)",
+      "country": "Jordan"
+    },
+    {
+      "id": 24,
+      "name": "البغدادي الساخر (The Witty Baghdadi)",
+      "country": "Iraq"
+    },
+    {
+      "id": 25,
+      "name": "الخواجة (The Khawaja)",
+      "country": "Egypt"
+    },
+    {
+      "id": 26,
+      "name": "هاوي الشهرة الخليجي (The Wannabe Khaleeji Influencer)",
+      "country": "Saudi Arabia"
+    },
+    {
+      "id": 27,
+      "name": "الشيخ المنافق (The Hypocritical Sheikh)",
+      "country": "Saudi Arabia"
+    },
+    {
+      "id": 28,
+      "name": "اليمني الحاذق (The Cunning Yemeni)",
+      "country": "Yemen"
+    },
+    {
+      "id": 29,
+      "name": "السوداني الفيلسوف (The Sudanese Philosopher)",
+      "country": "Sudan"
+    },
+    {
+      "id": 30,
+      "name": "الزوج المطحون (The Worn-Out Husband)",
+      "country": "Egypt"
+    },
+    {
+      "id": 31,
+      "name": "الزوجة النكدية (The Nagging Wife)",
+      "country": "Egypt"
+    },
+    {
+      "id": 32,
+      "name": "أبو شنب الخبير (The 'Expert' with the Moustache)",
+      "country": "Syria"
+    },
+    {
+      "id": 33,
+      "name": "أم العروسة (The Bride's Mother)",
+      "country": "Egypt"
+    },
+    {
+      "id": 34,
+      "name": "العريس الجديد (The Newlywed Groom)",
+      "country": "Egypt"
+    },
+    {
+      "id": 35,
+      "name": "الزوج البصباص (The Leering Husband)",
+      "country": "Egypt"
+    },
+    {
+      "id": 36,
+      "name": "الزوجة الخبيرة (The Seasoned Matron)",
+      "country": "Egypt"
+    },
+    {
+      "id": 37,
+      "name": "الزوج 'الخروف' (The Henpecked Husband)",
+      "country": "Saudi Arabia"
+    },
+    {
+      "id": 38,
+      "name": "الصديق العازب (The Single Best Friend)",
+      "country": "Egypt"
+    },
+    {
+      "id": 39,
+      "name": "الدلوعة الفاتنة (The Flirtatious Bombshell)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 40,
+      "name": "عاشق زمانه الفاشل (The Failed Loverboy)",
+      "country": "Egypt"
+    },
+    {
+      "id": 41,
+      "name": "الزوجة المشتاقة (The Longing Wife)",
+      "country": "Egypt"
+    },
+    {
+      "id": 42,
+      "name": "الحليوة الأهبل (The Handsome Idiot)",
+      "country": "Egypt"
+    },
+    {
+      "id": 43,
+      "name": "العجوز الغمّازة (The Winking Old Woman)",
+      "country": "Egypt"
+    },
+    {
+      "id": 44,
+      "name": "النسونجي التائب (The Reformed Womanizer)",
+      "country": "Egypt"
+    },
+    {
+      "id": 45,
+      "name": "الغيور الأهبل (The Jealous Fool)",
+      "country": "Egypt"
+    },
+    {
+      "id": 46,
+      "name": "شاعر الغزل الرديء (The Bad Flirtatious Poet)",
+      "country": "Saudi Arabia"
+    },
+    {
+      "id": 47,
+      "name": "المتحررة بالتمثيل (The Pseudo-Liberal Girl)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 48,
+      "name": "عرسان شهر العسل (The Honeymooners)",
+      "country": "Egypt"
+    },
+    {
+      "id": 49,
+      "name": "القبضاي العصري (The Modern 'Qabaday')",
+      "country": "Lebanon"
+    },
+    {
+      "id": 50,
+      "name": "المدام الأرستقراطية (The Exaggerated 'Beiruti Madame')",
+      "country": "Lebanon"
+    },
+    {
+      "id": 51,
+      "name": "الجنوبي الساذج (The Naive Southerner)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 52,
+      "name": "المثقف المُدّعي (The Pretentious Intellectual)",
+      "country": "Lebanon"
+    },
+    {
+      "id": 53,
+      "name": "العجوز المتذمر 'جدو' (The Grumpy Old Man 'Jeddo')",
+      "country": "Lebanon"
+    }
+  ]
+}

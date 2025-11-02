@@ -1,3 +1,5 @@
+// \api\trends\gemini-db\[country]
+
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 

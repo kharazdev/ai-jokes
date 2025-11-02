@@ -10,6 +10,55 @@ import { retrieveMemories } from "@/lib/ai/memory";
 export const revalidate = 0;
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
+/**
+ * [SUPERIOR METHOD] Fetches and formats trends for a specific country directly from the database.
+ * This is more efficient than a local fetch() call.
+ * @param {string | null} countryName - The name of the country to find trends for.
+ * @returns {Promise<string[]>} A promise that resolves to an array of formatted trend strings.
+ */
+async function getCountryTrends(countryName: string | null): Promise<string[]> {
+  if (!countryName) {
+    console.log("[TRENDS_DB] No country specified for character, skipping trends fetch.");
+    return [];
+  }
+
+  try {
+    // 1. Fetch the most recent, complete trends JSON object from the database
+    const { rows } = await sql`
+      SELECT trends_json FROM daily_trends 
+      ORDER BY created_at DESC 
+      LIMIT 1;
+    `;
+
+    // 2. Handle the case where no trends have been generated yet
+    if (rows.length === 0) {
+      console.log("[TRENDS_DB] No trends data found in the database.");
+      return [];
+    }
+
+    const allTrends = rows[0].trends_json; // This is the JSON object with all countries
+
+    // 3. Perform a case-insensitive search for the requested country key
+    const countryKey = Object.keys(allTrends).find(
+      key => key.toLowerCase() === countryName.toLowerCase()
+    );
+
+    if (countryKey && Array.isArray(allTrends[countryKey])) {
+      // 4. If the country is found, format its trends into strings
+      const countryTrendsData: { trend_name: string; description: string }[] = allTrends[countryKey];
+      return countryTrendsData.map(trend => `${trend.trend_name}: ${trend.description}`);
+    } else {
+      // 5. If the country key doesn't exist, log it and return empty
+      console.log(`[TRENDS_DB] Trends for the country '${countryName}' were not found in the latest trends data.`);
+      return [];
+    }
+  } catch (error) {
+    console.error(`[TRENDS_DB] Failed to fetch and process trends from database for ${countryName}:`, error);
+    return [];
+  }
+}
+
+
 export async function POST(request: NextRequest, context: any) {
   try {
     // --- 1. PARSE CHARACTER ID AND GET TOPIC FROM REQUEST ---
@@ -30,7 +79,7 @@ export async function POST(request: NextRequest, context: any) {
 
     // --- 2. FETCH THE CHARACTER'S FULL PROFILE ---
     const { rows } = await sql`
-      SELECT id, name, avatar, bio, prompt_persona, prompt_topics 
+      SELECT id, name, avatar, bio, prompt_persona, prompt_topics, country
       FROM characters WHERE id = ${characterId};
     `;
     if (rows.length === 0) {
@@ -52,6 +101,12 @@ export async function POST(request: NextRequest, context: any) {
       searchTopic = character.bio;
     }
 
+ const trends = await getCountryTrends(character.country);
+    const trendsContext = trends.length > 0
+      ? trends.map(trend => `- ${trend}`).join('\n')
+      : "No specific trends available right now.";
+    console.log(`[trends] Found trends:\n${trendsContext}`);
+
     // --- 4. RETRIEVE RELEVANT MEMORIES (The "R" in RAG) ---
     console.log(`[RAG] Retrieving memories for topic: "${searchTopic}"`);
     const relevantMemories = await retrieveMemories(characterId, searchTopic, 4);
@@ -68,6 +123,12 @@ export async function POST(request: NextRequest, context: any) {
       CONTEXT FROM YOUR MEMORY ARCHIVE:
       These are examples of your humor. Use them to understand the style, tone, and subject matter. DO NOT REPEAT THEM.
       ${memoryContext || "You have no relevant memories on this topic yet. Improvise based on your core persona."}
+      ---
+
+            ---
+      CURRENT TRENDS IN ${character.country || 'your area'}:
+      To make your joke more relevant and timely, you can optionally use these trending topics for inspiration.
+      ${trendsContext}
       ---
       
       Your task: Tell me a single, NEW joke in your established style about the topic: "${searchTopic}".
@@ -106,7 +167,7 @@ export async function POST(request: NextRequest, context: any) {
     //   console.error("⚠️ Failed to save memory for the new joke:", memoryError);
     // }
 
-    return NextResponse.json({ message: `Generated joke for ${character.name}.`, joke: createdJoke }, { status: 201 });
+    return NextResponse.json({ message: `Generated joke for ${character.name}.`, joke: createdJoke, trendsContext }, { status: 201 });
 
   } catch (error: any) {
     console.error('Unexpected error in generate-joke no-limit route:', error);
