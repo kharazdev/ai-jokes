@@ -14,7 +14,7 @@ export interface Memory {
 // Step 1: Define the "shape" of a character object using a TypeScript interface.
 // This ensures every character we create has these exact properties.
 export interface JokeCharacter {
-  id: number; // Unique identifier for the character
+   id: number; // Unique identifier for the character
   name: string;
   avatar: string; // This can be an emoji or a path to an image file.
   bio: string; // A short description for display purposes.
@@ -24,6 +24,7 @@ export interface JokeCharacter {
   createdAt?: string | Date;
   title: string; // <-- New: A tagline for the character
   color: string; // <-- New: A Tailwind CSS color class
+  country: string; // <-- New: A country name
 }
 
 // Step 2: Create and export an array of your 5 characters.

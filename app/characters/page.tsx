@@ -102,6 +102,11 @@ export default async function CharactersPage() {
                       Joined{" "}
                       {formatDate(character.created_at ?? character.createdAt)}
                     </span>
+                     {character.country && (
+                      <span className="text-xs text-gray-400">
+                     
+                      {character.country}
+                    </span>)}
                   </div>
                 </div>
               </Link>

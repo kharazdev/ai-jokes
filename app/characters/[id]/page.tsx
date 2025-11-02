@@ -74,6 +74,7 @@ export default async function SingleCharacterPage({
           <div className="text-8xl mb-4 mx-auto w-fit">{character.avatar}</div>
           <h1 className="text-4xl font-bold text-gray-900">{character.name}</h1>
           <p className="mt-2 text-lg text-gray-600">{character.bio}</p>
+          <p className="mt-2 text-lg text-gray-600">{character.country}</p>
         </div>
 
         {/* Action row: Generate button + Back link */}
