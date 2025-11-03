@@ -15,6 +15,9 @@ export interface Character {
   avatar: string;
   bio: string;
   prompt_persona: string;
+  created_at: string;
+  country: string;
+  is_active: boolean
 }
 
 // ========================================================================
