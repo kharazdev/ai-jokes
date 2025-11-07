@@ -1,0 +1,184 @@
+{
+  "comedic_archetypes": [
+    {
+      "archetype_name": "الزوجة الهايجة (The Horny Wife)",
+      "culture": "عربية عامة",
+      "core_persona_style": { "description": "هي النقيض التام لزوجة 'الصداع النصفي'. تشعر بإحباط جنسي دائم بسبب برود زوجها أو انشغاله. فكاهتها تأتي من تلميحاتها الصريحة جداً ومحاولاتها اليائسة والمباشرة للإغراء، والتي غالباً ما تقابل ببرود أو سوء فهم مضحك.", "attitude": "جريئة، مباشرة، يائسة بشكل كوميدي، وساخرة من برود زوجها.", "humor_style": "التلميحات الجنسية الصريحة، كوميديا الموقف المحبط، والمفارقة بين رغبتها الملحة ولامبالاة زوجها.", "voice_and_vocabulary": "تستخدم صوتاً هامساً ومغرياً. تقول جملاً مثل 'الجو حر أوي النهاردة'، 'السرير ده ناقصه حاجة'، 'مش تيجي نكسر الروتين؟'." },
+      "key_comedic_topics": [ "إرسال رسائل وصور جريئة لزوجها وهو في العمل", "محاولات إغراء مباشرة تفشل بسبب غباء الزوج", "استخدام التورية الجنسية في كل كلامها", "الشكوى لصديقاتها من 'التصحر العاطفي'", "محاولة إثارة غيرة زوجها وفشلها الذريع" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "بعتت رسالة لجوزها: 'البيت فاضي والأولاد عند أمي'. رد عليها: 'طيب اقفلي الشبابيك كويس'.", "english_translation": "She sent a message to her husband: 'The house is empty and the kids are at my mom's.' He replied: 'Okay, lock the windows well.'" },
+        { "native_language": "قالتله وهي لابسة قميص نوم جديد: 'حبيبي، مش ملاحظ إني لابسة حاجة شفافة؟' قالها: 'أه، عشان كده بردانة'.", "english_translation": "She told him while wearing new lingerie: 'Honey, don't you notice I'm wearing something see-through?' He replied: 'Yes, that's why you're cold.'" },
+        { "native_language": "قالتله: 'أنا نفسي في ليلة حمرا'. تاني يوم جابلها كيلو طماطم.", "english_translation": "She told him: 'I'm craving a 'red night' (passionate night).' The next day, he brought her a kilo of tomatoes." },
+        { "native_language": "بتكلمه في التليفون: 'وحشتني أوي'. قالها: 'وإنتي كمان'. قالتله: 'طب إيه؟' قالها: 'اتغديتي؟'.", "english_translation": "She tells him on the phone: 'I miss you so much.' He said: 'You too.' She replied: 'So... what now?' He asked: 'Have you had lunch?'" },
+        { "native_language": "قالتله: 'أنا جبت شمع عشان نعمل جو رومانسي'. قالها: 'ممتاز، عشان لو النور قطع'.", "english_translation": "She told him: 'I bought candles to create a romantic mood.' He replied: 'Excellent, for when the power goes out.'" },
+        { "native_language": "قالتله: 'حبيبي، أنا تعبانة وعايزة حقنة'. قالها: 'حاضر، هكلم الدكتور يجي'.", "english_translation": "She told him: 'Honey, I'm tired and I need a 'shot' (injection).' He replied: 'Okay, I'll call the doctor to come over.'" },
+        { "native_language": "سألته: 'إيه أكتر حاجة بتحبها فيا؟' قالها: 'طبخك'.", "english_translation": "She asked him: 'What's the one thing you love most about me?' He replied: 'Your cooking.'" },
+        { "native_language": "قالتله: 'النهاردة أنا بتاعتك، اطلب أي حاجة'. قالها: 'اعمليلي كوباية شاي'.", "english_translation": "She told him: 'Tonight I'm all yours, ask for anything.' He replied: 'Make me a cup of tea.'" },
+        { "native_language": "بتشتكي لصاحبتها: 'جوزي ده عامل زي نشرة الأخبار، ممل وبيجي كل يوم في نفس الميعاد'.", "english_translation": "She complains to her friend: 'My husband is like the news bulletin, boring and comes on at the same time every day.'" },
+        { "native_language": "قالتله: 'تيجي نلعب لعبة جريئة؟' قالها: 'يلا بينا نطلب أكل من غير ما نبص على الأسعار'.", "english_translation": "She told him: 'Want to play a daring game?' He replied: 'Let's do it! Let's order food without looking at the prices.'" }
+      ]
+    },
+    {
+      "archetype_name": "العريس الأخرق في السرير (The Clumsy Groom in Bed)",
+      "culture": "عربية عامة",
+      "core_persona_style": { "description": "الشاب الذي دخل عالم الزواج وهو لا يعرف شيئاً عن العلاقة الحميمة سوى من نصائح أصدقائه الكارثية. هو متوتر، أخرق، ويحول أكثر اللحظات رومانسية إلى مواقف كوميدية محرجة بسبب سذاجته وحرفيته.", "attitude": "متوتر، أخرق، بريء بشكل كارثي، ويأخذ كل شيء حرفياً.", "humor_style": "كوميديا الإحراج الجسدي، سوء الفهم الصارخ للتلميحات، والمفارقة بين التوقعات والواقع.", "voice_and_vocabulary": "يستخدم أسئلة ساذجة: 'هو كده صح؟'، 'صاحبي قالي أعمل كده'." },
+      "key_comedic_topics": [ "تطبيق نصائح الأصدقاء الفاشلة في ليلة الزفاف", "الأسئلة الغبية أثناء اللحظات الحميمة", "الخوف من زوجته والارتباك", "محاولة تقليد الأفلام الرومانسية والفشل الذريع", "إفساد اللحظات الرومانسية بتعليقاته الساذجة" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "ليلة الدخلة، مراته بتقوله: 'أنا كسوفة أوي'. قالها: 'متقلقيش، أنا هطفي النور وأتصرف'. طفى النور وسرق محفظتها.", "english_translation": "On his wedding night, his wife tells him: 'I'm so shy.' He replied: 'Don't worry, I'll turn off the light and handle it.' He turned off the light and stole her wallet." },
+        { "native_language": "صاحبه قاله: 'لازم تبدأ بمقدمات'. راح قعد جنبها وقال: 'بسم الله الرحمن الرحيم'.", "english_translation": "His friend told him: 'You have to start with introductions (foreplay).' He went and sat next to her and said: 'In the name of God, the Most Gracious, the Most Merciful.'" },
+        { "native_language": "مراته قالتله: 'أنا بحب الهمس'. قرب من ودنها وهمس: 'أنا جعان'.", "english_translation": "His wife told him: 'I love whispering.' He got close to her ear and whispered: 'I'm hungry.'" },
+        { "native_language": "صاحبه قاله: 'الستات بتحب المفاجآت'. دخل عليها وهو لابس قناع رعب.", "english_translation": "His friend told him: 'Women love surprises.' He walked in on her wearing a horror mask." },
+        { "native_language": "مراته: 'حبيبي، أنا عايزة أحس إني بطير'. شالها ورماها من على السرير.", "english_translation": "His wife: 'Honey, I want to feel like I'm flying.' He picked her up and threw her off the bed." },
+        { "native_language": "صاحبه قاله: 'لازم تكون وحش'. دخل عليها الأوضة وهو بيزأر.", "english_translation": "His friend told him: 'You have to be a beast.' He entered the room roaring at her." },
+        { "native_language": "مراته قالتله: 'بحبك'. قالها: 'وأنا كمان بحبها'.", "english_translation": "His wife told him: 'I love you.' He replied: 'I love her too.'" },
+        { "native_language": "بعد أول ليلة، سألته: 'إيه رأيك؟' قالها: 'كويس، بس محتاجين تدريب'.", "english_translation": "After their first night, she asked him: 'What do you think?' He replied: 'It's good, but we need more practice.'" },
+        { "native_language": "مراته قالتله: 'أنا عايزة بوسة فرنسية'. قالها: 'معرفش أتكلم فرنسي'.", "english_translation": "His wife told him: 'I want a French kiss.' He replied: 'I don't know how to speak French.'" },
+        { "native_language": "صاحبه قاله: 'لازم تكون مبادر'. تاني يوم صحي من النوم لقى مراته سافرت.", "english_translation": "His friend told him: 'You have to be a go-getter.' The next day he woke up to find his wife had left the country." }
+      ]
+    },
+    {
+      "archetype_name": "المطلّقة 'المتحررة' (The 'Liberated' Divorcee)",
+      "culture": "عربية حديثة",
+      "core_persona_style": { "description": "بعد سنوات من الزواج التقليدي، حصلت على الطلاق وقررت 'استكشاف حريتها'. هي تحاول تعويض ما فاتها بطرق مبالغ فيها ومحرجة، وتدخل في علاقات كارثية. فكاهتها تأتي من صدام حماسها المراهق مع واقعها.", "attitude": "متحمسة بشكل مفرط، متهورة، وساذجة في علاقاتها الجديدة.", "humor_style": "كوميديا الإحراج، المواعدة الكارثية، والمفارقة بين عمرها وتصرفاتها.", "voice_and_vocabulary": "تستخدم مصطلحات شبابية ('كراش'، 'ديت') بشكل خاطئ." },
+      "key_comedic_topics": [ "العودة إلى عالم المواعدة والفشل الذريع", "محاولة استخدام تطبيقات المواعدة", "محاولة إثارة غيرة طليقها", "إعطاء نصائح 'متحررة' فاشلة لصديقاتها", "مغامراتها في السهر والحفلات" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "بتقول لصاحبتها: 'أنا نزلت تيندر'. صاحبتها: 'وبعدين؟' قالتلها: 'عملت ماتش مع ابني'.", "english_translation": "She tells her friend: 'I downloaded Tinder.' Her friend: 'And then?' She replied: 'I matched with my son.'" },
+        { "native_language": "بتقول لصاحبتها: 'أنا في واحد عامل عليا كراش'. صاحبتها: 'مين؟' قالتلها: 'سواق الأوبر'.", "english_translation": "She tells her friend: 'A guy has a crush on me.' Her friend: 'Who?' She replied: 'The Uber driver.'" },
+        { "native_language": "راحت ديت مع واحد أصغر منها. قالها: 'بحب فيكي خبرتك'. قالتله: 'خبرة في الطبيخ؟'.", "english_translation": "She went on a date with a younger guy. He told her: 'I love your experience.' She replied: 'Experience in cooking?'" },
+        { "native_language": "بتقول لطليقها: 'أنا حياتي أحلى من غيرك'. قالها: 'عارف، شوفت فاتورة الفيزا'.", "english_translation": "She tells her ex-husband: 'My life is better without you.' He replied: 'I know, I saw the Visa bill.'" },
+        { "native_language": "صاحبتها: 'ليه رجعتي متأخر امبارح؟' قالتلها: 'كنت في سهرة شبابية'. صاحبتها: 'مين كان فيها؟' قالتلها: 'أنا وجدو'.", "english_translation": "Her friend: 'Why did you come home late yesterday?' She said: 'I was at a youth gathering.' Her friend: 'Who was there?' She replied: 'Me and my grandpa.'" },
+        { "native_language": "بتقول لصاحبتها: 'الحرية حلوة أوي'. صاحبتها: 'بتعملي إيه؟' قالتلها: 'باكل في السرير'.", "english_translation": "She tells her friend: 'Freedom is so sweet.' Her friend: 'What are you doing with it?' She replied: 'I eat in bed.'" },
+        { "native_language": "واحد بيسألها: 'متجوزة؟' قالتله: 'لأ، معايا دكتوراه في العلاقات الفاشلة'.", "english_translation": "A guy asks her: 'Are you married?' She replied: 'No, I have a PhD in failed relationships.'" },
+        { "native_language": "بتقول: 'أنا مش عايزة أرتبط تاني'. (وهي بتقلب في صور طليقها على انستغرام).", "english_translation": "She says: 'I don't want to be in a relationship again.' (While scrolling through her ex's photos on Instagram)." },
+        { "native_language": "نشرت صورة وكتبت: 'أبحث عن شريك في الجريمة'. واحد رد عليها: 'جريمة إيه؟ سرقة بنك؟'.", "english_translation": "She posted a picture and wrote: 'Looking for a partner in crime.' Someone commented: 'What crime? Robbing a bank?'" },
+        { "native_language": "بتقول: 'أنا دلوقتي في مرحلة حب الذات'. صاحبتها: 'يعني إيه؟' قالتلها: 'يعني بشتري لنفسي هدايا'.", "english_translation": "She says: 'I'm in my self-love era now.' Her friend: 'What does that mean?' She replied: 'It means I buy myself gifts.'" }
+      ]
+    },
+    {
+      "archetype_name": "صديقة السوء (The 'Bad Influence' Friend)",
+      "culture": "عربية عامة",
+      "core_persona_style": { "description": "هي النسخة النسائية من 'أبو شنب' ولكنها أكثر جرأة وواقعية. هي صديقة متزوجة أو مطلقة 'خبيرة' وساخرة، وكل نصائحها لصديقاتها تدور حول كيفية السيطرة على الزوج جنسياً، اكتشاف الخيانة، والانتقام.", "attitude": "ساخرة، جريئة، واقعية بمرارة، ولا تؤمن بالرومانسية.", "humor_style": "نصائح جنسية صريحة ومضحكة، فكاهة سوداء، والسخرية من سذاجة صديقاتها.", "voice_and_vocabulary": "تستخدم جملاً مثل 'الراجل طفل كبير بس احتياجاته مختلفة'." },
+      "key_comedic_topics": [ "تعليم صديقاتها فنون 'السيطرة' في غرفة النوم", "طرق مبتكرة للتجسس على الزوج", "نصائح للانتقام بعد الخيانة", "تحليل تصرفات الرجال من منظور جنسي بحت", "السخرية من الهدايا الرومانسية واعتبارها 'رشوة'" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "صاحبتها: 'جوزي مش بيساعدني في البيت'. قالتلها: 'اربطي المساعدة بالسرير'.", "english_translation": "Her friend: 'My husband doesn't help around the house.' She replied: 'Tie the help to the bed.'" },
+        { "native_language": "صاحبتها: 'جوزي بيخوني، أعمل إيه؟' قالتلها: 'خونيه مع الفيزا بتاعته'.", "english_translation": "Her friend: 'My husband is cheating on me, what should I do?' She replied: 'Cheat on him with his Visa card.'" },
+        { "native_language": "صاحبتها: 'جوزي جابلي ورد'. قالتلها: 'ده تخدير موضعي قبل المصيبة'.", "english_translation": "Her friend: 'My husband brought me flowers.' She replied: 'That's local anesthesia before the disaster.'" },
+        { "native_language": "بتقول لصاحبتها العروسة: 'متخليهوش ينام زعلان... خليه ينام وهو مش قادر يمشي'.", "english_translation": "She tells her newlywed friend: 'Don't let him sleep upset... let him sleep unable to walk.'" },
+        { "native_language": "صاحبتها: 'إزاي أخليه يحبني؟' قالتلها: 'الرجالة مش بتحب، الرجالة بتحتاج'.", "english_translation": "Her friend: 'How do I make him love me?' She replied: 'Men don't love, men need.'" },
+        { "native_language": "صاحبتها: 'جوزي بطل يبصلي زي زمان'. قالتلها: 'البسيله نظارة'.", "english_translation": "Her friend: 'My husband stopped looking at me like he used to.' She replied: 'Wear glasses for him.'" },
+        { "native_language": "بتقول: 'الراجل لو قالك بحبك، قصده بحب اللي بتعمليه'.", "english_translation": "She says: 'If a man tells you 'I love you', he means 'I love what you do'.'" },
+        { "native_language": "صاحبتها: 'جوزي بيشخر'. قالتلها: 'اعتبريه صوت الطبيعة... طبيعة حيوانية'.", "english_translation": "Her friend: 'My husband snores.' She replied: 'Consider it the sound of nature... animal nature.'" },
+        { "native_language": "صاحبتها: 'جوزي عايزني أخس'. قالتلها: 'خسي من رصيده في البنك'.", "english_translation": "Her friend: 'My husband wants me to lose weight.' She replied: 'Lose it from his bank account balance.'" },
+        { "native_language": "بتقول: 'الزواج الناجح هو اللي بتكون فيه الست عارفة باسورد تليفون جوزها'.", "english_translation": "She says: 'A successful marriage is one where the wife knows her husband's phone password.'" }
+      ]
+    },
+    {
+      "archetype_name": "الحاجة 'مولعة' (The 'Hot' Old Woman)",
+      "culture": "عربية عامة",
+      "core_persona_style": { "description": "أكثر جرأة من 'العجوز الغمازة'، هذه السيدة العجوز لا تكتفي بالتلميح بل هي صريحة جداً في رغباتها. تغازل الشباب الصغير بشكل مباشر وصادم، وتروي مغامراتها الجنسية السابقة بتفاصيل محرجة. فكاهتها تأتي من الصدمة.", "attitude": "جريئة، لا تخجل، مباشرة، وتتصرف كأنها لا تزال في العشرين.", "humor_style": "كوميديا الصدمة، تلميحات جنسية صريحة، والمفارقة بين عمرها وجرأتها.", "voice_and_vocabulary": "صوتها عالٍ وتضحك بجرأة. تستخدم جملاً مثل 'يا واد يا عسل'." },
+      "key_comedic_topics": [ "مغازلة سائق التاكسي أو البائع الشاب", "إعطاء نصائح جنسية صريحة جداً لحفيداتها", "الحديث عن 'الفحولة' في شبابها", "الرقص بطريقة مثيرة في الأفراح", "محاولة مواعدة رجال أصغر منها بكثير" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "شافت شاب حلو. قالتله: 'يا ابني، أنا لو عندي سنان، كنت أكلتك'.", "english_translation": "She saw a handsome young man. She told him: 'Son, if I still had teeth, I would have eaten you.'" },
+        { "native_language": "بتقول لحفيدتها العروسة: 'أهم حاجة في الجواز... البطارية، لو نامت مش هتقوم تاني'.", "english_translation": "She tells her newlywed granddaughter: 'The most important thing in marriage... is the battery. If it dies, it won't start again.'" },
+        { "native_language": "الدكتور بيقولها: 'عندك سكر'. قالتله: 'من يومي يا دكتور'.", "english_translation": "The doctor tells her: 'You have sugar (diabetes).' She replied: 'I've been sweet my whole life, doctor.'" },
+        { "native_language": "بتقول لشاب: 'إنت اسمك إيه؟' قاله: 'وليد'. قالتله: 'يا ريتني كنت أنا اللي بولدك'.", "english_translation": "She asks a young man: 'What's your name?' He said: 'Walid.' She replied: 'I wish I was the one giving birth to you.'" },
+        { "native_language": "قالت لجوزها العجوز: 'يا حج، أنا لسه فيا نفس'. قالها: 'خرجيه طيب عشان ننام'.", "english_translation": "She told her old husband: 'Haj, I still have some breath (passion) in me.' He replied: 'Okay, let it out so we can sleep.'" },
+        { "native_language": "بتقول لحفيدتها: 'الراجل زي البطيخة، لازم تطبطبي عليه الأول'.", "english_translation": "She tells her granddaughter: 'A man is like a watermelon, you have to tap him first.'" },
+        { "native_language": "في الأتوبيس، شاب قام عشان تقعد. قالتله: 'لأ يا ابني، أنا أحب أقعد في حجرك'.", "english_translation": "On the bus, a young man stood up for her to sit. She told him: 'No, son, I'd rather sit on your lap.'" },
+        { "native_language": "المذيعة بتسألها: 'إيه سر شبابك يا حاجة؟' قالتلها: 'قلة الجواز'.", "english_translation": "The interviewer asks her: 'What's the secret to your youth, Hajja?' She replied: 'Lack of marriage.'" },
+        { "native_language": "بتقول: 'أنا لسه مرغوبة'. حفيدتها: 'مين بيرغب فيكي يا تيتة؟' قالتلها: 'عزرائيل'.", "english_translation": "She says: 'I'm still desired.' Her granddaughter: 'Who desires you, grandma?' She replied: 'The Angel of Death.'" },
+        { "native_language": "شافت شاب بعضلات. قالتله: 'يا ابني، اللحمة دي بلدي ولا مستوردة؟'.", "english_translation": "She saw a muscular young man. She asked him: 'Son, is this meat local or imported?'" }
+      ]
+    },
+    {
+      "archetype_name": "الزوجان 'المتفتّحان' (The 'Open-Minded' Couple)",
+      "culture": "عربية حديثة",
+      "core_persona_style": { "description": "الزوجان اللذان يدّعيان أنهما يعيشان علاقة 'متحررة' و'مفتوحة' ويكسران التقاليد، ولكنهما في الحقيقة غيوران جداً وغير آمنان. فكاهتهما تأتي من التناقض الصارخ بين ادعاءاتهم وتصرفاتهم الطفولية.", "attitude": "متصنعان، غيوران، وغير آمنين.", "humor_style": "هجاء اجتماعي، كوميديا الإحراج، والمفارقة.", "voice_and_vocabulary": "يستخدمان مصطلحات مثل 'علاقة مفتوحة'، 'مساحتي الشخصية'." },
+      "key_comedic_topics": [ "الادعاء بعدم الغيرة ثم الشجار بسبب 'لايك'", "الحديث عن 'الحرية' ثم مراقبة هواتف بعضهما البعض", "محاولة إثارة غيرة بعضهما البعض وفشلها", "التباهي بعلاقتهما 'الخاصة' أمام الآخرين", "الشجار في الأماكن العامة ثم التظاهر بأن كل شيء على ما يرام" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "الزوج: 'أنا ومراتي علاقتنا متفتحة، هي ليها حريتها'. (ثم يهمس لصاحبه: 'هي قالتلك رايحة فين؟').", "english_translation": "The husband: 'My wife and I have an open relationship, she has her freedom.' (Then he whispers to his friend: 'Did she tell you where she was going?')." },
+        { "native_language": "الزوجة: 'أنا مش بغار على جوزي، أنا بثق فيه'. (ثم تسأل صاحبتها: 'مين البنت اللي عملتله كومنت دي؟').", "english_translation": "The wife: 'I'm not jealous of my husband, I trust him.' (Then she asks her friend: 'Who's that girl who left him a comment?')." },
+        { "native_language": "الزوج: 'إحنا مش بنقول لبعض بحبك، إحنا بنحس ببعض'. (ثم يبعت لها: 'إنتي لسه بتحبيني؟').", "english_translation": "The husband: 'We don't say 'I love you' to each other, we feel each other.' (Then he texts her: 'Do you still love me?')." },
+        { "native_language": "الزوجة: 'أنا وجوزي بندي لبعض مساحة شخصية'. (وتتصل به كل 5 دقائق).", "english_translation": "The wife: 'My husband and I give each other personal space.' (And she calls him every 5 minutes)." },
+        { "native_language": "الزوج: 'الغيرة دي للناس اللي مش واثقة في نفسها'. (ثم يسأل زوجته: 'مين أحمد اللي في الفريندز عندك؟').", "english_translation": "The husband: 'Jealousy is for insecure people.' (Then he asks his wife: 'Who is this Ahmed in your friends list?')." },
+        { "native_language": "الزوجة: 'إحنا علاقتنا مبنية على الصراحة المطلقة'. (وهي بتحذف سجل المكالمات).", "english_translation": "The wife: 'Our relationship is built on absolute honesty.' (While she's deleting her call history)." },
+        { "native_language": "الزوج: 'أنا مش بهتم بالمظاهر'. (وهو بيختار فلتر لصورته لمدة ساعة).", "english_translation": "The husband: 'I don't care about appearances.' (While he spends an hour choosing a filter for his photo)." },
+        { "native_language": "الزوجة: 'إحنا بنحل مشاكلنا بالحوار'. (ثم تصرخ: 'هات الريموت!').", "english_translation": "The wife: 'We solve our problems through dialogue.' (Then she screams: 'Give me the remote!')." },
+        { "native_language": "الزوج: 'أنا بدعم استقلال المرأة'. (ثم يسأل زوجته: 'طبختي إيه النهاردة؟').", "english_translation": "The husband: 'I support women's independence.' (Then he asks his wife: 'What did you cook today?')." },
+        { "native_language": "الزوجة: 'إحنا أصحاب قبل ما نكون متجوزين'. (ثم تقول لصاحبتها: 'مش طايقاه').", "english_translation": "The wife: 'We were friends before we were married.' (Then she tells her friend: 'I can't stand him.')." }
+      ]
+    },
+    {
+      "archetype_name": "الزوجة المسيطرة (الدوميناتريكس)",
+      "culture": "عربية عامة",
+      "core_persona_style": { "description": "هي النسخة المتطرفة من 'الزوجة النكدية'. لا تكتفي بالشكوى، بل هي تسيطر تماماً على زوجها وتصدر الأوامر كأنها في ثكنة عسكرية. فكاهتها تأتي من خضوع زوجها المضحك ومنطقها السلطوي.", "attitude": "متسلطة، آمرة، لا تبتسم، وتعامل زوجها كأنه موظف لديها.", "humor_style": "كوميديا الموقف، السخرية من ضعف الزوج، والمفارقة.", "voice_and_vocabulary": "صوتها حاد وقاطع. تستخدم صيغة الأمر: 'اعمل'، 'جيب'، 'ممنوع'." },
+      "key_comedic_topics": [ "إعطاء أوامر بدلاً من الطلبات", "معاقبة زوجها بطرق كوميدية (مثل حرمانه من المصروف)", "تحديد مواعيد نومه واستيقاظه", "التحكم في أصدقائه وملابسه", "التحدث عنه أمام الناس كأنه طفلها" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "قالتله: 'هتنام الساعة 10'. قالها: 'ليه؟' قالتله: 'عشان أنا قلت كده'.", "english_translation": "She told him: 'You will sleep at 10.' He asked: 'Why?' She replied: 'Because I said so.'" },
+        { "native_language": "صاحبه اتصل بيه. ردت هي وقالت: 'المتهم نائم الآن، اطلب في وقت لاحق'.", "english_translation": "His friend called him. She answered and said: 'The accused is currently asleep. Call back at a later time.'" },
+        { "native_language": "قالتله: 'مصروفك الأسبوع ده 100 جنيه بس عشان مسمعتش الكلام'.", "english_translation": "She told him: 'Your allowance this week is only 100 pounds because you didn't listen.'" },
+        { "native_language": "قالها: 'حبيبتي، أنا عايز أخرج مع صحابي'. قالتله: 'اكتب طلب وهرد عليك'.", "english_translation": "He told her: 'Honey, I want to go out with my friends.' She replied: 'Submit a written request and I'll get back to you.'" },
+        { "native_language": "بتقول لأصحابها: 'أنا جوزي ده زي الخاتم في صباعي'. هو من المطبخ بيقول: 'حبيبتي، الشاي خلص'.", "english_translation": "She tells her friends: 'My husband is like a ring on my finger.' From the kitchen, he says: 'Honey, the tea is ready.'" },
+        { "native_language": "قالتله: 'ممنوع تتفرج على الماتش النهاردة، عقاباً ليك'.", "english_translation": "She told him: 'You are forbidden from watching the match tonight, as a punishment.'" },
+        { "native_language": "بيقول لصاحبه: 'أنا مراتي بتثق فيا جداً'. صاحبه: 'إزاي؟' قاله: 'سايبالي 50 جنيه في المحفظة'.", "english_translation": "He tells his friend: 'My wife trusts me a lot.' His friend: 'How so?' He replied: 'She left me 50 pounds in my wallet.'" },
+        { "native_language": "قالتله: 'القميص ده مش هتلبسه تاني'. قالها: 'ليه؟' قالتله: 'مش عاجبني'.", "english_translation": "She told him: 'You're not wearing that shirt again.' He asked: 'Why?' She replied: 'I don't like it.'" },
+        { "native_language": "بتقول لصاحبتها: 'أنا بديله مساحة من الحرية'. صاحبتها: 'إزاي؟' قالتلها: 'بسمحله يختار القناة اللي هيتفرج عليها'.", "english_translation": "She tells her friend: 'I give him a certain amount of freedom.' Her friend: 'How so?' She replied: 'I let him choose which channel he's going to watch.'" },
+        { "native_language": "قالها: 'أنا الراجل في البيت ده'. قالتله: 'طب يا راجل، قوم اغسل المواعين'.", "english_translation": "He told her: 'I'm the man of this house.' She replied: 'Okay, man, go wash the dishes.'" }
+      ]
+    },
+    {
+      "archetype_name": "صائدة الأثرياء (The Gold Digger)",
+      "culture": "لبنانية / خليجية",
+      "core_persona_style": { "description": "هي نسخة أكثر احترافية من 'الدلوعة الفاتنة'. هدفها واضح ومباشر: الزواج من رجل ثري. تستخدم كل أسلحة الإغراء والذكاء الاجتماعي لتحقيق هدفها. فكاهتها تأتي من صراحتها المادية المضحكة وقدرتها على التلاعب بالرجال الأثرياء السذج.", "attitude": "محسوبة، ذكية اجتماعياً، مادية، ولاعبة شطرنج في العلاقات.", "humor_style": "السخرية من السذاجة، المفارقة، والصراحة المادية الصادمة.", "voice_and_vocabulary": "تستخدم جملاً مثل 'الحب مهم، بس الرصيد في البنك أهم'." },
+      "key_comedic_topics": [ "تقييم الرجال بناءً على ماركة ساعتهم أو سيارتهم", "التظاهر بالاهتمام بهوايات الرجل الثري المملة", "اختلاق قصص درامية عن 'فقرها' لكسب التعاطف والهدايا", "الغيرة ليست من النساء الأخريات، بل من بطاقاتهن الائتمانية", "خططها المعقدة للإيقاع بـ 'العريس اللقطة'" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "واحد بيقولها: 'أنا بحبك'. قالتله: 'وكم رصيدك في البنك؟'.", "english_translation": "A guy tells her: 'I love you.' She replied: 'And what's your bank balance?'" },
+        { "native_language": "صاحبتها: 'ليه سيبتي خطيبك؟' قالتلها: 'اكتشفت إنه بيحبني لشخصي'.", "english_translation": "Her friend: 'Why did you leave your fiancé?' She replied: 'I discovered he loves me for who I am.'" },
+        { "native_language": "بتقول لصاحبتها: 'أنا بدور على الحب الحقيقي'. صاحبتها: 'فين؟' قالتلها: 'في قسم المجوهرات'.", "english_translation": "She tells her friend: 'I'm looking for true love.' Her friend: 'Where?' She replied: 'In the jewelry department.'" },
+        { "native_language": "واحد غني بيقولها: 'أنا مستعد أهديكي حياتي'. قالتله: 'لأ، أنا عايزة اليخت'.", "english_translation": "A rich man tells her: 'I'm ready to give you my life.' She replied: 'No, I want the yacht.'" },
+        { "native_language": "بتقول: 'أنا مش مادية، أنا بس بحب الحاجات اللي بتلمع'.", "english_translation": "She says: 'I'm not materialistic, I just like shiny things.'" },
+        { "native_language": "صاحبتها: 'إيه أكتر حاجة بتجذبك في الراجل؟' قالتلها: 'بطاقته البلاتينية'.", "english_translation": "Her friend: 'What attracts you most in a man?' She replied: 'His platinum card.'" },
+        { "native_language": "واحد سألها: 'إيه برجك؟' قالتله: 'برج خليفة'.", "english_translation": "Someone asked her: 'What's your sign (zodiac)?' She replied: 'Burj Khalifa.'" },
+        { "native_language": "بتقول: 'المال لا يشتري السعادة، بس بيشتري حاجات بتجيب السعادة'.", "english_translation": "She says: 'Money doesn't buy happiness, but it buys things that bring happiness.'" },
+        { "native_language": "واحد بيقولها: 'أنا شاعِر'. قالتله: 'يا خسارة، كنت فكراك مليونير'.", "english_translation": "A guy tells her: 'I'm a poet.' She replied: 'What a shame, I thought you were a millionaire.'" },
+        { "native_language": "سألوها: 'الحب ولا الفلوس؟' قالت: 'الحب في باريس بفلوسه'.", "english_translation": "They asked her: 'Love or money?' She replied: 'Love in Paris with his money.'" }
+      ]
+    },
+    {
+      "archetype_name": "الزوجة 'أم العيال' (The 'Mother of Kids' Wife)",
+      "culture": "عربية عامة",
+      "core_persona_style": { "description": "بعد سنوات من الزواج والأولاد، تحولت هذه الزوجة بالكامل إلى 'أم'. لم يعد لديها وقت أو طاقة للرومانسية أو الاهتمام بنفسها أو بزوجها. كل حياتها تدور حول الأولاد ومدارسهم وأكلهم. فكاهتها تأتي من إهمالها الكوميدي لزوجها.", "attitude": "مرهقة، عملية، لا ترى سوى أولادها، ونسيت أنها زوجة.", "humor_style": "كوميديا الموقف، المفارقة، والإهمال المضحك.", "voice_and_vocabulary": "دائماً تصرخ: 'يا ولد!', 'عملت الواجب؟'. تتحدث مع زوجها كأنه أحد أولادها." },
+      "key_comedic_topics": [ "مقاطعة أي لحظة رومانسية بسبب الأولاد", "الحديث عن مشاكل الأولاد في أوقات غير مناسبة", "إعطاء زوجها بقايا طعام الأولاد", "النوم في منتصف أي محاولة للحديث", "مقارنة زوجها بالآباء الآخرين في اجتماع أولياء الأمور" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "زوجها بيقولها: 'حبيبتي، وحشتيني'. قالتله: 'استنى، الواد عايز يروح الحمام'.", "english_translation": "Her husband tells her: 'Honey, I missed you.' She replied: 'Wait, the kid needs to go to the bathroom.'" },
+        { "native_language": "في عيد جوازهم، قالتله: 'كل سنة وإنت طيب يا أبو العيال'.", "english_translation": "On their wedding anniversary, she told him: 'Happy anniversary, father of the kids.'" },
+        { "native_language": "زوجها: 'أنا بحبك'. قالتله: 'وأنا بحب الأولاد'.", "english_translation": "Her husband: 'I love you.' She replied: 'And I love the kids.'" },
+        { "native_language": "زوجها بيقولها: 'إيه رأيك نخرج نتعشى بره النهاردة؟' قالتله: 'فكرة حلوة، بس الأولاد هياكلوا إيه؟'.", "english_translation": "Her husband asks: 'What do you think we go out for dinner tonight?' She replied: 'Great idea, but what will the kids eat?'" },
+        { "native_language": "رجع من الشغل لقاها نايمة على الكنبة. صحاها. قالتله: 'مين؟ عايز إيه؟'.", "english_translation": "He came home from work and found her asleep on the couch. He woke her up. She said: 'Who is it? What do you want?'" },
+        { "native_language": "بيقولها: 'أنا تعبان'. قالتله: 'معلش، خدلك مسكن من بتاع الأولاد'.", "english_translation": "He tells her: 'I'm tired.' She replied: 'Sorry, take one of the kids' painkillers.'" },
+        { "native_language": "في نص الليل، صحته وقالتله: 'قوم، الواد سخن'.", "english_translation": "In the middle of the night, she woke him up and said: 'Get up, the kid has a fever.'" },
+        { "native_language": "بيقولها: 'انتي بطلتي تهتمي بنفسك ليه؟' قالتله: 'عشان بهتم باللي أغلى منك'.", "english_translation": "He asks her: 'Why did you stop taking care of yourself?' She replied: 'Because I'm taking care of someone more precious than you.'" },
+        { "native_language": "جابلها هدية. قالتله: 'كان أولى تجيب لعبة للواد'.", "english_translation": "He brought her a gift. She told him: 'You should have bought a toy for the kid instead.'" },
+        { "native_language": "بتكلمه في التليفون: 'متتأخرش'. قالها: 'عشان وحشتك؟' قالتله: 'لأ، عشان تذاكر للعيال'.", "english_translation": "She tells him on the phone: 'Don't be late.' He asked: 'Because you missed me?' She replied: 'No, so you can help the kids with their homework.'" }
+      ]
+    },
+    {
+      "archetype_name": "الخائن الغبي (The Stupid Cheater)",
+      "culture": "عربية عامة",
+      "core_persona_style": { "description": "الزوج الخائن الذي يفتقر تماماً للذكاء اللازم لإخفاء خيانته. يترك أدلة واضحة في كل مكان، ويقع في شر أعماله بطرق غبية ومضحكة. فكاهته تأتي من غبائه الشديد في الخيانة.", "attitude": "غبي، مهمل، مرتبك دائماً، وكاذب سيء جداً.", "humor_style": "كوميديا الأخطاء، المفارقة، والغباء الصارخ.", "voice_and_vocabulary": "يخلط بين الأسماء، وينسى أكاذيبه." },
+      "key_comedic_topics": [ "ترك أدلة خيانته في ملابسه أو سيارته", "الخلط بين اسم زوجته واسم عشيقته", "إرسال رسائل رومانسية لزوجته بالخطأ", "اختلاق أعذار متناقضة", "الوقوع في مواقف محرجة تكشفه بسهولة" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "رجع البيت وعلى قميصه أثر روج. مراته سألته: 'إيه ده؟' قالها: 'ده كاتشب'.", "english_translation": "He came home with a lipstick mark on his shirt. His wife asked: 'What is this?' He replied: 'It's ketchup.'" },
+        { "native_language": "في نص الليل، قام من النوم وهو بيقول: 'بحبك يا سوزان'. مراته صحيته وقالتله: 'مين سوزان؟' قالها: 'ده اسم الحصان اللي برشحلك تراهني عليه بكرة'.", "english_translation": "In the middle of the night, he sat up in bed and said: 'I love you, Susan.' His wife woke him up and asked: 'Who's Susan?' He replied: 'That's the name of the horse I recommend you bet on tomorrow.'" },
+        { "native_language": "بعت رسالة لمراته بالغلط: 'حبيبتي، مقدرتش أكلمك عشان العقربة كانت جنبي'.", "english_translation": "He accidentally sent a message to his wife: 'My love, I couldn't call you because the scorpion was next to me.'" },
+        { "native_language": "مراته سألته: 'كنت فين امبارح؟' قالها: 'كنت سهران مع أحمد'. اتصلت بأحمد، قالها إنه كان معاه.", "english_translation": "His wife asked him: 'Where were you yesterday?' He said: 'I was out with Ahmed.' She called Ahmed, who confirmed he was with him." },
+        { "native_language": "مراته لقت فاتورة فندق في جيبه. قالها: 'دي قديمة'. قالتله: 'بس التاريخ بتاعها امبارح'.", "english_translation": "His wife found a hotel bill in his pocket. He told her: 'This is an old one.' She replied: 'But the date on it is yesterday.'" },
+        { "native_language": "مراته قالتله: 'أنا شفتك امبارح في المول مع واحدة'. قالها: 'دي مش أنا، ده واحد شبهي'.", "english_translation": "His wife told him: 'I saw you at the mall yesterday with a woman.' He replied: 'That wasn't me, that was my look-alike.'" },
+        { "native_language": "قال لمراته وهو نايم: 'صباح الخير يا حبيبتي'. قالتله: 'بس إحنا بالليل'.", "english_translation": "He told his wife while he was sleeping: 'Good morning, my love.' She replied: 'But it's nighttime.'" },
+        { "native_language": "رجع البيت وفي جيبه فردة شراب حريمي. قال لمراته: 'دي هدية ليكي'.", "english_translation": "He came home with a single woman's sock in his pocket. He told his wife: 'This is a gift for you.'" },
+        { "native_language": "مراته سألته: 'مين اللي بيتصل؟' قالها: 'ده رقم غريب'. (واسمها متسجل 'My Everything').", "english_translation": "His wife asked him: 'Who's calling?' He said: 'It's an unknown number.' (And her name was saved as 'My Everything')." },
+        { "native_language": "اشترى لعشيقته هدية، وادّاها لمراته بالغلط.", "english_translation": "He bought a gift for his mistress and gave it to his wife by mistake." }
+      ]
+    }
+  ]
+}

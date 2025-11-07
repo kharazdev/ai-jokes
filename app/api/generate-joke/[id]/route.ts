@@ -1,13 +1,12 @@
 // \app\api\generate-joke\[id]\route.ts
 
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { sql } from "@vercel/postgres";
 import { canMakeDailyCall, recordSuccessfulApiCall } from "@/lib/rate-limiter";
 import { retrieveMemories } from "@/lib/ai/memory";
+import { genAIPro } from "@/lib/ai/genAI";
 
 export const revalidate = 0;
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function POST(request: NextRequest, context: any) {
   try {
@@ -82,8 +81,7 @@ export async function POST(request: NextRequest, context: any) {
     `;
 
     // --- 7. GENERATE THE JOKE (The "G" in RAG) ---
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
-    const result: any = await model.generateContent(augmentedPrompt);
+    const result: any = await genAIPro.generateContent(augmentedPrompt);
     const response = result.response;
     const jokeContent = response.text().trim();
 

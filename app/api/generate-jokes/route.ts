@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { sql } from '@vercel/postgres';
 import { canMakeDailyCall, recordSuccessfulApiCall } from '@/lib/rate-limiter';
 // import { toSql } from "pgvector/utils";
 // import { getEmbedding } from "@/lib/ai/embedding";
 import { retrieveMemories } from "@/lib/ai/memory";
+import { genAIPro } from '@/lib/ai/genAI';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 // Note: Vercel CRON jobs trigger this via a GET request, but the logic is a POST-like operation.
 // We can use either GET or POST, but POST is semantically more correct for a creation task.
@@ -22,7 +21,7 @@ export async function POST(request: Request) {
   try {
     const actionName = 'generate_daily_jokes_for_all_characters';
     const isAllowed = await canMakeDailyCall(actionName);
-    
+
     if (!isAllowed) {
       console.log(`[CRON] Daily limit reached. Job blocked.`);
       const { rows: cached } = await sql`SELECT content, character_name FROM jokes WHERE created_at >= CURRENT_DATE ORDER BY id ASC;`;
@@ -39,12 +38,11 @@ export async function POST(request: Request) {
     }
 
     const generatedJokes = [];
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
 
     // --- 2. LOOP THROUGH EACH CHARACTER AND APPLY RAG LOGIC ---
     for (const character of characters) {
       console.log(`\n--- [CRON] Generating joke for ${character.name} (ID: ${character.id}) ---`);
-      
+
       // --- Dynamic Topic Selection ---
       let searchTopic: string;
       if (character.prompt_topics && character.prompt_topics.length > 0) {
@@ -59,7 +57,7 @@ export async function POST(request: Request) {
       const relevantMemories = await retrieveMemories(character.id, searchTopic, 5); // Fetch 5 memories for a daily job
       const memoryContext = relevantMemories.map(mem => `- ${mem.content}`).join('\n');
       console.log(`[RAG] Found ${relevantMemories.length} relevant memories.`);
-      
+
       // --- Augment Prompt ---
       const augmentedPrompt = `
         You are emulating the comedic archetype: ${character.name}.
@@ -75,14 +73,15 @@ export async function POST(request: Request) {
         Your task: Tell me a single, NEW joke in your established style about the topic: "${searchTopic}".
         The joke must be original. Just return the joke text itself.
       `;
-      
-      const result = await model.generateContent(augmentedPrompt);
+
+      const result: any = await genAIPro.generateContent(augmentedPrompt);
+
       const response = result.response;
       const jokeContent = response.text().trim();
 
       if (jokeContent) {
         generatedJokes.push({ character: character.name, joke: jokeContent });
-        
+
         // Save to public 'jokes' table
         await sql`INSERT INTO jokes (content, character_name) VALUES (${jokeContent}, ${character.name});`;
         console.log(`-> Saved joke for ${character.name} to 'jokes' table.`);

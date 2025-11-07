@@ -1,14 +1,13 @@
 // app/api/generate-joke/no-limit/[id]/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { sql } from "@vercel/postgres";
 // import { toSql } from "pgvector/utils";
 // import { getEmbedding } from "@/lib/ai/embedding";
 import { retrieveMemories } from "@/lib/ai/memory";
+import { genAIPro } from "@/lib/ai/genAI";
 
 export const revalidate = 0;
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 /**
  * [SUPERIOR METHOD] Fetches and formats trends for a specific country directly from the database.
@@ -71,10 +70,10 @@ export async function POST(request: NextRequest, context: any) {
 
     let topic: string | undefined;
     try {
-        const body = await request.json();
-        topic = body.topic;
+      const body = await request.json();
+      topic = body.topic;
     } catch (e) {
-        // No body provided, topic remains undefined.
+      // No body provided, topic remains undefined.
     }
 
     // --- 2. FETCH THE CHARACTER'S FULL PROFILE ---
@@ -101,7 +100,7 @@ export async function POST(request: NextRequest, context: any) {
       searchTopic = character.bio;
     }
 
- const trends = await getCountryTrends(character.country);
+    const trends = await getCountryTrends(character.country);
     const trendsContext = trends.length > 0
       ? trends.map(trend => `- ${trend}`).join('\n')
       : "No specific trends available right now.";
@@ -112,7 +111,7 @@ export async function POST(request: NextRequest, context: any) {
     const relevantMemories = await retrieveMemories(characterId, searchTopic, 4);
     const memoryContext = relevantMemories.map(mem => `- ${mem.content}`).join('\n');
     console.log(`[RAG] Found context:\n${memoryContext}`);
-    
+
     // --- 5. AUGMENT THE PROMPT (The "A" in RAG) ---
     const augmentedPrompt = `
       You are emulating the comedic archetype: ${character.name}.
@@ -136,8 +135,8 @@ export async function POST(request: NextRequest, context: any) {
     `;
 
     // --- 6. GENERATE THE JOKE (The "G" in RAG) ---
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
-    const result: any = await model.generateContent(augmentedPrompt);
+    const result: any = await genAIPro.generateContent(augmentedPrompt);
+
     const response = result.response;
     const jokeContent = response.text().trim();
 

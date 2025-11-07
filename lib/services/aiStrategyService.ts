@@ -1,10 +1,9 @@
 // in lib/services/aiStrategyService.ts
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { Character } from "./characterService";
- import { AllTrendsData, CountryTrend } from "./trendService";
+  import { genAIPro } from "../ai/genAI";
+import { AllTrendsData, CountryTrend } from "./trendService";
+import { Character } from "@/components/EditCharacterForm";
  
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "AIzaSyCnaTof2kkgrmHfy3lKVJzJpKplHc9-NIg");
  
 
 // This is the structure we will ask the AI to return
@@ -66,8 +65,8 @@ export async function selectTopicsInBatch(
 
   // 3. Make the single API call
 try {
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-    const result: any = await model.generateContent(prompt);
+    const result: any = await genAIPro.generateContent(prompt);
+    
     const response = result.response;
     let text = response.text().trim(); // <-- Make this 'let' instead of 'const'
 

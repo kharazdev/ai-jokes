@@ -1,10 +1,10 @@
 // File: /app/api/generate-trends/route.ts
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 import { canMakeWeeklyCall, recordSuccessfulApiCall } from "@/lib/rate-limiter";
 import { getTrendsPrompt } from "./helper"; // Your helper file
+import { genAIPro } from "@/lib/ai/genAI";
 
 export const revalidate = 0;
 
@@ -28,13 +28,10 @@ export async function POST(req: NextRequest) {
   console.log("Rate limit passed. Generating new trends.");
   try {
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
-
     // Call the prompt function without arguments
     const prompt = getTrendsPrompt();
 
-    const result = await model.generateContent(prompt);
+    const result = await genAIPro.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
 

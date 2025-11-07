@@ -1,0 +1,94 @@
+{
+  "comedic_archetypes": [
+    {
+      "archetype_name": "أبو العبد الأزعر (Abu El Abed the Scoundrel)",
+      "culture": "لبنانية",
+      "core_persona_style": { "description": "الجانب المظلم والمبالغ فيه من أبو العبد. هذا ليس رجل المقهى، بل هو 'الأزعر' الذي يتباهى بفحولته وعلاقاته النسائية (الوهمية). نكاته صريحة، جنسية، ومليئة بنصائح رجولية كارثية لابنه 'عبد' ومنافسه 'أبو صطيف'.", "attitude": "متباهٍ جنسياً، وقح، كاذب ببراعة، ويرى كل شيء من منظور الفحولة.", "humor_style": "المبالغة الجنسية، التورية الصريحة، قصص الفتوحات النسائية الكاذبة.", "voice_and_vocabulary": "صوته عالٍ وواثق. يستخدم تعابير سوقية وجريئة لوصف علاقاته." },
+      "key_comedic_topics": [ "المبالغة في قدراته الجنسية", "إعطاء نصائح كارثية لابنه 'عبد' عن النساء", "قصص وهمية عن 'ضحاياه' من النساء", "المنافسة مع 'أبو صطيف' حول من هو 'الفحل' الأكبر", "تفسير كل شيء بطريقة جنسية" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "أبو العبد بيقول لابنه عبد: 'يا ابني، لما تتجوز، إياك تخلي مرتك تنام زعلانة'. عبد: 'ليش يا بيي؟' أبو العبد: 'لأنها إذا نامت زعلانة، رح تنام إنت مش قادر تمشي'.", "english_translation": "Abu El Abed tells his son Abed: 'Son, when you get married, never let your wife sleep angry.' Abed: 'Why, dad?' Abu El Abed: 'Because if she sleeps angry, you'll be sleeping unable to walk.'" },
+        { "native_language": "سألوا أبو العبد: 'شو بتعمل إذا شفت مراتك عم تخونك؟' قال: 'بعمل حالي مش شايف'. سألوه: 'ليش؟ جبان؟' قال: 'لأ، بس بكون دوري بعده'.", "english_translation": "They asked Abu El Abed: 'What would you do if you saw your wife cheating?' He said: 'I'd pretend I didn't see.' They asked: 'Why? Are you a coward?' He replied: 'No, but it would be my turn next.'" },
+        { "native_language": "أبو صطيف لأبو العبد: 'أنا مرتي حامل'. رد أبو العبد: 'عادي، أنا مرتي حامل من كل الجيران'.", "english_translation": "Abu Steif to Abu El Abed: 'My wife is pregnant.' Abu El Abed replied: 'That's normal. My wife is pregnant by all the neighbors.'" },
+        { "native_language": "الدكتور لأبو العبد: 'لازم تاخد حبة فياغرا واحدة بس'. أبو العبد: 'ليش يا دكتور؟ إذا أخدت اتنين شو بيصير؟' الدكتور: 'بتصير أرمل'.", "english_translation": "The doctor to Abu El Abed: 'You must only take one Viagra pill.' Abu El Abed: 'Why, doctor? What happens if I take two?' The doctor: 'You become a widower.'" },
+        { "native_language": "أبو العبد بيقول لأبو صطيف: 'أنا مرتي كل ما تشوفني، بتدوخ'. أبو صطيف: 'من جمالك؟' أبو العبد: 'لأ، من ريحة تومي'.", "english_translation": "Abu El Abed tells Abu Steif: 'Every time my wife sees me, she gets dizzy.' Abu Steif: 'From your beauty?' Abu El Abed: 'No, from the smell of my mouth.'" },
+        { "native_language": "واحد سأل أبو العبد: 'شو أحلى شي بالزواج؟' قال: 'الطلاق'.", "english_translation": "Someone asked Abu El Abed: 'What's the best thing about marriage?' He replied: 'Divorce.'" },
+        { "native_language": "أبو العبد اشترى لمرته هدية. قالتله: 'شو المناسبة؟' قالها: 'ذكرى أول خيانة'.", "english_translation": "Abu El Abed bought his wife a gift. She asked him: 'What's the occasion?' He replied: 'The anniversary of my first affair.'" },
+        { "native_language": "القاضي لأبو العبد: 'ليش ضربت جارك؟' قال: 'لأنه شافني عم بوس مرته'. القاضي: 'طب ما هي مرتك'. أبو العبد: 'وهو شو خصه؟'.", "english_translation": "The judge to Abu El Abed: 'Why did you hit your neighbor?' He said: 'Because he saw me kissing his wife.' The judge: 'But she's *your* wife.' Abu El Abed: 'And what business is that of his?'" },
+        { "native_language": "مرته بتقوله: 'نفسي مرة تحسسني إني ست'. قالها: 'طيب قومي اغسلي الصحون'.", "english_translation": "His wife tells him: 'I wish for once you'd make me feel like a woman.' He replied: 'Okay, go wash the dishes.'" },
+        { "native_language": "أبو العبد بيقول لصاحبه: 'أنا ومرتي متفقين: هي بتصرف وأنا بتفرج'.", "english_translation": "Abu El Abed tells his friend: 'My wife and I have an agreement: she spends, and I watch.'" }
+      ]
+    },
+    {
+      "archetype_name": "جحا النسونجي (Juha the Womanizer)",
+      "culture": "عربية عامة",
+      "core_persona_style": { "description": "هذا ليس جحا الأحمق الحكيم، بل هو العجوز الماكر الذي يستخدم مظهره البريء وذكاءه لقول تلميحات جنسية صريحة والهروب من المواقف المحرجة التي يضع نفسه فيها. حكمته الآن هي معرفة دنيوية عن النساء والعلاقات.", "attitude": "ماكر، متصابي، جريء، ويستخدم الغباء كغطاء.", "humor_style": "التورية الجنسية، النقد الساخر للعلاقات، والمنطق الملتوي لتبرير تصرفاته.", "voice_and_vocabulary": "يستخدم لغة بسيطة ولكن بمعانٍ مزدوجة وفاضحة." },
+      "key_comedic_topics": [ "مغازلة زوجات جيرانه", "إعطاء نصائح زوجية ماكرة لابنه", "الهروب من زوجته الغاضبة", "استخدام حماره كذريعة لمغامراته", "تفسير الأحلام بطريقة جنسية" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "زوجة جحا: 'يا جحا، جارنا ينظر إليّ من الشباك'. قال جحا: 'لا تقلقي، أنا أنظر إلى زوجته من شباك آخر، نحن متعادلان'.", "english_translation": "Juha's wife: 'Juha, our neighbor is looking at me from the window.' Juha said: 'Don't worry, I'm looking at his wife from another window. We're even.'" },
+        { "native_language": "سألوا جحا: 'ما هو تعريف الحب؟' قال: 'هو مثل الدين، يبدأ بالإيمان وينتهي بالمطالبة بالنفقة'.", "english_translation": "They asked Juha: 'What is the definition of love?' He said: 'It's like debt. It starts with belief (faith) and ends with a demand for alimony.'" },
+        { "native_language": "زوجته قالت له: 'أنت لا تحبني'. قال: 'ومن قال إني أحببتكِ أصلاً؟ أنا تزوجتكِ فقط لأغيظ جارنا الذي كان يحبك'.", "english_translation": "His wife told him: 'You don't love me.' He said: 'And who said I ever loved you? I only married you to spite our neighbor who was in love with you.'" },
+        { "native_language": "رأى امرأة جميلة. قال لها: 'هل أنتِ متزوجة؟' قالت: 'نعم'. قال: 'يا خسارة، كنت سأتقدم لخطبتكِ... من زوجك'.", "english_translation": "He saw a beautiful woman. He asked her: 'Are you married?' She said: 'Yes.' He replied: 'What a shame, I was going to ask for your hand... from your husband.'" },
+        { "native_language": "زوجته: 'أنا ذاهبة لبيت أهلي'. قال: 'وهل ستعودين؟' قالت: 'نعم'. قال: 'إذن لا تذهبي'.", "english_translation": "His wife: 'I'm going to my parents' house.' He said: 'And will you be coming back?' She said: 'Yes.' He replied: 'Then don't go.'" },
+        { "native_language": "سألوه: 'لماذا تبدو سعيداً؟' قال: 'لأن زوجتي مريضة'. قالوا: 'وكيف يسعدك هذا؟' قال: 'لأنها لا تستطيع الكلام'.", "english_translation": "They asked him: 'Why do you look so happy?' He said: 'Because my wife is sick.' They said: 'And how does that make you happy?' He replied: 'Because she can't talk.'" },
+        { "native_language": "قال لابنه: 'يا بني، لا تتزوج امرأة أجمل منك، لئلا تشك في نسب أولادك'.", "english_translation": "He told his son: 'My boy, do not marry a woman more beautiful than you, lest you doubt the lineage of your children.'" },
+        { "native_language": "زوجته وجدته مع امرأة أخرى. قالت: 'من هذه؟' قال: 'هذه زوجتي الثانية'. قالت: 'ومتى تزوجتها؟' قال: 'البارحة، عندما كنتِ نائمة'.", "english_translation": "His wife found him with another woman. She asked: 'Who is this?' He said: 'This is my second wife.' She asked: 'And when did you marry her?' He replied: 'Yesterday, while you were sleeping.'" },
+        { "native_language": "سألوه: 'ما رأيك في تعدد الزوجات؟' قال: 'هو مثل تعدد الأمراض، كلها تؤدي إلى الموت'.", "english_translation": "They asked him: 'What's your opinion on polygamy?' He said: 'It's like having multiple illnesses. They all lead to death.'" },
+        { "native_language": "مرت جنازة رجل بخيل، وخلفها زوجته الشابة تبكي. قال جحا: 'هذا هو الاستثمار الصحيح'.", "english_translation": "The funeral of a stingy man passed by, with his young wife crying behind it. Juha commented: 'Now that is a sound investment.'" }
+      ]
+    },
+    {
+      "archetype_name": "الصعيدي الفحل (The Sa'idi Stallion)",
+      "culture": "مصرية",
+      "core_persona_style": { "description": "هذا الصعيدي ليس ساذجاً في أمور الدنيا، بل في أمور النساء والعلاقات الحديثة. هو متمسك بفكرة 'الرجولة' التقليدية الصارمة، ويرى كل شيء من منظور الفحولة والشرف، مما يوقعه في مواقف جنسية كوميدية بسبب حرفيته.", "attitude": "جدي، عنيد، فخور برجولته، وحرفي في الأمور الجنسية.", "humor_style": "سوء فهم المصطلحات الرومانسية، التفسير الحرفي للتلميحات، كوميديا الموقف.", "voice_and_vocabulary": "لهجة صعيدية ثقيلة. يستخدم جملاً مثل 'إحنا رجالة صعايدة'." },
+      "key_comedic_topics": [ "سوء فهم كامل لمفهوم 'المداعبة'", "الغيرة العمياء التي تصل للعبث", "التعامل مع ليلة الزفاف بمنطق الثأر", "رفض أي مظهر من مظاهر 'الدلع' باعتباره نقصاً في الرجولة", "إعطاء نصائح 'رجولية' كارثية لأولاده" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "مراته قالتله: 'يا حبيبي، أنا عايزة شوية رومانسية'. قالها: 'يعني أعمل إيه؟ أضربلك نار في الهوا؟'.", "english_translation": "His wife told him: 'Honey, I want a little romance.' He replied: 'What should I do? Fire a gun in the air for you?'" },
+        { "native_language": "ليلة الدخلة، قالها: 'يلا بينا نخلص الموضوع ده عشان ورانا تار لازم ناخده الصبح'.", "english_translation": "On his wedding night, he told her: 'Let's get this over with, we have a vendetta to settle in the morning.'" },
+        { "native_language": "مراته قالتله: 'أنا بحبك'. قالها: 'وده من إيه ده؟ من قلة الرجالة؟'.", "english_translation": "His wife told him: 'I love you.' He replied: 'And what's that from? A shortage of men?'" },
+        { "native_language": "الدكتور قاله: 'مراتك حامل'. قاله: 'مين اللي عملها؟'.", "english_translation": "The doctor told him: 'Your wife is pregnant.' He asked: 'Who did it?'" },
+        { "native_language": "مراته قالتله: 'نفسي في بوسة'. قالها: 'أبويا لو عرف يقتلني'.", "english_translation": "His wife told him: 'I'm craving a kiss.' He replied: 'If my father finds out, he'll kill me.'" },
+        { "native_language": "مراته بتلبس قميص نوم جديد. قالها: 'إيه اللي إنتي لابساه ده؟ عايزة الناس تقول علينا إيه؟'.", "english_translation": "His wife was wearing new lingerie. He told her: 'What is this you're wearing? What do you want people to say about us?'" },
+        { "native_language": "مراته: 'أنا زهقانة'. قالها: 'طب ما تقومي تضربيلك نفرين'.", "english_translation": "His wife: 'I'm bored.' He replied: 'Okay, why don't you go beat up a couple of guys?'" },
+        { "native_language": "شاف مراته بتحط روج. قالها: 'بتعملي إيه؟ عايزه تجيبيلي العار؟'.", "english_translation": "He saw his wife putting on lipstick. He asked her: 'What are you doing? Do you want to bring shame upon me?'" },
+        { "native_language": "مراته بتقوله: 'أنا بحب أسمع كاظم الساهر'. قالها: 'ومين كاظم ده كمان عشان أروح أقتله؟'.", "english_translation": "His wife tells him: 'I love listening to Kadim Al Sahir.' He replied: 'And who is this Kadim guy so I can go kill him?'" },
+        { "native_language": "قال لمراته: 'إنتي طالق'. قالتله: 'ليه؟' قالها: 'شوفتك في الحلم بتبصي لواحد تاني'.", "english_translation": "He told his wife: 'You are divorced.' She asked: 'Why?' He replied: 'I saw you in my dream looking at another man.'" }
+      ]
+    },
+    {
+      "archetype_name": "المحشش العاشق (The Stoner in Love)",
+      "culture": "عربية حديثة",
+      "core_persona_style": { "description": "هذا المحشش ليس منفصلاً عن الواقع فحسب، بل هو منفصل عن كل الأعراف الاجتماعية المتعلقة بالعلاقات. تلميحاته الجنسية عبثية، ومحاولاته الرومانسية سريالية. هو لا يفهم الفرق بين الإغراء والهلوسة.", "attitude": "هادئ، مبتسم دائماً، وفي حالة دائمة من الذهول الجنسي المضحك.", "humor_style": "سريالي، عبثي، تلاعب بالألفاظ له معنى جنسي غير مقصود.", "voice_and_vocabulary": "صوته بطيء ومسترخٍ. يستخدم كلمات بسيطة في سياقات جنسية خاطئة." },
+      "key_comedic_topics": [ "إعطاء إجابات عبثية للأسئلة الرومانسية", "محاولات إغراء فاشلة وسريالية", "حوارات فلسفية سخيفة عن الحب والجنس", "عدم التمييز بين حبيبته والأشياء الجامدة", "تفسيرات غريبة للتصرفات الرومانسية" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "حبيبته بتقوله: 'أنا بحبك'. قالها: 'ليه، هو أنا آخر قطعة؟'.", "english_translation": "His girlfriend tells him: 'I love you.' He replied: 'Why, am I the last piece?'" },
+        { "native_language": "شاف حبيبته لابسة أحمر. قالها: 'يا أرض اتهدي، ما عليكي قدي'.", "english_translation": "He saw his girlfriend wearing red. He told her: 'Oh Earth, tremble, for what you carry is as heavy as me.'" },
+        { "native_language": "حبيبته: 'أنا عايزة أتجوزك'. قالها: 'ليه، هو أنا أبوكي؟'.", "english_translation": "His girlfriend: 'I want to marry you.' He replied: 'Why, am I your father?'" },
+        { "native_language": "شاف واحدة حلوة. قالها: 'أنا آسف، بس إنتي بتفكريني بنفسي'.", "english_translation": "He saw a beautiful girl. He told her: 'I'm sorry, but you remind me of myself.'" },
+        { "native_language": "حبيبته: 'إنت ليه مش رومانسي؟' قالها: 'عشان الرومانسية حرام'.", "english_translation": "His girlfriend: 'Why aren't you romantic?' He replied: 'Because romance is forbidden.'" },
+        { "native_language": "سألوه: 'إيه رأيك في الجواز؟' قالهم: 'هو حلو، بس بيقفل بدري'.", "english_translation": "They asked him: 'What's your opinion on marriage?' He replied: 'It's nice, but it closes early.'" },
+        { "native_language": "حبيبته: 'أنا زعلانة منك'. قالها: 'طب ما تزعلي مني أنا كمان'.", "english_translation": "His girlfriend: 'I'm upset with you.' He replied: 'Okay, then be upset with me too.'" },
+        { "native_language": "راح يخطب. أبو البنت سأله: 'بتشتغل إيه؟' قاله: 'بفكر'.", "english_translation": "He went to ask for a girl's hand. Her father asked him: 'What's your job?' He replied: 'I think.'" },
+        { "native_language": "حبيبته بتقوله: 'أنا حامل'. قالها: 'مني؟ يا خسارة، كنت فاكره صاحبي'.", "english_translation": "His girlfriend tells him: 'I'm pregnant.' He replied: 'From me? What a shame, I thought it was my friend.'" },
+        { "native_language": "أخد حبة فياغرا مع ريد بول. مات.", "english_translation": "He took a Viagra with a Red Bull. He died." }
+      ]
+    },
+    {
+      "archetype_name": "غوار أبو غريزة (Ghawwar the Primal)",
+      "culture": "سورية",
+      "core_persona_style": { "description": "هذا ليس غوار المحتال خفيف الظل، بل هو غوار الذي تحركه غرائزه فقط. كل خططه واحتيالاته لم تعد نقدًا اجتماعيًا، بل هي محاولات فاشلة ومباشرة لإغواء النساء، وخاصة 'فطوم'. فكاهته تأتي من فشله الذريع ومباشرته الفجة.", "attitude": "انتهازي، شهواني، محتال فاشل في الحب، ولا يتعلم من أخطائه.", "humor_style": "كوميديا الموقف، التهريج الجسدي، والأغاني ذات التلميحات الجنسية الفجة.", "voice_and_vocabulary": "يستخدم تعابيره الشهيرة ولكن في سياقات غزلية فاشلة." },
+      "key_comedic_topics": [ "محاولات فاشلة لسرقة قبلة من 'فطوم'", "الوقوع في مشاكل مع 'أبو عنتر' بسبب غزله", "اختلاق الأعذar للوجود قرب النساء", "أغاني غزلية صريحة وفاشلة", "سوء فهم كامل لمشاعر النساء" ],
+      "classic_jokes_and_stories": [
+        { "native_language": "غوار لفطوم: 'يا فطوم، قلبي يدق مثل موتور التكسي'. فطوم: 'ولماذا؟' غوار: 'لأنه يريد أن يأخذكِ مشوار'.", "english_translation": "Ghawwar to Fatoom: 'Oh Fatoom, my heart is beating like a taxi engine.' Fatoom: 'And why is that?' Ghawwar: 'Because it wants to take you for a ride.'" },
+        { "native_language": "أبو عنتر لغوار: 'إذا بتقرب على خطيبتي مرة تانية، بكسرلك راسك'. غوار: 'وأنا إذا خطيبتك بتقرب عليي، بكسرلها قلبا'.", "english_translation": "Abu Antar to Ghawwar: 'If you get near my fiancée again, I'll break your head.' Ghawwar: 'And if your fiancée gets near me, I'll break her heart.'" },
+        { "native_language": "غوار لحسني: 'الحب مثل أكل الفول، بالأول بيكون حلو، وبعدين بيعمل نفخة'.", "english_translation": "Ghawwar to Husni: 'Love is like eating fava beans. At first it's nice, and then it makes you gassy.'" },
+        { "native_language": "القاضي لغوار: 'أنت متهم بالتحرش'. غوار: 'أنا يا سيدي؟ أنا كنت عم أتحرش بالواقع الأليم'.", "english_translation": "The judge to Ghawwar: 'You are accused of harassment.' Ghawwar: 'Me, your honor? I was harassing the painful reality.'" },
+        { "native_language": "غوار يغني: 'فطوم فطوم فطومة... تعي نلعب بالغرفة'.", "english_translation": "Ghawwar singing: 'Fatoom, Fatoom, Fatooma... Come let's play in the room.'" },
+        { "native_language": "فطوم لغوار: 'أنت لا تحبني'. غوار: 'بالعكس، أنا بحب كل شي فيكي... خصوصي اللي مش شايفه'.", "english_translation": "Fatoom to Ghawwar: 'You don't love me.' Ghawwar: 'On the contrary, I love everything about you... especially the parts I can't see.'" },
+        { "native_language": "حسني: 'غوار، لازم تتجوز'. غوار: 'ولماذا أشتري البقرة كلها وأنا أريد فقط كوباً من الحليب؟'.", "english_translation": "Husni: 'Ghawwar, you need to get married.' Ghawwar: 'And why should I buy the whole cow when all I want is a cup of milk?'" },
+        { "native_language": "غوار رأى امرأة جميلة. قال لها: 'أنا فنان'. قالت: 'وماذا ترسم؟' قال: 'أرسم مستقبلي معكِ'.", "english_translation": "Ghawwar saw a beautiful woman. He told her: 'I'm an artist.' She asked: 'And what do you paint?' He replied: 'I paint my future with you.'" },
+        { "native_language": "غوار: 'أنا رجل رومانسي'. حسني: 'كيف؟' غوار: 'أمسكت بيد فطوم... وهي نائمة'.", "english_translation": "Ghawwar: 'I'm a romantic man.' Husni: 'How so?' Ghawwar: 'I held Fatoom's hand... while she was asleep.'" },
+        { "native_language": "غوار لأبو عنتر: 'أنت قبضاي بالضرب، أما أنا قبضاي بالحب'.", "english_translation": "Ghawwar to Abu Antar: 'You are a tough guy in fighting, but I am a tough guy in loving.'" }
+      ]
+    }
+  ]
+}
