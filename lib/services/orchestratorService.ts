@@ -129,11 +129,12 @@ export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CAT
     }
 
     console.log(`\n🎉 Smart job execution complete. Successfully generated and saved ${successCount} out of ${characters.length} potential jokes.`);
-
+return results; 
   } catch (error) {
     console.error("!!! CRITICAL ERROR in Smart Autonomous Job:", error);
   } finally {
     console.log("--- Smart Autonomous Job Finished ---");
+    
   }
 }
 

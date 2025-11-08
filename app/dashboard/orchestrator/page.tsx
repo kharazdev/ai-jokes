@@ -38,7 +38,8 @@ export default function OrchestratorPage() {
       .catch(err => console.error("Failed to load categories:", err));
   }, []);
 
-  const secretKey = process.env.ORCHESTRATOR_SECRET_KEY || ".jbq>#RVi=L6BvG(JSKnc)b?#&*6e-@%;\$s[q#>gmp2I=C!0"
+  const secretKey = process.env.ORCHESTRATOR_SECRET_KEY
+   || ".jbq>#RVi=L6BvG(JSKnc)b?#&*6e-@%;\$s[q#>gmp2I=C!0"
  
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>(10);
   const [categories, setCategories] = useState<Category[]>([]);
