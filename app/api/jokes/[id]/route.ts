@@ -27,7 +27,7 @@ export async function GET(
     }
 
     const { rows } = await sql<JokeRow>`
-      SELECT id, content, character_name, created_at
+      SELECT *
       FROM jokes
       WHERE id = ${jokeId};
     `;

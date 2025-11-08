@@ -1,3 +1,4 @@
+// app\characters\new
 import { NewCharacterForm } from '@/components/NewCharacterForm';
 
 export default function NewCharacterPage() {

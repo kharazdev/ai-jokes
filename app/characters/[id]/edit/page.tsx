@@ -1,3 +1,4 @@
+// app\characters\[id]\edit\page.tsx
 import { sql } from "@vercel/postgres";
 import { notFound } from "next/navigation";
 import Link from "next/link";
