@@ -1,7 +1,6 @@
-// api/orchestrator/run-smart-job/route.ts
 // api\orchestrator\run-daily-job\route.ts
 
-import { runSmartAutonomousJob } from "@/lib/services/orchestratorService";
+import { runDailyAutonomousJob } from "@/lib/services/orchestratorService";
 import { NextRequest, NextResponse } from "next/server";
 
 /**
@@ -31,7 +30,7 @@ export async function POST(request: NextRequest) {
 
     // We don't use 'await' here so the request can return immediately
     // while the job runs in the background.
-    runSmartAutonomousJob();
+    runDailyAutonomousJob();
 
     // AC-5: Success Response - Return a 202 Accepted status.
     return NextResponse.json(

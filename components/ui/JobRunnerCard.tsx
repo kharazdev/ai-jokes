@@ -9,9 +9,11 @@ interface JobRunnerCardProps {
   apiPath: string; // e.g., '/api/orchestrator/run-daily-job'
   secretKey: string;
   categoryId?: number
+    onJokesGenerated: (jokes: any[]) => void; // Add this line
+
 }
 
-export function JobRunnerCard({ title, description, apiPath, secretKey, categoryId }: JobRunnerCardProps) {
+export function JobRunnerCard({ title, description, apiPath, secretKey, categoryId, onJokesGenerated }: JobRunnerCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
@@ -40,7 +42,18 @@ export function JobRunnerCard({ title, description, apiPath, secretKey, category
       });
 
       const result = await response.json();
+      console.log({result});
 
+      if (result.jokes && Array.isArray(result.jokes)) {
+              console.log('in', result.jokes.length);
+
+        onJokesGenerated(result.jokes);
+      } else {
+                      console.log('not call', result);
+                      console.log('not call', result?.jokes?.length);
+
+      }
+      
       if (response.ok) {
         setStatusMessage(result.message || 'Job started successfully!');
         setMessageType('success');

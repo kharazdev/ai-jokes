@@ -1,4 +1,4 @@
-// api\orchestrator\run-daily-job\route.ts
+// api\orchestrator\run-smart-job\route.ts
 
 import { runDailyAutonomousJob, runSmartAutonomousJob } from "@/lib/services/orchestratorService";
 import { NextRequest, NextResponse } from "next/server";
@@ -25,6 +25,7 @@ export async function POST(request: NextRequest) {
     // If the token is missing, invalid, or does not match, reject the request.
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+    const { categoryId } = await request.json();
 
   // --- Authorization Successful ---
 
@@ -39,13 +40,13 @@ export async function POST(request: NextRequest) {
     // The Receptionist's job is done. Hand off the actual work to the Manager.
   // We don't use 'await' here so the request can return immediately
   // while the job runs in the background.
-  runSmartAutonomousJob(); 
+  runSmartAutonomousJob(categoryId); 
 
   // AC-5: Success Response - Return a 202 Accepted status.
   return NextResponse.json(
     {
       status: "success",
-      message: "Daily autonomous job started.",
+      message: "Daily autonomous smart job started.",
     },
     { status: 202 }
   );

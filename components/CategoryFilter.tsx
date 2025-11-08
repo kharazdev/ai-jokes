@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 interface Category {
   id: number;
   label: string;
+  label_arabic?: string;
 }
 
 interface CategoryFilterProps {
@@ -52,7 +53,7 @@ export function CategoryFilter({ categories }: CategoryFilterProps) {
         <option value="all">All Categories</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
-            {category.label}
+            {category.label_arabic || category.label}
           </option>
         ))}
       </select>

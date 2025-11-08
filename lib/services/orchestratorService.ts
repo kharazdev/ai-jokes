@@ -93,7 +93,7 @@ export async function runDailyAutonomousJob() {
 const ADULT_JOKES_CATEGORY_ID = 10;
 
 export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID) {
-  console.log("--- Starting Smart Autonomous Job (Dynamic Batch Mode) ---");
+  console.log("--- Starting Smart Autonomous Job (Dynamic Batch Mode) ---", categoryId);
  
   try {
     // Step 1: Fetch a specific roster of characters

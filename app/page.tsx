@@ -42,6 +42,12 @@ export default function HomePage() {
               <div className="text-sm text-gray-500">Quick actions:</div>
               <div className="flex gap-3">
                 <Link
+                  href="/dashboard/orchestrator"
+                  className="rounded-md bg-white px-3 py-2 text-sm border border-gray-200 hover:shadow-sm"
+                >
+                  🕹️ orchestrator
+                </Link>
+                <Link
                   href="/characters/new"
                   className="rounded-md bg-white px-3 py-2 text-sm border border-gray-200 hover:shadow-sm"
                 >
@@ -59,6 +65,7 @@ export default function HomePage() {
                 >
                   ⚙️ Prompt Settings
                 </Link>
+                
               </div>
             </div>
           </div>

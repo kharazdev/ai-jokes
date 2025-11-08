@@ -27,7 +27,7 @@ export default async function CharactersPage({
   try {
     // --- NEW: Fetch all categories for the dropdown ---
     const categoryResult = await sql<Category>`
-      SELECT id, label FROM categories ORDER BY label;
+      SELECT id, label, label_arabic FROM categories ORDER BY label;
     `;
     categories = categoryResult.rows;
     
