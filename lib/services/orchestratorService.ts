@@ -90,7 +90,7 @@ export async function runDailyAutonomousJob() {
 
 
 // --- TECHNIQUE 2: Smart, Context-Aware Job (Efficient single-call batch mode) ---
-const ADULT_JOKES_CATEGORY_ID = 6;
+const ADULT_JOKES_CATEGORY_ID = 10;
 
 export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID) {
   console.log("--- Starting Smart Autonomous Job (Dynamic Batch Mode) ---");

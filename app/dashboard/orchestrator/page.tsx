@@ -23,7 +23,7 @@ export default function OrchestratorPage() {
 
   const secretKey = process.env.ORCHESTRATOR_SECRET_KEY || ".jbq>#RVi=L6BvG(JSKnc)b?#&*6e-@%;\$s[q#>gmp2I=C!0"
 
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number>(6); // Default to 6
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number>(10); // Default to 6
   const [categories, setCategories] = useState<Category[]>([]);
 
 
