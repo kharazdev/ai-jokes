@@ -8,9 +8,10 @@ interface JobRunnerCardProps {
   description: string;
   apiPath: string; // e.g., '/api/orchestrator/run-daily-job'
   secretKey: string;
+  categoryId?: number
 }
 
-export function JobRunnerCard({ title, description, apiPath, secretKey }: JobRunnerCardProps) {
+export function JobRunnerCard({ title, description, apiPath, secretKey, categoryId }: JobRunnerCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
@@ -27,12 +28,15 @@ export function JobRunnerCard({ title, description, apiPath, secretKey }: JobRun
     setMessageType('');
 
     try {
+      const body = categoryId !== undefined ? JSON.stringify({ categoryId }) : null;
+
       const response = await fetch(apiPath, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${secretKey}`,
-        },
+        }, 
+        body
       });
 
       const result = await response.json();
@@ -55,7 +59,7 @@ export function JobRunnerCard({ title, description, apiPath, secretKey }: JobRun
     <div className="border rounded-lg p-6 bg-gray-50 shadow-sm">
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-600 mb-4 h-24">{description}</p>
-      
+
       <button
         type='button'
         onClick={handleRunJob}
@@ -66,10 +70,9 @@ export function JobRunnerCard({ title, description, apiPath, secretKey }: JobRun
       </button>
 
       {statusMessage && (
-        <div 
-          className={`mt-4 p-3 rounded-md text-sm ${
-            messageType === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-          }`}
+        <div
+          className={`mt-4 p-3 rounded-md text-sm ${messageType === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+            }`}
         >
           {statusMessage}
         </div>

@@ -90,18 +90,18 @@ export async function runDailyAutonomousJob() {
 
 
 // --- TECHNIQUE 2: Smart, Context-Aware Job (Efficient single-call batch mode) ---
+const ADULT_JOKES_CATEGORY_ID = 6;
 
-export async function runSmartAutonomousJob() {
+export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID) {
   console.log("--- Starting Smart Autonomous Job (Dynamic Batch Mode) ---");
-  const ADULT_JOKES_CATEGORY_ID = 6;
-
+ 
   try {
     // Step 1: Fetch a specific roster of characters
-    console.log(`\nStep 1: Fetching characters from category ${ADULT_JOKES_CATEGORY_ID}...`);
-    const characters = await getActiveCharactersByCategory(ADULT_JOKES_CATEGORY_ID);
+    console.log(`\nStep 1: Fetching characters from category ${categoryId}...`);
+    const characters = await getActiveCharactersByCategory(categoryId);
     
     if (characters.length === 0) {
-      console.warn(`No active characters found for category ${ADULT_JOKES_CATEGORY_ID}. Job finished.`);
+      console.warn(`No active characters found for category ${categoryId}. Job finished.`);
       return;
     }
     console.log(`Successfully fetched ${characters.length} characters.`);
@@ -234,15 +234,15 @@ export async function runSmartAutonomousJob() {
 
 // export async function runSmartAutonomousJob() {
 //   console.log("--- Starting Smart Autonomous Job (Context-Aware) ---");
-//   const ADULT_JOKES_CATEGORY_ID = 6;
+//   const categoryId = 6;
 
 //   try {
 //     // Step 1: Fetch a specific roster of characters
-//     console.log(`\nStep 1: Fetching characters from category ${ADULT_JOKES_CATEGORY_ID}...`);
-//     const characters = await getActiveCharactersByCategory(ADULT_JOKES_CATEGORY_ID);
+//     console.log(`\nStep 1: Fetching characters from category ${categoryId}...`);
+//     const characters = await getActiveCharactersByCategory(categoryId);
     
 //     if (characters.length === 0) {
-//       console.warn(`No active characters found for category ${ADULT_JOKES_CATEGORY_ID}. Job finished.`);
+//       console.warn(`No active characters found for category ${categoryId}. Job finished.`);
 //       return;
 //     }
 //     console.log(`Successfully fetched ${characters.length} characters.`);
