@@ -2,21 +2,25 @@
 'use client';
 
 import { useState } from 'react';
+import { v4 as uuid } from 'uuid'; // Import uuid here
 
 interface JobRunnerCardProps {
   title: string;
   description: string;
-  apiPath: string; // e.g., '/api/orchestrator/run-daily-job'
+  apiPath: string;
   secretKey: string;
   categoryId?: number
-    onJokesGenerated: (jokes: any[]) => void; // Add this line
-
+  onTriggerJob: (jobId: string) => void;
 }
 
-export function JobRunnerCard({ title, description, apiPath, secretKey, categoryId, onJokesGenerated }: JobRunnerCardProps) {
+export function JobRunnerCard({ title, description, apiPath, secretKey, categoryId, onTriggerJob }: JobRunnerCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
+
+  // --- REMOVE THESE LINES FROM THE RENDER BODY ---
+  // const newJobId = uuid(); 
+  // onTriggerJob(newJobId);
 
   const handleRunJob = async () => {
     if (!secretKey) {
@@ -24,46 +28,45 @@ export function JobRunnerCard({ title, description, apiPath, secretKey, category
       setMessageType('error');
       return;
     }
+    
+    // --- MOVE THE LOGIC INSIDE THE CLICK HANDLER ---
 
-    setIsLoading(true);
+    // 1. Generate a new, stable ID only when the user clicks the button.
+    const newJobId = uuid();
+    
+    // 2. Immediately tell the parent to start listening on this new ID.
+    //    This will set the loading state on the main page.
+    onTriggerJob(newJobId);
+
+    setIsLoading(true); // Set loading state for the card button itself
     setStatusMessage('');
     setMessageType('');
 
     try {
-      const body = categoryId !== undefined ? JSON.stringify({ categoryId }) : null;
-
       const response = await fetch(apiPath, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${secretKey}`,
-        }, 
-        body
+        },
+        body: JSON.stringify({ categoryId, jobId: newJobId }), // Use the stable ID
       });
 
       const result = await response.json();
-      console.log({result});
 
-      if (result.jokes && Array.isArray(result.jokes)) {
-              console.log('in', result.jokes.length);
-
-        onJokesGenerated(result.jokes);
-      } else {
-                      console.log('not call', result);
-                      console.log('not call', result?.jokes?.length);
-
-      }
-      
       if (response.ok) {
-        setStatusMessage(result.message || 'Job started successfully!');
+        setStatusMessage(result.message || 'Job acknowledged by server.');
         setMessageType('success');
       } else {
         throw new Error(result.error || 'An unknown error occurred.');
       }
     } catch (error: any) {
+      console.error('Error job runner catch:', error);
       setStatusMessage(`Error: ${error.message}`);
       setMessageType('error');
     } finally {
+      // The button can stop its "loading" state once the API call is acknowledged.
+      // The parent page will continue to show its own loading message until the WebSocket receives data.
       setIsLoading(false);
     }
   };
@@ -79,7 +82,7 @@ export function JobRunnerCard({ title, description, apiPath, secretKey, category
         disabled={isLoading}
         className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
       >
-        {isLoading ? 'Starting Job...' : 'Run Job'}
+        {isLoading ? 'Acknowledging...' : 'Run Job'}
       </button>
 
       {statusMessage && (

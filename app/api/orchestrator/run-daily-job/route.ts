@@ -2,6 +2,7 @@
 
 import { runDailyAutonomousJob } from "@/lib/services/orchestratorService";
 import { NextRequest, NextResponse } from "next/server";
+import { randomUUID } from 'crypto'; // Import Node.js crypto module
 
 /**
  * This endpoint serves as a secure trigger for the smart autonomous job.
@@ -10,6 +11,8 @@ export async function POST(request: NextRequest) {
   try {
     // AC-4: Securely access the secret key from environment variables.
     const secretKey = process.env.ORCHESTRATOR_SECRET_KEY;
+    const { jobId } = await request.json();
+  const id = jobId || randomUUID();
 
     // Gracefully handle server misconfiguration if the secret key is not set.
     if (!secretKey) {
@@ -30,13 +33,15 @@ export async function POST(request: NextRequest) {
 
     // We don't use 'await' here so the request can return immediately
     // while the job runs in the background.
-    runDailyAutonomousJob();
+    runDailyAutonomousJob(id);
 
     // AC-5: Success Response - Return a 202 Accepted status.
     return NextResponse.json(
       {
         status: "success",
         message: "Smart autonomous job started.",
+        jobId: id, // <-- Send this back to the frontend
+
       },
       { status: 202 }
     );

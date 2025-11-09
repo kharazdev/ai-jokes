@@ -2,6 +2,7 @@
 
 import { runDailyAutonomousJob, runSmartAutonomousJob } from "@/lib/services/orchestratorService";
 import { NextRequest, NextResponse } from "next/server";
+import { randomUUID } from 'crypto'; // Import Node.js crypto module
 
 /**
  * This endpoint serves as a secure trigger for a daily autonomous job.
@@ -25,7 +26,7 @@ export async function POST(request: NextRequest) {
     // If the token is missing, invalid, or does not match, reject the request.
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-    const { categoryId } = await request.json();
+    const { categoryId, jobId='' } = await request.json();
 
   // --- Authorization Successful ---
 
@@ -36,17 +37,20 @@ export async function POST(request: NextRequest) {
   // For example, you could call other internal APIs, update the database, etc.
   // runDailyTrendGeneration();
   // runDailyJokeGeneration();
-
+ 
     // The Receptionist's job is done. Hand off the actual work to the Manager.
   // We don't use 'await' here so the request can return immediately
   // while the job runs in the background.
-  runSmartAutonomousJob(categoryId); 
+  const id = jobId || randomUUID();
+  runSmartAutonomousJob(categoryId, id); 
 
   // AC-5: Success Response - Return a 202 Accepted status.
   return NextResponse.json(
     {
       status: "success",
-      message: "Daily autonomous smart job started.",
+      message: `Daily autonomous smart job started.`,
+      jobId: id, // <-- Send this back to the frontend
+
     },
     { status: 202 }
   );

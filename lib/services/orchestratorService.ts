@@ -7,6 +7,7 @@ import { selectTopicsInBatch } from './aiStrategyService';
 import { generateJokesInBatch } from './jokeGenerationService';
 import { saveNewJoke } from './jokePersistenceService';
 import { generateCharacterDrivenJokesInBatch } from './dynamicContentService'; // Import the new smart batch function
+import { serverEvents } from '../webSocketServer';
 
 // --- Exported Type Definitions ---
 export interface JobAssignment {
@@ -17,7 +18,7 @@ export interface JobAssignment {
 
 // --- TECHNIQUE 1: Original Batch Job (Fast, relies on pre-cached trends) ---
 
-export async function runDailyAutonomousJob() {
+export async function runDailyAutonomousJob(jobId: string) {
   console.log("--- Starting Daily Autonomous Job (Cached Trends) ---");
   // This function remains unchanged and represents your first technique.
   try {
@@ -70,7 +71,7 @@ export async function runDailyAutonomousJob() {
       return;
     }
     console.log(`Successfully generated ${generatedJokes.length} new jokes.`);
-
+   serverEvents.emit('job-done', { jobId, jokes: generatedJokes });
     console.log("\nStep 6: Saving new jokes to the database...");
     let successCount = 0;
     for (const result of generatedJokes) {
@@ -92,7 +93,7 @@ export async function runDailyAutonomousJob() {
 // --- TECHNIQUE 2: Smart, Context-Aware Job (Efficient single-call batch mode) ---
 const ADULT_JOKES_CATEGORY_ID = 10;
 
-export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID) {
+export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID, jobId: string) {
   console.log("--- Starting Smart Autonomous Job (Dynamic Batch Mode) ---", categoryId);
  
   try {
@@ -115,6 +116,17 @@ export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CAT
         return;
     }
     console.log(`Successfully generated content for ${results.length} characters.`);
+
+
+
+        //  const results = [
+        //   { id: 1, character_name: 'Humor Bot', is_visible: true, content: 'This is a new joke!', created_at: new Date().toISOString() },
+        //   { id: 2, character_name: 'Laughing Lama', is_visible: true, content: 'Here is another one!', created_at: new Date().toISOString() }
+        // ];
+
+      // serverEvents will be caught by your WebSocket server logic from Step 1
+      serverEvents.emit('job-done', { jobId, jokes: results });
+
 
     // Step 3: Persist all the new content
     console.log("\nStep 3: Saving new jokes to the database...");
