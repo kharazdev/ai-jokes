@@ -1,13 +1,14 @@
 // in lib/services/orchestratorService.ts
 
-import { getAllActiveCharacters, getActiveCharactersByCategory } from './characterService';
+import { getAllActiveCharacters, getActiveCharactersByCategory, getTopCharacters } from './characterService';
 import { canMakeWeeklyCall } from '@/lib/rate-limiter';
 import { getLatestCachedTrends, triggerTrendGeneration, CountryTrend } from './trendService';
 import { selectTopicsInBatch } from './aiStrategyService';
-import { generateJokesInBatch } from './jokeGenerationService';
+import { generateJokesInBatch, generateJokesInSimpleBatch } from './jokeGenerationService';
 import { saveNewJoke } from './jokePersistenceService';
 import { generateCharacterDrivenJokesInBatch } from './dynamicContentService'; // Import the new smart batch function
 import { serverEvents } from '../webSocketServer';
+import { is } from 'drizzle-orm';
 
 // --- Exported Type Definitions ---
 export interface JobAssignment {
@@ -18,8 +19,8 @@ export interface JobAssignment {
 
 // --- TECHNIQUE 1: Original Batch Job (Fast, relies on pre-cached trends) ---
 
-export async function runDailyAutonomousJob(jobId: string) {
-  console.log("--- Starting Daily Autonomous Job (Cached Trends) ---");
+export async function runDailyAutonomousJob({jobId, isSimpleMode = false, isTopCharacters = false}:{jobId: string, isSimpleMode: boolean, isTopCharacters: boolean}) {
+  console.log("--- Starting Daily Autonomous Job (Cached Trends) ---",{jobId, isSimpleMode, isTopCharacters});
   // This function remains unchanged and represents your first technique.
   try {
     console.log("Step 1: Checking if trend regeneration is needed...");
@@ -32,7 +33,16 @@ export async function runDailyAutonomousJob(jobId: string) {
     }
 
     console.log("\nStep 2: Fetching the team roster...");
-    const characters = await getAllActiveCharacters();
+    console.log("isTopCharacters 1", isTopCharacters)
+    let characters = [];
+    if(isTopCharacters){
+      characters = await getTopCharacters();
+    } else {
+      characters = await getAllActiveCharacters();    
+    }
+  
+
+     
     if (characters.length === 0) {
       console.warn("No active characters found. Job finished.");
       return;
@@ -65,7 +75,7 @@ export async function runDailyAutonomousJob(jobId: string) {
     console.log("\n✅ Daily Job Plan Created for", jobPlan.length, "characters.");
 
     console.log("\nStep 5: Executing the daily job plan to generate jokes (batch mode)...");
-    const generatedJokes = await generateJokesInBatch(jobPlan, characters);
+    const generatedJokes = await generateJokesInBatch(jobPlan, characters, isSimpleMode);
     if (generatedJokes.length === 0) {
       console.error("AI failed to generate any jokes. Aborting persistence step.");
       return;
@@ -89,12 +99,84 @@ export async function runDailyAutonomousJob(jobId: string) {
   }
 }
 
+export async function runDailySimpleAutonomousJob(jobId: string , isTopCharacters: boolean = false) {
+  console.log("--- Starting Daily Simple Autonomous Job (Cached Trends) ---", {jobId, isTopCharacters, }, 'isSimpleMode');
+  // This function remains unchanged and represents your first technique.
+  try {
+    console.log("Step 1: Checking if trend regeneration is needed...");
+    const isGenerationAllowed = await canMakeWeeklyCall('generate_daily_trends');
+    if (isGenerationAllowed) {
+      console.warn("Permission granted! Triggering a new weekly trend generation job in the background.");
+      await triggerTrendGeneration();
+    } else {
+      console.log("Permission denied. Trend data is fresh enough.");
+    }
+
+    console.log("\nStep 2: Fetching the team roster...");
+
+    let characters = [];
+    if(isTopCharacters){
+      characters = await getTopCharacters();
+    } else {
+      characters = await getAllActiveCharacters();    
+    }
+  
+
+     
+    if (characters.length === 0) {
+      console.warn("No active characters found. Job finished.");
+      return;
+    }
+    console.log(`Successfully fetched ${characters.length} active characters.`);
+
+    console.log("\nStep 3: Reading latest trends report from the database...");
+    const allTrends = await getLatestCachedTrends();
+    if (!allTrends) {
+      console.warn("No cached trends report found. Cannot assign topics. Job finished for today.");
+      return;
+    }
+    console.log(`Successfully loaded trends report for ${Object.keys(allTrends).length} countries.`);
+
+    console.log("\nStep 4: Running the assignment meeting to select topics (batch mode)...");
+    const charactersWithCountries = characters.filter(c => c.country && allTrends[c.country]);
+    const assignments = await selectTopicsInBatch(charactersWithCountries, allTrends);
+    if (assignments.length === 0) {
+      console.error("AI failed to generate a topic plan. Aborting.");
+      return;
+    }
+  
+    console.log("\nStep 5: Executing the daily job plan to generate jokes (batch mode)...");
+    const generatedJokes = await generateJokesInSimpleBatch(characters);
+    if (generatedJokes.length === 0) {
+      console.error("AI failed to generate any jokes. Aborting persistence step.");
+      return;
+    }
+    console.log(`Successfully generated ${generatedJokes.length} new jokes.`);
+   serverEvents.emit('job-done', { jobId, jokes: generatedJokes });
+    console.log("\nStep 6: Saving new jokes to the database...");
+    let successCount = 0;
+    for (const result of generatedJokes) {
+      const character = characters.find(c => c.id === result.characterId);
+      if (character) {
+          await saveNewJoke(character.id, character.name, result.jokeContent);
+          successCount++;
+      }
+    }
+    console.log(`\n🎉 Daily job execution complete. Successfully generated and saved ${successCount}  out of ${characters.length} potential jokes.`);
+  } catch (error) {
+    console.error("!!! CRITICAL ERROR in Daily Autonomous Job:", error);
+  } finally {
+    console.log("--- Daily Autonomous Job Finished ---");
+  }
+}
+
+
 
 // --- TECHNIQUE 2: Smart, Context-Aware Job (Efficient single-call batch mode) ---
 const ADULT_JOKES_CATEGORY_ID = 10;
 
-export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID, jobId: string) {
-  console.log("--- Starting Smart Autonomous Job (Dynamic Batch Mode) ---", categoryId);
+export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID, jobId: string, isSimpleMode: boolean = false) {
+  console.log("--- Starting Smart Autonomous Job (Dynamic Batch Mode) ---", {categoryId, jobId, isSimpleMode});
  
   try {
     // Step 1: Fetch a specific roster of characters
@@ -109,7 +191,7 @@ export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CAT
 
     // Step 2: Generate all content in a single, powerful API call
     console.log("\nStep 2: Generating dynamic content for all characters in a single batch call...");
-    const results = await generateCharacterDrivenJokesInBatch(characters);
+    const results = await generateCharacterDrivenJokesInBatch(characters, isSimpleMode);
 
     if (results.length === 0) {
         console.error("AI failed to generate any content in batch mode. Aborting job.");
@@ -149,6 +231,61 @@ return results;
     
   }
 }
+
+/**
+ * A specialized autonomous job that runs the dynamic content generation
+ * process specifically for the top 10 characters.
+ * @param {string} jobId - A unique identifier for this job instance.
+ */
+export async function runTopCharactersAutonomousJob(jobId: string, isSimpleMode: boolean = false) {
+  console.log("--- Starting Top 10 Characters Autonomous Job ---", {jobId, isSimpleMode});
+
+  try {
+    // Step 1: Fetch the roster of top characters
+    console.log("\nStep 1: Fetching the top 10 characters...");
+    const characters = await getTopCharacters(); // <-- Key change: Using the new service function
+
+    if (characters.length === 0) {
+      console.warn("No top characters found or the fetch operation failed. Job finished.");
+      return;
+    }
+    console.log(`Successfully fetched ${characters.length} top characters.`);
+
+    // Step 2: Generate all content in a single, powerful API call
+    console.log("\nStep 2: Generating dynamic content for top characters in a single batch call...");
+    const results = await generateCharacterDrivenJokesInBatch(characters, isSimpleMode);
+
+    if (results.length === 0) {
+      console.error("AI failed to generate any content in batch mode. Aborting job.");
+      return;
+    }
+    console.log(`Successfully generated content for ${results.length} top characters.`);
+
+    // Emit the results for real-time updates via WebSocket
+    serverEvents.emit('job-done', { jobId, jokes: results });
+
+    // Step 3: Persist all the new content
+    console.log("\nStep 3: Saving new jokes to the database...");
+    let successCount = 0;
+    for (const result of results) {
+      const character = characters.find(c => c.id === result.characterId);
+      if (character) {
+        console.log(`   -> Saving joke for ${character.name} (Topic: ${result.selectedTopic})`);
+        await saveNewJoke(character.id, character.name, result.jokeContent);
+        successCount++;
+      }
+    }
+
+    console.log(`\n🎉 Top characters job execution complete. Successfully generated and saved ${successCount} out of ${characters.length} potential jokes.`);
+    return results;
+  } catch (error) {
+    console.error("!!! CRITICAL ERROR in Top Characters Autonomous Job:", error);
+  } finally {
+    console.log("--- Top Characters Autonomous Job Finished ---");
+  }
+}
+
+
 
 // // in lib/services/orchestratorService.ts
 

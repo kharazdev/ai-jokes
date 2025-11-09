@@ -42,3 +42,29 @@ export async function getActiveCharactersByCategory(categoryId: number): Promise
     throw new Error("Could not fetch character roster from the database.");
   }
 }
+
+
+/**
+ * Fetches the top 10 active characters from the dedicated API endpoint.
+ * @returns {Promise<Character[]>} A promise that resolves to an array of top character objects.
+ */
+export async function getTopCharacters(): Promise<Character[]> {
+  try {
+    // Using a fully qualified URL is important for server-side fetching.
+    // Consider using an environment variable for your base URL.
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}` 
+    : 'http://localhost:3000';
+        const response = await fetch(`${baseUrl}/api/characters/top`); 
+
+    if (!response.ok) {
+      throw new Error(`API call failed with status: ${response.status}`);
+    }
+
+    const characters: Character[] = await response.json();
+    return characters;
+  } catch (error) {
+    console.error('[SERVICE_ERROR] Failed to fetch top characters:', error);
+    return []; // Return an empty array to prevent the job from crashing.
+  }
+}

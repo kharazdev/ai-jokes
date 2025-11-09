@@ -26,34 +26,35 @@ export async function POST(req: NextRequest) {
   }
 
   console.log("Rate limit passed. Generating new trends.");
-  try {
+ return []
+  // try {
 
-    // Call the prompt function without arguments
-    const prompt = getTrendsPrompt();
+  //   // Call the prompt function without arguments
+  //   const prompt = getTrendsPrompt();
 
-    const result = await genAIPro.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+  //   const result = await genAIPro.generateContent(prompt);
+  //   const response = await result.response;
+  //   const text = response.text();
 
-    const cleanText = text.replace(/```json/g, "").replace(/```/g, "").trim();
-    const trends = JSON.parse(cleanText);
+  //   const cleanText = text.replace(/```json/g, "").replace(/```/g, "").trim();
+  //   const trends = JSON.parse(cleanText);
 
-    // Save the new trends to our cache table
-    await sql`
-      INSERT INTO daily_trends (trends_json) VALUES (${JSON.stringify(trends)});
-    `;
+  //   // Save the new trends to our cache table
+  //   await sql`
+  //     INSERT INTO daily_trends (trends_json) VALUES (${JSON.stringify(trends)});
+  //   `;
 
-    // Record the successful API call
-    await recordSuccessfulApiCall(actionName);
+  //   // Record the successful API call
+  //   await recordSuccessfulApiCall(actionName);
     
-    console.log("Successfully generated and saved new trends.");
+  //   console.log("Successfully generated and saved new trends.");
 
-    return NextResponse.json(trends, { status: 200 });
+  //   return NextResponse.json(trends, { status: 200 });
 
-  } catch (error) {
-    console.error("An error occurred during trend generation:", error);
-    return NextResponse.json({ message: "Internal Server Error", error: (error as Error).message }, { status: 500 });
-  }
+  // } catch (error) {
+  //   console.error("An error occurred during trend generation:", error);
+  //   return NextResponse.json({ message: "Internal Server Error", error: (error as Error).message }, { status: 500 });
+  // }
 }
 
  

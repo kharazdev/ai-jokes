@@ -1,6 +1,6 @@
 // api\orchestrator\run-daily-job\route.ts
 
-import { runDailyAutonomousJob } from "@/lib/services/orchestratorService";
+import { runDailyAutonomousJob, runDailySimpleAutonomousJob } from "@/lib/services/orchestratorService";
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from 'crypto'; // Import Node.js crypto module
 
@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     // AC-4: Securely access the secret key from environment variables.
     const secretKey = process.env.ORCHESTRATOR_SECRET_KEY;
     const { jobId } = await request.json();
-  const id = jobId || randomUUID();
+    const id = jobId || randomUUID();
 
     // Gracefully handle server misconfiguration if the secret key is not set.
     if (!secretKey) {
@@ -33,8 +33,9 @@ export async function POST(request: NextRequest) {
 
     // We don't use 'await' here so the request can return immediately
     // while the job runs in the background.
-    // runDailyAutonomousJob(id);
-     runDailyAutonomousJob({jobId: id, isTopCharacters: false, isSimpleMode: false});
+    const isTopCharacters = true;
+
+    runDailySimpleAutonomousJob(id, isTopCharacters);
 
     // AC-5: Success Response - Return a 202 Accepted status.
     return NextResponse.json(
@@ -51,10 +52,10 @@ export async function POST(request: NextRequest) {
     // --- THIS IS THE CRITICAL FIX ---
     // If anything goes wrong in the logic above, catch it here.
     console.error("[API_ERROR] Failed to start smart autonomous job:", error);
-    
+
     // Return a proper JSON error response to the client.
     return NextResponse.json(
-      { error: "Failed to start smart job due to a server-side error.", details: error.message }, 
+      { error: "Failed to start smart job due to a server-side error.", details: error.message },
       { status: 500 }
     );
   }

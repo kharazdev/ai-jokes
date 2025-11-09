@@ -1,6 +1,6 @@
 // api\orchestrator\run-daily-job\route.ts
 
-import { runDailyAutonomousJob } from "@/lib/services/orchestratorService";
+import { runDailyAutonomousJob, runDailySimpleAutonomousJob } from "@/lib/services/orchestratorService";
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from 'crypto'; // Import Node.js crypto module
 
@@ -33,8 +33,7 @@ export async function POST(request: NextRequest) {
 
     // We don't use 'await' here so the request can return immediately
     // while the job runs in the background.
-    // runDailyAutonomousJob(id);
-     runDailyAutonomousJob({jobId: id, isTopCharacters: false, isSimpleMode: false});
+     runDailySimpleAutonomousJob(id);
 
     // AC-5: Success Response - Return a 202 Accepted status.
     return NextResponse.json(

@@ -1,10 +1,10 @@
 // in lib/services/aiStrategyService.ts
 
-  import { genAIPro } from "../ai/genAI";
+import { genAIPro } from "../ai/genAI";
 import { AllTrendsData, CountryTrend } from "./trendService";
 import { Character } from "@/components/EditCharacterForm";
- 
- 
+
+
 
 // This is the structure we will ask the AI to return
 export interface TopicAssignment {
@@ -64,9 +64,9 @@ export async function selectTopicsInBatch(
   `;
 
   // 3. Make the single API call
-try {
+  try {
     const result: any = await genAIPro.generateContent(prompt);
-    
+
     const response = result.response;
     let text = response.text().trim(); // <-- Make this 'let' instead of 'const'
 
@@ -77,7 +77,7 @@ try {
     } else if (text.startsWith("```")) {
       text = text.substring(3, text.length - 3).trim(); // Handle just the backticks
     }
-    
+
     // 5. Parse and validate the CLEANED JSON response
     const assignments: TopicAssignment[] = JSON.parse(text);
 

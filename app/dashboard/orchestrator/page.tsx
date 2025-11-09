@@ -79,7 +79,7 @@ export default function OrchestratorPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>(10);
   const [newJokes, setNewJokes] = useState<Joke[]>([]);
-  
+
   // Use a single state object to manage the WebSocket connection status
   const [webSocketState, setWebSocketState] = useState<WebSocketState>({
     status: 'idle',
@@ -87,7 +87,7 @@ export default function OrchestratorPage() {
   });
 
   const secretKey = process.env.ORCHESTRATOR_SECRET_KEY
-   || ".jbq>#RVi=L6BvG(JSKnc)b?#&*6e-@%;\$s[q#>gmp2I=C!0"
+    || ".jbq>#RVi=L6BvG(JSKnc)b?#&*6e-@%;\$s[q#>gmp2I=C!0"
   // Fetch categories on component mount
   useEffect(() => {
     fetch('/api/categories')
@@ -235,6 +235,30 @@ export default function OrchestratorPage() {
           secretKey={secretKey}
           onTriggerJob={setupWebSocketListener}
         />
+
+        <JobRunnerCard
+          title="Daily Autonomous Job top characters"
+          description="Runs the standard daily job for top characters. Ideal for routine, daily content generation."
+          apiPath="/api/orchestrator/run-daily-job/top"
+          secretKey={secretKey}
+          onTriggerJob={setupWebSocketListener}
+        />
+
+        <JobRunnerCard
+          title="Daily Autonomous simple Job"
+          description="Runs the standard daily simple job for all active characters. Ideal for routine, daily content generation."
+          apiPath="/api/orchestrator/run-daily-job/simple"
+          secretKey={secretKey}
+          onTriggerJob={setupWebSocketListener}
+        />
+
+        <JobRunnerCard
+          title="Daily Autonomous simple Job top characters"
+          description="Runs the standard daily simple job for top characters. Ideal for routine, daily content generation."
+          apiPath="/api/orchestrator/run-daily-job/top/simple"
+          secretKey={secretKey}
+          onTriggerJob={setupWebSocketListener}
+        />
         <JobRunnerCard
           title="Smart Autonomous Job"
           description="Runs the advanced, context-aware job for a specific category. Best for high-quality, targeted content."
@@ -243,6 +267,38 @@ export default function OrchestratorPage() {
           categoryId={selectedCategoryId}
           onTriggerJob={setupWebSocketListener}
         />
+
+
+
+        <JobRunnerCard
+          title="Smart Autonomous Job top characters"
+          description="Runs the advanced, context-aware job for Job top characters. Best for high-quality, targeted content."
+          apiPath="/api/orchestrator/run-smart-job/top"
+          secretKey={secretKey}
+          categoryId={selectedCategoryId}
+          onTriggerJob={setupWebSocketListener}
+        />
+
+
+        <JobRunnerCard
+          title="Smart Autonomous simple Job"
+          description="Runs the simple, context-aware simple job."
+          apiPath="/api/orchestrator/run-smart-job/simple"
+          secretKey={secretKey}
+          categoryId={selectedCategoryId}
+          onTriggerJob={setupWebSocketListener}
+        />
+
+
+        <JobRunnerCard
+          title="Smart Autonomous simple Job for top characters"
+          description="Runs the simple, context-aware job for Job top characters."
+          apiPath="/api/orchestrator/run-smart-job/top/simple"
+          secretKey={secretKey}
+          categoryId={selectedCategoryId}
+          onTriggerJob={setupWebSocketListener}
+        />
+
       </div>
 
       {/* Section to Display Job Results, Loading, or Errors */}
