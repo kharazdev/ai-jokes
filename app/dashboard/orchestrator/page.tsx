@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { JobRunnerCard } from '@/components/ui/JobRunnerCard';
+import { Character } from '@/components/EditCharacterForm';
 
 // --- UI Components for Different States ---
 
@@ -79,6 +80,7 @@ export default function OrchestratorPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>(10);
   const [newJokes, setNewJokes] = useState<Joke[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]); // <-- ADD STATE FOR CHARACTERS
 
   // Use a single state object to manage the WebSocket connection status
   const [webSocketState, setWebSocketState] = useState<WebSocketState>({
@@ -96,6 +98,12 @@ export default function OrchestratorPage() {
         setCategories(data);
       })
       .catch(err => console.error("Failed to load categories:", err));
+
+          // Fetch Characters
+    fetch('/api/characters')
+      .then((res) => res.json())
+      .then((data) => setCharacters(data))
+      .catch((err) => console.error("Failed to load characters:", err));
   }, []);
 
   const setupWebSocketListener = (jobId: string) => {
@@ -208,6 +216,7 @@ export default function OrchestratorPage() {
       </p>
 
       {/* CATEGORY SELECTOR */}
+      {categories.length > 0 && 
       <div className="mb-4">
         <label htmlFor="category-select" className="block text-sm font-medium text-gray-700 mb-1">
           Select Category for Smart Job
@@ -224,7 +233,7 @@ export default function OrchestratorPage() {
             </option>
           ))}
         </select>
-      </div>
+      </div>}
 
       {/* Job Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -306,6 +315,19 @@ export default function OrchestratorPage() {
           categoryId={selectedCategoryId}
           onTriggerJob={setupWebSocketListener}
           tenEach={true}
+        />
+
+        {/* new one be open module to select character the click start job which we going  */}
+        <JobRunnerCard
+          title="Smart Autonomous simple for 1 character, 100 jokes"
+          description="Runs the simple, context-aware job for 1 character, 100 jokes."
+          // apiPath to be "/api/orchestrator/run-smart-job/top/simple/100" / {selected character}
+          apiPath="/api/orchestrator/run-smart-job/top/simple/100"
+          secretKey={secretKey}
+          categoryId={selectedCategoryId}
+          onTriggerJob={setupWebSocketListener}
+          tenEach={true}
+          requiresCharacterSelection={true}
         />
 
       </div>
