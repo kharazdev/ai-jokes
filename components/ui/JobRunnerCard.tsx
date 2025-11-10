@@ -10,10 +10,11 @@ interface JobRunnerCardProps {
   apiPath: string;
   secretKey: string;
   categoryId?: number
+  tenEach?: boolean;
   onTriggerJob: (jobId: string) => void;
 }
 
-export function JobRunnerCard({ title, description, apiPath, secretKey, categoryId, onTriggerJob }: JobRunnerCardProps) {
+export function JobRunnerCard({ tenEach, title, description, apiPath, secretKey, categoryId, onTriggerJob }: JobRunnerCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
@@ -49,7 +50,7 @@ export function JobRunnerCard({ title, description, apiPath, secretKey, category
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${secretKey}`,
         },
-        body: JSON.stringify({ categoryId, jobId: newJobId }), // Use the stable ID
+        body: JSON.stringify({ categoryId, jobId: newJobId , tenEach: tenEach }), // Use the stable ID
       });
 
       const result = await response.json();

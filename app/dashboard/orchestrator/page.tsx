@@ -259,6 +259,16 @@ export default function OrchestratorPage() {
           secretKey={secretKey}
           onTriggerJob={setupWebSocketListener}
         />
+
+        <JobRunnerCard
+          title="Daily Autonomous simple Job top characters, 10 jokes each"
+          description="Runs the standard daily simple job for top characters. Ideal for routine, daily content generation."
+          apiPath="/api/orchestrator/run-daily-job/top/simple"
+          secretKey={secretKey}
+          onTriggerJob={setupWebSocketListener}
+          tenEach={true}
+        />
+
         <JobRunnerCard
           title="Smart Autonomous Job"
           description="Runs the advanced, context-aware job for a specific category. Best for high-quality, targeted content."
@@ -267,8 +277,6 @@ export default function OrchestratorPage() {
           categoryId={selectedCategoryId}
           onTriggerJob={setupWebSocketListener}
         />
-
-
 
         <JobRunnerCard
           title="Smart Autonomous Job top characters"
@@ -291,12 +299,13 @@ export default function OrchestratorPage() {
 
 
         <JobRunnerCard
-          title="Smart Autonomous simple Job for top characters"
+          title="Smart Autonomous simple Job for top characters 10 jokes each"
           description="Runs the simple, context-aware job for Job top characters."
           apiPath="/api/orchestrator/run-smart-job/top/simple"
           secretKey={secretKey}
           categoryId={selectedCategoryId}
           onTriggerJob={setupWebSocketListener}
+          tenEach={true}
         />
 
       </div>

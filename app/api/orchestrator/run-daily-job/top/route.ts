@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
   try {
     // AC-4: Securely access the secret key from environment variables.
     const secretKey = process.env.ORCHESTRATOR_SECRET_KEY;
-    const { jobId } = await request.json();
+    const { jobId, tenEach=false } = await request.json();
   const id:string = jobId || randomUUID();
 
     // Gracefully handle server misconfiguration if the secret key is not set.
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     // We don't use 'await' here so the request can return immediately
     // while the job runs in the background.
     const isTopCharacters = true;
-    runDailyAutonomousJob({jobId: id, isTopCharacters: isTopCharacters, isSimpleMode: false});
+    runDailyAutonomousJob({jobId: id, isTopCharacters: isTopCharacters, isSimpleMode: false, tenEach});
 
     // AC-5: Success Response - Return a 202 Accepted status.
     return NextResponse.json(

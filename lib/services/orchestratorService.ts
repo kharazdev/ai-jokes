@@ -19,7 +19,7 @@ export interface JobAssignment {
 
 // --- TECHNIQUE 1: Original Batch Job (Fast, relies on pre-cached trends) ---
 
-export async function runDailyAutonomousJob({jobId, isSimpleMode = false, isTopCharacters = false}:{jobId: string, isSimpleMode: boolean, isTopCharacters: boolean}) {
+export async function runDailyAutonomousJob({jobId, isSimpleMode = false, isTopCharacters = false, tenEach = false}:{tenEach: boolean,jobId: string, isSimpleMode: boolean, isTopCharacters: boolean}) {
   console.log("--- Starting Daily Autonomous Job (Cached Trends) ---",{jobId, isSimpleMode, isTopCharacters});
   // This function remains unchanged and represents your first technique.
   try {
@@ -75,7 +75,7 @@ export async function runDailyAutonomousJob({jobId, isSimpleMode = false, isTopC
     console.log("\n✅ Daily Job Plan Created for", jobPlan.length, "characters.");
 
     console.log("\nStep 5: Executing the daily job plan to generate jokes (batch mode)...");
-    const generatedJokes = await generateJokesInBatch(jobPlan, characters, isSimpleMode);
+    const generatedJokes = await generateJokesInBatch(jobPlan, characters, isSimpleMode, tenEach);
     if (generatedJokes.length === 0) {
       console.error("AI failed to generate any jokes. Aborting persistence step.");
       return;
@@ -99,7 +99,7 @@ export async function runDailyAutonomousJob({jobId, isSimpleMode = false, isTopC
   }
 }
 
-export async function runDailySimpleAutonomousJob(jobId: string , isTopCharacters: boolean = false) {
+export async function runDailySimpleAutonomousJob(jobId: string , isTopCharacters: boolean = false, tenEach: boolean = false) {
   console.log("--- Starting Daily Simple Autonomous Job (Cached Trends) ---", {jobId, isTopCharacters, }, 'isSimpleMode');
   // This function remains unchanged and represents your first technique.
   try {
@@ -146,7 +146,7 @@ export async function runDailySimpleAutonomousJob(jobId: string , isTopCharacter
     }
   
     console.log("\nStep 5: Executing the daily job plan to generate jokes (batch mode)...");
-    const generatedJokes = await generateJokesInSimpleBatch(characters);
+    const generatedJokes = await generateJokesInSimpleBatch(characters, tenEach);
     if (generatedJokes.length === 0) {
       console.error("AI failed to generate any jokes. Aborting persistence step.");
       return;
@@ -175,7 +175,7 @@ export async function runDailySimpleAutonomousJob(jobId: string , isTopCharacter
 // --- TECHNIQUE 2: Smart, Context-Aware Job (Efficient single-call batch mode) ---
 const ADULT_JOKES_CATEGORY_ID = 10;
 
-export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID, jobId: string, isSimpleMode: boolean = false) {
+export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CATEGORY_ID, jobId: string, isSimpleMode: boolean = false, topTen: boolean = false) {
   console.log("--- Starting Smart Autonomous Job (Dynamic Batch Mode) ---", {categoryId, jobId, isSimpleMode});
  
   try {
@@ -191,7 +191,7 @@ export async function runSmartAutonomousJob(categoryId: number = ADULT_JOKES_CAT
 
     // Step 2: Generate all content in a single, powerful API call
     console.log("\nStep 2: Generating dynamic content for all characters in a single batch call...");
-    const results = await generateCharacterDrivenJokesInBatch(characters, isSimpleMode);
+    const results = await generateCharacterDrivenJokesInBatch(characters, isSimpleMode, topTen);
 
     if (results.length === 0) {
         console.error("AI failed to generate any content in batch mode. Aborting job.");
@@ -237,8 +237,8 @@ return results;
  * process specifically for the top 10 characters.
  * @param {string} jobId - A unique identifier for this job instance.
  */
-export async function runTopCharactersAutonomousJob(jobId: string, isSimpleMode: boolean = false) {
-  console.log("--- Starting Top 10 Characters Autonomous Job ---", {jobId, isSimpleMode});
+export async function runTopCharactersAutonomousJob(jobId: string, isSimpleMode: boolean = false, tenEach: boolean = false) {
+  console.log("--- Starting Top 10 Characters Autonomous Job ---", {jobId, isSimpleMode, tenEach});
 
   try {
     // Step 1: Fetch the roster of top characters
@@ -253,7 +253,7 @@ export async function runTopCharactersAutonomousJob(jobId: string, isSimpleMode:
 
     // Step 2: Generate all content in a single, powerful API call
     console.log("\nStep 2: Generating dynamic content for top characters in a single batch call...");
-    const results = await generateCharacterDrivenJokesInBatch(characters, isSimpleMode);
+    const results = await generateCharacterDrivenJokesInBatch(characters, isSimpleMode, tenEach);
 
     if (results.length === 0) {
       console.error("AI failed to generate any content in batch mode. Aborting job.");

@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     // If the token is missing, invalid, or does not match, reject the request.
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-    const { categoryId, jobId='' } = await request.json();
+    const { categoryId, jobId='', topTen=false } = await request.json();
 
   // --- Authorization Successful ---
 
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
   // We don't use 'await' here so the request can return immediately
   // while the job runs in the background.
   const id = jobId || randomUUID();
-  runSmartAutonomousJob(categoryId, id); 
+  runSmartAutonomousJob(categoryId, id, false, topTen); 
 
   // AC-5: Success Response - Return a 202 Accepted status.
   return NextResponse.json(

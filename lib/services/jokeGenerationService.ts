@@ -15,7 +15,8 @@ export interface JokeGenerationResult {
 export async function generateJokesInBatch(
   jobPlan: JobAssignment[],
   characters: Character[],
-  isSimpleMode: boolean
+  isSimpleMode: boolean,
+  tenEach: boolean = false
 ): Promise<JokeGenerationResult[]> {
 
   let assignmentsContext: string;
@@ -40,7 +41,10 @@ export async function generateJokesInBatch(
 
     // Prompt is a direct command, asking the AI to find a topic AND write the joke.
     prompt = `
-      You are a comedy writer. For each comedian in the JSON roster below, select a single relevant topic based on their country and write one high-quality joke that perfectly fits their persona.
+       ${tenEach ?
+        'You are a comedy writer. For each comedian in the JSON roster below, write ten (10) high-quality jokes, each joke unique and related into a single relevant topic that perfectly fits their persona.'
+
+        : 'You are a comedy writer. For each comedian in the JSON roster below, select a single relevant topic based on their country and write one high-quality joke that perfectly fits their persona.'}
 
       **COMEDIAN ROSTER:**
       [
@@ -67,7 +71,7 @@ export async function generateJokesInBatch(
     assignmentsContext = jobPlan.map(job => {
       const character = characters.find(c => c.id === job.characterId);
       if (!character) return "";
-      
+
       return `{
         "characterId": ${character.id},
         "characterName": "${character.name}",
@@ -78,15 +82,28 @@ export async function generateJokesInBatch(
 
     // Prompt is the original, detailed, multi-step prompt.
     prompt = `
+    
       You are an elite comedy writer and a meticulous editor, tasked with creating top-tier material for a team of comedians. Quality is your only metric. Do not rush. Think deeply.
 
+       ${tenEach ?
+        `
+              **YOUR METHODOLOGY FOR EACH ASSIGNMENT:**
+        For each character, you will generate a total of ten (10) unique jokes. You will follow this strict, internal, multi-step process to create all ten jokes:
+          1.  **Step 1: Deep Analysis. Read the character's persona and assigned topic. Ask yourself: What is the core comedic angle here? What is this character's unique point of view on this topic? How can I generate ten different jokes from this angle?
+          2.  **Step 2: Draft. Write the first drafts for all ten jokes. These are just the raw ideas to get you started.
+          3.  **Step 3: Brutal Self-Critique. Review each of your ten drafts. For each one, ask: Is the punchline surprising? Is the premise clear? Does it sound exactly like something this specific character would say? Is it generic? If a joke isn't excellent, it's not done.
+          4.  **Step 4: Refine and Polish. Rewrite all ten jokes, sharpening the language and perfecting the punchlines based on your critique. Your final output must be a numbered list of 10 clever, original jokes that are perfectly aligned with the character's persona.
+        `:
+        `
       **YOUR METHODOLOGY FOR EACH ASSIGNMENT:**
       You will follow a strict, internal, multi-step process for each character:
       1.  **Step 1: Deep Analysis.** Read the character's persona and assigned topic. Ask yourself: What is the core comedic angle here? What is this character's unique point of view on this topic?
       2.  **Step 2: Draft.** Write a first draft of a joke. This is just the raw idea.
       3.  **Step 3: Brutal Self-Critique.** Review your draft. Is the punchline surprising? Is the premise clear? Does it sound exactly like something this specific character would say? Is it generic? If it's not excellent, it's not done.
       4.  **Step 4: Refine and Polish.** Rewrite the joke, sharpening the language and perfecting the punchline based on your critique. The final joke must be clever, original, and perfectly aligned with the character's persona.
-
+      `
+      }
+    
       **ASSIGNMENTS LIST:**
       [
         ${assignmentsContext}
@@ -109,7 +126,7 @@ export async function generateJokesInBatch(
       ]
     `;
   }
-return [];
+  return [];
   // try {
   //   const result: any = await genAIPro.generateContent(prompt);
   //   const response = result.response;
@@ -128,7 +145,7 @@ return [];
   //   if (!Array.isArray(jokes) || jokes.some(j => !j.characterId || !j.jokeContent)) {
   //       throw new Error("AI returned a malformed JSON array for joke generation.");
   //   }
-    
+
   //   // The function returns the parsed jokes, which will conform to the
   //   // JokeGenerationResult interface for both modes.
   //   return jokes;
@@ -140,31 +157,35 @@ return [];
 }
 
 export async function generateJokesInSimpleBatch(
-   characters: Character[],
- ): Promise<JokeGenerationResult[]> {
+  characters: Character[],
+  tenEach: boolean = false
+): Promise<JokeGenerationResult[]> {
 
   let assignmentsContext: string;
   let prompt: string;
 
-     console.log('isSimpleMode is true')
-    // --- SIMPLE MODE ---
-    // Context does NOT include an assigned topic.
-    // It maps over all characters directly.
-    assignmentsContext = characters.map(character => {
-      // NOTE: Assumes your Character type includes a 'country' property.
-      // If not, you may need to adjust this part.
-      if (!character) return "";
-      return `{
+  console.log('isSimpleMode is true')
+  // --- SIMPLE MODE ---
+  // Context does NOT include an assigned topic.
+  // It maps over all characters directly.
+  assignmentsContext = characters.map(character => {
+    // NOTE: Assumes your Character type includes a 'country' property.
+    // If not, you may need to adjust this part.
+    if (!character) return "";
+    return `{
         "characterId": ${character.id},
         "characterName": "${character.name}",
         "persona": "${character.prompt_persona}",
        }`;
-    }).filter(Boolean).join(',\n');
-    console.log('isSimpleMode is false')
+  }).filter(Boolean).join(',\n');
+  console.log('isSimpleMode is false')
 
-    // Prompt is a direct command, asking the AI to find a topic AND write the joke.
-    prompt = `
-      You are a comedy writer. For each comedian in the JSON roster below, select a single relevant topic based on their country and write one high-quality joke that perfectly fits their persona.
+  // Prompt is a direct command, asking the AI to find a topic AND write the joke.
+  prompt = `
+      ${tenEach ?
+      'You are a comedy writer. For each comedian in the JSON roster below, write ten (10) high-quality jokes, each joke unique and related into a single relevant topic that perfectly fits their persona.'
+
+      : 'You are a comedy writer. For each comedian in the JSON roster below, select a single relevant topic based on their country and write one high-quality joke that perfectly fits their persona.'}
 
       **COMEDIAN ROSTER:**
       [
@@ -185,7 +206,7 @@ export async function generateJokesInSimpleBatch(
       ]
     `;
 
-    
+
   try {
     const result: any = await genAIPro.generateContent(prompt);
     const response = result.response;
@@ -202,9 +223,9 @@ export async function generateJokesInSimpleBatch(
 
     // Basic validation to ensure the response is in the expected format
     if (!Array.isArray(jokes) || jokes.some(j => !j.characterId || !j.jokeContent)) {
-        throw new Error("AI returned a malformed JSON array for joke generation.");
+      throw new Error("AI returned a malformed JSON array for joke generation.");
     }
-    
+
     // The function returns the parsed jokes, which will conform to the
     // JokeGenerationResult interface for both modes.
     return jokes;

@@ -26,12 +26,12 @@ export async function POST(request: NextRequest) {
     // If the token is missing, invalid, or does not match, reject the request.
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const { jobId='' } = await request.json();
+  const { jobId='', tenEach=false } = await request.json();
 
   // --- Authorization Successful ---
 
   // AC-6: Initial Logging - Log to the console that the job has started.
-  console.log("Daily autonomous job started successfully via orchestrator endpoint.");
+  console.log("Daily autonomous job started successfully via orchestrator endpoint.",  { tenEach});
 
   // TODO: Place your actual job logic here.
   // For example, you could call other internal APIs, update the database, etc.
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
   // while the job runs in the background.
   const id = jobId || randomUUID();
   const isSimpleMode = true;
-  runTopCharactersAutonomousJob(id, isSimpleMode); 
+  runTopCharactersAutonomousJob(id, isSimpleMode, tenEach); 
 
   // AC-5: Success Response - Return a 202 Accepted status.
   return NextResponse.json(
