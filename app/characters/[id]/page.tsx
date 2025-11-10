@@ -5,6 +5,7 @@ import { JokeCharacter } from "@/lib/characters";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import GenerateJokeButton from "@/components/GenerateJokeButton"; // <-- added
+import StarRating from "@/components/StarRating";
 
 // Define the structure of a Joke object from the database
 interface Joke {
@@ -12,6 +13,7 @@ interface Joke {
   content: string;
   character_name: string;
   created_at: Date;
+  rate: number
 }
 
 // RENAMED for clarity: This page shows a single character, not a single joke.
@@ -22,7 +24,7 @@ export default async function SingleCharacterPage({
 }) {
   // RENAMED for clarity: This ID from the URL is for a character.
   const characterId = params.id;
-  
+
   let character: JokeCharacter | undefined;
   let jokes: Joke[] = []; // <-- ADDED: Initialize an empty array for jokes
 
@@ -59,7 +61,7 @@ export default async function SingleCharacterPage({
       <div className="w-full max-w-3xl">
         {/* Character Bio Section */}
         <div className="relative bg-white p-8 rounded-xl shadow-lg text-center">
-          <Link 
+          <Link
             href={`/characters/${character.id}/edit`}
             className="absolute top-4 right-4 rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
             title="Edit Character"
@@ -96,18 +98,24 @@ export default async function SingleCharacterPage({
           <div className="grid gap-6">
             {jokes.length > 0 ? (
               jokes.map((joke) => (
-                <Link
+                <div
                   key={joke.id}
-                  href={`/jokes/${joke.id}`}
                   className="block bg-white p-5 rounded-lg shadow-md transition-shadow hover:shadow-lg"
                 >
-                  <p className="text-lg text-gray-700">"{joke.content}"</p>
+                  <div className="flex justify-end">
+                    <div className="flex-shrink-0">
+                      <StarRating jokeId={joke.id} initialRate={joke.rate} />
+                    </div>
+                  </div>
+                  {/* <StarRating jokeId={joke.id} initialRate={joke.rate} /> */}
+                  <p className="text-2xl p-5 text-gray-700">"{joke.content}"</p>
                   <p className="mt-3 text-xs text-gray-400">
                     {new Date(joke.created_at).toLocaleDateString("en-GB", {
                       year: "numeric", month: "long", day: "numeric",
                     })}
                   </p>
-                </Link>
+
+                </div>
               ))
             ) : (
               // This message is shown if the character has no jokes yet
