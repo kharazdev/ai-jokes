@@ -11,10 +11,10 @@ on:
     # - During UK summer (BST), this is 1:30 PM, 2:30 PM, and 3:30 PM.
 
     # 12:30 UTC
-    - cron: '58 5 * * *'
+    - cron: '58 2 * * *'
 
     # 13:58 UTC
-    - cron: '58 7 * * *'
+    - cron: '58 3 * * *'
 
 
   # This allows you to run the job manually from the GitHub Actions tab for testing
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # The single step in the job
-      - name: Call generate-joke API for character 1
+      - name: Call generate smart joke API
         # This command makes a GET request to your production URL.
         # It specifically calls the endpoint for character ID '1'.
         # The '--fail' flag ensures the job will fail if your API returns an error.
@@ -36,7 +36,7 @@ jobs:
   call_api_for_generate_jokes1:
     runs-on: ubuntu-latest
     steps:
-      - name: Call generate-jokes API
+      - name: Call generate daily jokes API
         # This command makes a GET request to the general joke generation endpoint.
         # The '--fail' flag ensures the job will fail if your API returns an error.
         run: curl --request GET --url 'https://ai-jokes-theta.vercel.app//api/orchestrator/run-daily-job/top/simpl?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true&v=1' --fail
@@ -45,7 +45,7 @@ jobs:
   call_api_for_generate_jokes2:
     runs-on: ubuntu-latest
     steps:
-      - name: Call generate-jokes API
+      - name: Call generate-jokes API 2
         # This command makes a GET request to the general joke generation endpoint.
         # The '--fail' flag ensures the job will fail if your API returns an error.
-        run: curl --request GET --url 'https://ai-jokes-theta.vercel.app//kill-api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true&v=1' --fail
+        run: curl --request GET --url 'https://ai-jokes-theta.vercel.app//api/generate-jokes?cron_secret=MySuperSecretStringForCronJobs1231244!235&force=true&v=1' --fail
