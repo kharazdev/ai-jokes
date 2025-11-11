@@ -18,6 +18,7 @@ interface JobRunnerCardProps {
   categoryId?: number;
   tenEach?: boolean;
   onTriggerJob: (jobId: string) => void;
+  onSelectCharacterId?: (characterId: number) => void;
   // --- NEW PROPS ---
   /** If true, a modal will open to select a character before running the job. */
   requiresCharacterSelection?: boolean;
@@ -54,10 +55,10 @@ export function JobRunnerCard({
     setMessageType('');
 
     // If a characterId is provided, append it to the API path
-    const finalApiPath = characterId ? `${apiPath}/${characterId}` : apiPath;
+    // const finalApiPath = characterId ? `${apiPath}/${characterId}` : apiPath;
 
     try {
-      const response = await fetch(finalApiPath, {
+      const response = await fetch(apiPath, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,6 +68,7 @@ export function JobRunnerCard({
           categoryId,
           jobId: newJobId,
           tenEach: tenEach,
+          characterId
         }),
       });
 

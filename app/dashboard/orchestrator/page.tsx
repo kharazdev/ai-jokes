@@ -80,7 +80,7 @@ export default function OrchestratorPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>(10);
   const [newJokes, setNewJokes] = useState<Joke[]>([]);
-  const [characters, setCharacters] = useState<Character[]>([]); // <-- ADD STATE FOR CHARACTERS
+  const [characters, setCharacters] = useState<Character[]>([]);
 
   // Use a single state object to manage the WebSocket connection status
   const [webSocketState, setWebSocketState] = useState<WebSocketState>({
@@ -89,17 +89,15 @@ export default function OrchestratorPage() {
   });
 
   const secretKey = process.env.ORCHESTRATOR_SECRET_KEY
-    || ".jbq>#RVi=L6BvG(JSKnc)b?#&*6e-@%;\$s[q#>gmp2I=C!0"
-  // Fetch categories on component mount
+    || ".jbq>#RVi=L6BvG(JSKnc)b?#&*6e-@%;$s[q#>gmp2I=C!0"
+  
+  // Fetch initial data on component mount
   useEffect(() => {
     fetch('/api/categories')
       .then(res => res.json())
-      .then(data => {
-        setCategories(data);
-      })
+      .then(data => setCategories(data))
       .catch(err => console.error("Failed to load categories:", err));
 
-          // Fetch Characters
     fetch('/api/characters')
       .then((res) => res.json())
       .then((data) => setCharacters(data))
@@ -116,19 +114,39 @@ export default function OrchestratorPage() {
 
     ws.onopen = () => {
       console.log(`WebSocket connected. Registering listener for Job ID: ${jobId}`);
-      setWebSocketState({ status: 'loading', message: 'Job has started! Waiting for the jokes to be created...' });
+      setWebSocketState({ status: 'loading', message: 'Job has started! Waiting for updates...' });
       ws.send(JSON.stringify({ type: 'REGISTER', jobId }));
     };
 
     ws.onmessage = (event) => {
       const response = JSON.parse(event.data);
-      console.log('Job onmessage! response .', { response });
+      console.log('WebSocket message received:', { response });
 
-      if (response.type === 'JOB_COMPLETE') {
-        console.log('Job complete! Received jokes.');
-        setNewJokes(response.payload);
-        setWebSocketState({ status: 'success', message: 'Jokes received successfully!' });
-        ws.close();
+      // Handle different message types from the server
+      switch (response.type) {
+        // CORRECTED: Listen for 'JOB_PROGRESS' and correctly access the payload message
+        case 'JOB_PROGRESS':
+          setWebSocketState({ status: 'loading', message: response.payload.message });
+          break;
+
+        // CORRECTED: Listen for 'JOB_COMPLETE'
+        case 'JOB_COMPLETE':
+          console.log('Job complete! Received jokes.');
+          setNewJokes(response.payload);
+          setWebSocketState({ status: 'success', message: 'Jokes received successfully!' });
+          ws.close();
+          break;
+
+        // CORRECTED: Listen for 'JOB_ERROR'
+        case 'JOB_ERROR':
+          console.error('Job failed:', response.payload.message);
+          setWebSocketState({ status: 'error', message: response.payload.message });
+          ws.close();
+          break;
+        
+        default:
+          console.warn('Received unknown WebSocket message type:', response.type);
+          break;
       }
     };
 
@@ -139,10 +157,14 @@ export default function OrchestratorPage() {
 
     ws.onclose = () => {
       console.log('WebSocket connection closed.');
-      // If the state is still 'loading', it means the connection closed unexpectedly
-      if (webSocketState.status === 'loading') {
-        setWebSocketState({ status: 'error', message: 'Connection was closed unexpectedly. The job may have failed.' });
-      }
+      // This logic prevents overwriting a final 'success' or 'error' state.
+      // It uses a functional update to safely access the previous state.
+      setWebSocketState((prevState) => {
+        if (prevState.status === 'loading') {
+          return { status: 'error', message: 'Connection was closed unexpectedly. The job may have failed.' };
+        }
+        return prevState;
+      });
     };
   };
 
@@ -216,24 +238,24 @@ export default function OrchestratorPage() {
       </p>
 
       {/* CATEGORY SELECTOR */}
-      {categories.length > 0 && 
-      <div className="mb-4">
-        <label htmlFor="category-select" className="block text-sm font-medium text-gray-700 mb-1">
-          Select Category for Smart Job
-        </label>
-        <select
-          id="category-select"
-          value={selectedCategoryId}
-          onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        >
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.label_arabic}
-            </option>
-          ))}
-        </select>
-      </div>}
+      {categories.length > 0 &&
+        <div className="mb-4">
+          <label htmlFor="category-select" className="block text-sm font-medium text-gray-700 mb-1">
+            Select Category for Smart Job
+          </label>
+          <select
+            id="category-select"
+            value={selectedCategoryId}
+            onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          >
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.label_arabic}
+              </option>
+            ))}
+          </select>
+        </div>}
 
       {/* Job Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -244,7 +266,6 @@ export default function OrchestratorPage() {
           secretKey={secretKey}
           onTriggerJob={setupWebSocketListener}
         />
-
         <JobRunnerCard
           title="Daily Autonomous Job top characters"
           description="Runs the standard daily job for top characters. Ideal for routine, daily content generation."
@@ -252,7 +273,6 @@ export default function OrchestratorPage() {
           secretKey={secretKey}
           onTriggerJob={setupWebSocketListener}
         />
-
         <JobRunnerCard
           title="Daily Autonomous simple Job"
           description="Runs the standard daily simple job for all active characters. Ideal for routine, daily content generation."
@@ -260,7 +280,6 @@ export default function OrchestratorPage() {
           secretKey={secretKey}
           onTriggerJob={setupWebSocketListener}
         />
-
         <JobRunnerCard
           title="Daily Autonomous simple Job top characters"
           description="Runs the standard daily simple job for top characters. Ideal for routine, daily content generation."
@@ -268,7 +287,6 @@ export default function OrchestratorPage() {
           secretKey={secretKey}
           onTriggerJob={setupWebSocketListener}
         />
-
         <JobRunnerCard
           title="Daily Autonomous simple Job top characters, 10 jokes each"
           description="Runs the standard daily simple job for top characters. Ideal for routine, daily content generation."
@@ -277,7 +295,6 @@ export default function OrchestratorPage() {
           onTriggerJob={setupWebSocketListener}
           tenEach={true}
         />
-
         <JobRunnerCard
           title="Smart Autonomous Job"
           description="Runs the advanced, context-aware job for a specific category. Best for high-quality, targeted content."
@@ -286,7 +303,6 @@ export default function OrchestratorPage() {
           categoryId={selectedCategoryId}
           onTriggerJob={setupWebSocketListener}
         />
-
         <JobRunnerCard
           title="Smart Autonomous Job top characters"
           description="Runs the advanced, context-aware job for Job top characters. Best for high-quality, targeted content."
@@ -295,8 +311,6 @@ export default function OrchestratorPage() {
           categoryId={selectedCategoryId}
           onTriggerJob={setupWebSocketListener}
         />
-
-
         <JobRunnerCard
           title="Smart Autonomous simple Job"
           description="Runs the simple, context-aware simple job."
@@ -305,8 +319,6 @@ export default function OrchestratorPage() {
           categoryId={selectedCategoryId}
           onTriggerJob={setupWebSocketListener}
         />
-
-
         <JobRunnerCard
           title="Smart Autonomous simple Job for top characters 10 jokes each"
           description="Runs the simple, context-aware job for Job top characters."
@@ -316,20 +328,16 @@ export default function OrchestratorPage() {
           onTriggerJob={setupWebSocketListener}
           tenEach={true}
         />
-
-        {/* new one be open module to select character the click start job which we going  */}
         <JobRunnerCard
           title="Smart Autonomous simple for 1 character, 100 jokes"
           description="Runs the simple, context-aware job for 1 character, 100 jokes."
-          // apiPath to be "/api/orchestrator/run-smart-job/top/simple/100" / {selected character}
-          apiPath="/api/orchestrator/run-smart-job/top/simple/100"
+          apiPath="/api/orchestrator/run-smart-job/high-volume-character"
           secretKey={secretKey}
           categoryId={selectedCategoryId}
           onTriggerJob={setupWebSocketListener}
           tenEach={true}
           requiresCharacterSelection={true}
         />
-
       </div>
 
       {/* Section to Display Job Results, Loading, or Errors */}

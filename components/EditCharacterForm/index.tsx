@@ -18,6 +18,7 @@ export interface Character {
   created_at: string;
   country: string;
   is_active: boolean
+  prompt_topics: string[]
 }
 
 // ========================================================================

@@ -68,3 +68,30 @@ export async function getTopCharacters(): Promise<Character[]> {
     return []; // Return an empty array to prevent the job from crashing.
   }
 }
+
+
+
+/**
+ * Fetches a single character by their unique ID from the database.
+ * @param characterId The ID of the character to fetch.
+ * @returns A promise that resolves to the character object or null if not found.
+ */
+export async function getCharacterById(characterId: number): Promise<Character | null> {
+  try {
+    const { rows } = await sql<Character>`
+      SELECT id, name, prompt_persona, country, prompt_topics
+      FROM characters 
+      WHERE id = ${characterId}
+      LIMIT 1;
+    `;
+
+    // The query returns an array; if a character is found, it will be the first element.
+    // If not found, the array will be empty, and `rows[0]` will be undefined, so we return null.
+    return rows[0] || null;
+
+  } catch (error) {
+    console.error(`[CHARACTER_SERVICE] Failed to fetch character with ID ${characterId}:`, error);
+    // Return null on error to prevent the calling service from crashing.
+    return null;
+  }
+}

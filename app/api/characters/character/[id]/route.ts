@@ -20,7 +20,7 @@ export async function GET(request: NextRequest, context: any) {
     }
 
     const { rows } = await sql`
-      SELECT id, name, avatar, bio
+      SELECT *
       FROM characters
       WHERE id = ${characterId};
     `;
